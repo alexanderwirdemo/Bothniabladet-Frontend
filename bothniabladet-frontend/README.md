@@ -1,6 +1,8 @@
 # AngularBothniabladetFrontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
+För att köra, gå till mappen 'app' och köp kommandot ng serve --open (--open öppnar webklient, är ej nödvändig). Gå sedan till localhost:4200
+Om porten är upptagen, kör npx kill-port 4200
 
 ## Development server
 
