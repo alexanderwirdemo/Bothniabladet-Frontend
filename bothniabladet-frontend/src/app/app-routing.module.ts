@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ArchiveviewComponent } from './archiveview/archiveview.component';
-import { CustomerviewComponent } from './customerview/customerview.component';
-import { ImageviewComponent } from './imageview/imageview.component';
-import { InvoiceviewComponent } from './invoiceview/invoiceview.component';
+import { ArchiveviewComponent } from './components/archiveview/archiveview.component';
+import { CustomerviewComponent } from './components/customerview/customerview.component';
+import { ImageviewComponent } from './components/imageview/imageview.component';
+import { InvoiceviewComponent } from './components/invoiceview/invoiceview.component';
 
 const routes: Routes = [
   {path: 'imageview', component: ImageviewComponent},
