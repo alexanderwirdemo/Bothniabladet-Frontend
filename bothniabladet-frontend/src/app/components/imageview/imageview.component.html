@@ -31,5 +31,100 @@
     
         </div>
       </form>
+
+      <fieldset>
+        <legend>Bilddata</legend>
+            <form [formGroup]="image_data" (ngSubmit)="onFormSubmit()">
+              <p>
+                <label for="date">Datum </label>
+                <input type="text" id="date" name="date" formControlName="date">
+              </p>
+              <p>
+                <label for="category">Kategori </label>
+                <select id="category" name="category" formControlName="category" multiple>
+                  <option>Nyheter</option>
+                  <option>Sport</option>
+                  <option>Ekonomi</option>
+                  <option>Nöje</option>
+              </select>
+                
+              </p>
+              <p>
+                <label for="dimensions">Underkategori </label>
+                <select id="subcategory" name="subcategory" formControlName="subcategory" multiple>
+                  <option>Inrikes</option>
+                  <option>Ishockey</option>
+                  <option>Börs</option>
+                  <option>Litteratur</option>
+              </select>
+              </p>
+              <p>
+                <label for="keywords">Nyckelord </label>
+                <input type="text" id="keywords" name="keywords" formControlName="keywords">
+              </p>
+              <p>
+                <label for="restrictions">Begränsningar </label>
+                <input type="text" id="restrictions" name="restrictions" formControlName="restrictions">
+              </p>
+            </form>
+          </fieldset>
+
+          <fieldset>
+            <legend>Platsdata</legend>
+                <form [formGroup]="location" (ngSubmit)="onFormSubmit()">
+                  <p>
+                    <label for="place">Plats </label>
+                    <input type="text" id="place" name="place" formControlName="place">
+                  </p>
+                  <p>
+                    <label for="city">Stad </label>
+                    <input type="text" id="city" name="city" formControlName="city">
+                  </p>
+                  <p>
+                    <label for="region">Region </label>
+                    <input type="text" id="region" name="region" formControlName="region">
+                  </p>
+                  <p>
+                    <label for="country">Land </label>
+                    <input type="text" id="country" name="country" formControlName="country">
+                  </p>
+                </form>
+              </fieldset>
+
+      <fieldset>
+        <legend>Teknisk data</legend>
+            <form [formGroup]="technical_data" (ngSubmit)="onFormSubmit()">
+              <p>
+                <label for="format">Format </label>
+                <input type="text" id="format" name="format" formControlName="format">
+              </p>
+              <p>
+                <label for="version">Version </label>
+                <input type="text" id="version" name="version" formControlName="version">
+              </p>
+              <p>
+                <label for="dimensions">Dimensioner </label>
+                <input type="text" id="dimensions" name="dimensions" formControlName="dimensions">
+              </p>
+              <p>
+                <label for="size">Filstorlek </label>
+                <input type="text" id="size" name="size" formControlName="size">
+              </p>
+              <p>
+                <label for="resolution">Upplösning </label>
+                <input type="text" id="resolution" name="resolution" formControlName="resolution">
+              </p>
+              <p>
+                <label for="camera">Kamera </label>
+                <input type="text" id="camera" name="camera" formControlName="camera">
+              </p>
+              <p>
+                <label for="GPS">GPS-koordinater </label>
+                <input type="text" id="GPS" name="GPS" formControlName="GPS">
+              </p>
+            </form>
+          </fieldset>
+
+
     
     </div>

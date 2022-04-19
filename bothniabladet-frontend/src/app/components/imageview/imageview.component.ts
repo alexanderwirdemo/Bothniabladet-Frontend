@@ -12,6 +12,9 @@ export class ImageviewComponent implements OnInit {
 
   @ViewChild('UploadFileInput', { static: false }) uploadFileInput: ElementRef;
   fileUploadForm: FormGroup;
+  image_data: FormGroup;
+  location: FormGroup;
+  technical_data: FormGroup;
   fileInputLabel: string;
 
   constructor(
@@ -23,16 +26,46 @@ export class ImageviewComponent implements OnInit {
     this.fileUploadForm = this.formBuilder.group({
       uploadedImage: ['']
     });
+    this.location = this.formBuilder.group({
+      place: '',
+      city: '',
+      region: '',
+      country: ''
+    });
+    this.technical_data = this.formBuilder.group({
+      format:'',
+      version:'Original',
+      dimensions: '',
+      size: '',
+      resolution: '',
+      camera: '',
+      GPS: ''
+    });
+    this.image_data = this.formBuilder.group({
+      date:'',
+      category:'',
+      subcategory:'',
+      keywords:'',
+      restrictions:''
+    })
   }
 
   onFileSelect(event) {
     const file = event.target.files[0];
+    console.log('file:');
+    console.dir(file);
     this.fileInputLabel = file.name;
     this.fileUploadForm.get('uploadedImage').setValue(file);
   }
 
 
   onFormSubmit() {
+    console.log('image data:');
+    console.dir(this.image_data.value);
+    console.log('location:');
+    console.dir(this.location.value);
+    console.log('technical data:');
+    console.dir(this.technical_data.value);
 
     if (!this.fileUploadForm.get('uploadedImage').value) {
       alert('Please fill valid details!');
