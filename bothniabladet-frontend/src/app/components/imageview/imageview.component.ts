@@ -27,26 +27,27 @@ export class ImageviewComponent implements OnInit {
       uploadedImage: ['']
     });
     this.location = this.formBuilder.group({
-      place: '',
-      city: '',
-      region: '',
-      country: ''
+      GPS: '12, 12',
+      place: 'Scandinavium',
+      city: 'Göteborg',
+      region: 'Västra Götaland',
+      country: 'Sverige'
     });
     this.technical_data = this.formBuilder.group({
-      format:'',
+      format:'jpeg',
       version:'Original',
-      dimensions: '',
-      size: '',
-      resolution: '',
-      camera: '',
-      GPS: ''
+      dimensions: '200x200',
+      size: '2MB',
+      resolution: '4000px',
+      camera: 'Leica'
     });
     this.image_data = this.formBuilder.group({
-      date:'',
+      date:'2022-04-21',
+      photographer:'Owe Sentlig',
       category:'',
       subcategory:'',
       keywords:'',
-      restrictions:''
+      restrictions:'None'
     })
   }
 
@@ -90,6 +91,64 @@ export class ImageviewComponent implements OnInit {
         console.log(er);
         alert(er.error.error);
       });
+
+    // Add to database
   }
 
+}
+
+export class Image{
+  public date: Date;
+  public photographer: String;
+  public category: Array<String>;
+  public subcategory: Array<String>;
+  public Location: Location;
+  public Technical_data: Technical_data;
+  public keywords: Array<String>;
+  public restrictions: String;
+  public remaining_publications: Number;
+
+  constructor(date: Date, photographer: String, category: Array<String>, subcategory: Array<String>, Location: Location, Technical_data: Technical_data, keywords: Array<String>, restrictions: String){
+    this.date = date;
+    this.photographer = photographer;
+    this.category = category;
+    this.subcategory = subcategory;
+    this.Location = Location;
+    this.Technical_data = Technical_data;
+    this.keywords = keywords;
+    this.restrictions = restrictions;
+  }
+
+}
+
+export class Location{
+  public GPSCoordinates: String;
+  public place: String;
+  public city: String;
+  public region: String;
+  public country: String;
+
+  constructor(GPSCoordinates: String, place: String, city: String, region: String, country: String){
+    this.GPSCoordinates = GPSCoordinates;
+    this.place = place;
+    this.city = city;
+    this.region = region;
+    this.country = country;
+  }
+}
+
+export class Technical_data{
+  public format: String;
+  public version: String;
+  public image_size: String;
+  public resolution: String;
+  public camera: String;
+
+  constructor(format: String, version: String, image_size: String, resolution: String, camera: String){
+    this.format = format;
+    this.version = version;
+    this.image_size = image_size;
+    this.resolution = resolution;
+    this.camera = camera;
+  }
 }

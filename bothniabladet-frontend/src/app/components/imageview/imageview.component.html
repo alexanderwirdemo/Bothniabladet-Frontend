@@ -40,6 +40,10 @@
                 <input type="text" id="date" name="date" formControlName="date">
               </p>
               <p>
+                <label for="photographer">Fotograf </label>
+                <input type="text" id="photographer" name="photographer" formControlName="photographer">
+              </p>
+              <p>
                 <label for="category">Kategori </label>
                 <select id="category" name="category" formControlName="category" multiple>
                   <option>Nyheter</option>
@@ -72,6 +76,10 @@
           <fieldset>
             <legend>Platsdata</legend>
                 <form [formGroup]="location" (ngSubmit)="onFormSubmit()">
+                  <p>
+                    <label for="GPS">GPS-koordinater </label>
+                    <input type="text" id="GPS" name="GPS" formControlName="GPS">
+                  </p>
                   <p>
                     <label for="place">Plats </label>
                     <input type="text" id="place" name="place" formControlName="place">
@@ -117,10 +125,6 @@
               <p>
                 <label for="camera">Kamera </label>
                 <input type="text" id="camera" name="camera" formControlName="camera">
-              </p>
-              <p>
-                <label for="GPS">GPS-koordinater </label>
-                <input type="text" id="GPS" name="GPS" formControlName="GPS">
               </p>
             </form>
           </fieldset>
