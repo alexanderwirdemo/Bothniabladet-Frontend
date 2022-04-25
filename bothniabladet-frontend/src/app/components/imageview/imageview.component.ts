@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../../services/api.service';
 import * as _ from 'lodash';
 
 @Component({
@@ -19,7 +20,8 @@ export class ImageviewComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private _api: ApiService,
   ) { }
 
   ngOnInit(): void {
@@ -37,7 +39,7 @@ export class ImageviewComponent implements OnInit {
       format:'jpeg',
       version:'Original',
       dimensions: '200x200',
-      size: '2MB',
+      image_size: '2MB',
       resolution: '4000px',
       camera: 'Leica'
     });
@@ -61,12 +63,40 @@ export class ImageviewComponent implements OnInit {
 
 
   onFormSubmit() {
-    console.log('image data:');
+    console.log('image data form:');
     console.dir(this.image_data.value);
-    console.log('location:');
+    console.log('location form:');
     console.dir(this.location.value);
-    console.log('technical data:');
+    console.log('technical data form:');
     console.dir(this.technical_data.value);
+
+    // Add to database
+    var locationForm = this.location.value;
+    let location = new Location(locationForm.GPS, locationForm.place, locationForm.city, locationForm.region, locationForm.country);
+    console.log('location:');
+    console.dir(location);
+
+    var technicalDataForm = this.technical_data.value;
+    var technical_data = new Technical_data(technicalDataForm.format, technicalDataForm.version, technicalDataForm.image_size, technicalDataForm.resolution, technicalDataForm.camera);
+    console.log('technical data');
+    console.dir(technical_data);
+
+    var imageDataForm = this.image_data.value;
+    var imageData = new Image(imageDataForm.date, imageDataForm.photographer, imageDataForm.category, imageDataForm.subcategory, location, technical_data, imageDataForm.keywords, imageDataForm.restrictions);
+    console.log('image data');
+    console.dir(imageData);
+
+    this._api.postTypeRequest('images/add', imageData).subscribe((res: any) => {
+      console.dir(res);
+      if (res.success) {
+      console.log(res)
+      } else {
+      console.log(res)
+      alert(res.note);
+      }
+      }, err => {
+      console.log(err);
+      });
 
     if (!this.fileUploadForm.get('uploadedImage').value) {
       alert('Please fill valid details!');
@@ -91,8 +121,6 @@ export class ImageviewComponent implements OnInit {
         console.log(er);
         alert(er.error.error);
       });
-
-    // Add to database
   }
 
 }
