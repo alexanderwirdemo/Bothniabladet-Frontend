@@ -58,6 +58,7 @@ export class ImageviewComponent implements OnInit {
     console.log('file:');
     console.dir(file);
     this.fileInputLabel = file.name;
+    console.log(this.fileInputLabel);
     this.fileUploadForm.get('uploadedImage').setValue(file);
   }
 
@@ -81,22 +82,16 @@ export class ImageviewComponent implements OnInit {
     console.log('technical data');
     console.dir(technical_data);
 
+    const today = new Date();
+      const year = today.getFullYear();
+      const month = today.getMonth()+1;
+      const day = today.getDate();
+      const title = this.fileInputLabel.substring(0,this.fileInputLabel.indexOf('.')) + '-' + year + month + day;
+
     var imageDataForm = this.image_data.value;
-    var imageData = new Image(imageDataForm.date, imageDataForm.photographer, imageDataForm.category, imageDataForm.subcategory, location, technical_data, imageDataForm.keywords, imageDataForm.restrictions);
+    var imageData = new Image(title, imageDataForm.date, imageDataForm.photographer, imageDataForm.category, imageDataForm.subcategory, location, technical_data, imageDataForm.keywords, imageDataForm.restrictions);
     console.log('image data');
     console.dir(imageData);
-
-    this._api.postTypeRequest('images/add', imageData).subscribe((res: any) => {
-      console.dir(res);
-      if (res.success) {
-      console.log(res)
-      } else {
-      console.log(res)
-      alert(res.note);
-      }
-      }, err => {
-      console.log(err);
-      });
 
     if (!this.fileUploadForm.get('uploadedImage').value) {
       alert('Please fill valid details!');
@@ -106,7 +101,7 @@ export class ImageviewComponent implements OnInit {
 
   const formData = new FormData();
     formData.append('uploadedImage', this.fileUploadForm.get('uploadedImage').value);
-    formData.append('agentId', '007');
+    console.dir(this.fileUploadForm.get('uploadedImage').value);
 
 
     this.http
@@ -121,11 +116,24 @@ export class ImageviewComponent implements OnInit {
         console.log(er);
         alert(er.error.error);
       });
+
+      this._api.postTypeRequest('images/add', imageData).subscribe((res: any) => {
+        console.dir(res);
+        if (res.success) {
+        console.log(res)
+        } else {
+        console.log(res)
+        alert(res.note);
+        }
+        }, err => {
+        console.log(err);
+        });
   }
 
 }
 
 export class Image{
+  public title: String;
   public date: Date;
   public photographer: String;
   public category: Array<String>;
@@ -136,7 +144,8 @@ export class Image{
   public restrictions: String;
   public remaining_publications: Number;
 
-  constructor(date: Date, photographer: String, category: Array<String>, subcategory: Array<String>, Location: Location, Technical_data: Technical_data, keywords: Array<String>, restrictions: String){
+  constructor(title: String, date: Date, photographer: String, category: Array<String>, subcategory: Array<String>, Location: Location, Technical_data: Technical_data, keywords: Array<String>, restrictions: String){
+    this.title = title;
     this.date = date;
     this.photographer = photographer;
     this.category = category;
