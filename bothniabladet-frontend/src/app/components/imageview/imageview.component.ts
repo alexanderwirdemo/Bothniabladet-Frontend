@@ -36,15 +36,21 @@ export class ImageviewComponent implements OnInit {
       country: 'Sverige'
     });
     this.technical_data = this.formBuilder.group({
-      format:'jpeg',
+      format:'',
       version:'Original',
-      dimensions: '200x200',
-      image_size: '2MB',
-      resolution: '4000px',
+      height: 0,
+      width: 0,
+      image_size: 0,
+      resolution: 0,
       camera: 'Leica'
     });
+    const today = new Date();
+      const year = today.getFullYear();
+      const month = today.getMonth()+1;
+      const day = today.getDate();
+      const datestring = year + '-' + month + '-' + day;
     this.image_data = this.formBuilder.group({
-      date:'2022-04-21',
+      date: datestring,
       photographer:'Owe Sentlig',
       category:'',
       subcategory:'',
@@ -55,6 +61,32 @@ export class ImageviewComponent implements OnInit {
 
   onFileSelect(event) {
     const file = event.target.files[0];
+
+    const fileExtension = file.name.replace(/^.*\./, '');
+    console.log(fileExtension);
+    this.technical_data.get('format').setValue(fileExtension);
+
+    const size = file.size/1000000;
+    console.log(size);
+    this.technical_data.get('image_size').setValue(size);
+
+    const URL = window.URL || window.webkitURL;
+    const Img = new Image();
+    Img.src = URL.createObjectURL(file);
+
+    Img.onload = (e: any) => {
+      console.dir(e.path[0]);
+      const height = e.path[0].height;
+      const width = e.path[0].width;
+      const resolution = height*width;
+
+      this.technical_data.get('height').setValue(height);
+      this.technical_data.get('width').setValue(width);
+      this.technical_data.get('resolution').setValue(resolution);
+
+      console.log(height,width, resolution);
+  }
+
     console.log('file:');
     console.dir(file);
     this.fileInputLabel = file.name;
@@ -86,10 +118,14 @@ export class ImageviewComponent implements OnInit {
       const year = today.getFullYear();
       const month = today.getMonth()+1;
       const day = today.getDate();
-      const title = this.fileInputLabel.substring(0,this.fileInputLabel.indexOf('.')) + '-' + year + month + day;
+      const name = this.fileInputLabel.substring(0,this.fileInputLabel.indexOf('.'));
+      const fileExtension = this.fileInputLabel.split('.').pop();
+      const title = name + '-' + year + month + day + '.' + fileExtension;
 
     var imageDataForm = this.image_data.value;
-    var imageData = new Image(title, imageDataForm.date, imageDataForm.photographer, imageDataForm.category, imageDataForm.subcategory, location, technical_data, imageDataForm.keywords, imageDataForm.restrictions);
+    const keywords = imageDataForm.keywords.split(',');
+    console.log(keywords);
+    var imageData = new BothniaImage(title, imageDataForm.date, imageDataForm.photographer, imageDataForm.category, imageDataForm.subcategory, location, technical_data, keywords, imageDataForm.restrictions);
     console.log('image data');
     console.dir(imageData);
 
@@ -123,7 +159,7 @@ export class ImageviewComponent implements OnInit {
         console.log(res)
         } else {
         console.log(res)
-        alert(res.note);
+        alert('Bild tillagd!');
         }
         }, err => {
         console.log(err);
@@ -132,7 +168,7 @@ export class ImageviewComponent implements OnInit {
 
 }
 
-export class Image{
+export class BothniaImage{
   public title: String;
   public date: Date;
   public photographer: String;

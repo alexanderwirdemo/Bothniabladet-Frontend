@@ -24,6 +24,7 @@
               <label class="custom-file-label" for="customFile">{{fileInputLabel || 'Choose File'}}</label>
         
             </div>
+            
     
           </div>
     
@@ -104,23 +105,27 @@
             <form [formGroup]="technical_data" (ngSubmit)="onFormSubmit()">
               <p>
                 <label for="format">Format </label>
-                <input type="text" id="format" name="format" formControlName="format">
+                <input readonly type="text" id="format" name="format" formControlName="format">
               </p>
               <p>
                 <label for="version">Version </label>
                 <input type="text" id="version" name="version" formControlName="version">
               </p>
               <p>
-                <label for="dimensions">Dimensioner </label>
-                <input type="text" id="dimensions" name="dimensions" formControlName="dimensions">
+                <label for="height">Bildhöjd (px) </label>
+                <input readonly type="number" id="height" name="height" formControlName="height">
               </p>
               <p>
-                <label for="image_size">Filstorlek </label>
-                <input type="text" id="image_size" name="image_size" formControlName="image_size">
+                <label for="width">Bildbredd (px) </label>
+                <input readonly type="number" id="width" name="width" formControlName="width">
+              </p>
+              <p>
+                <label for="image_size">Filstorlek (MegaByte) </label>
+                <input readonly type="text" id="image_size" name="image_size" formControlName="image_size">
               </p>
               <p>
                 <label for="resolution">Upplösning </label>
-                <input type="text" id="resolution" name="resolution" formControlName="resolution">
+                <input readonly type="text" id="resolution" name="resolution" formControlName="resolution">
               </p>
               <p>
                 <label for="camera">Kamera </label>
