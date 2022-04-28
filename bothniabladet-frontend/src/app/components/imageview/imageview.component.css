@@ -1,0 +1,9 @@
+#guidelines {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 2%;
+    border: 0.2em dashed red; 
+    font-size: small;   
+}

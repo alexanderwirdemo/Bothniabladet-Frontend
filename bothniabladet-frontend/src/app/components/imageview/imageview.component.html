@@ -24,6 +24,7 @@
               <label class="custom-file-label" for="customFile">{{fileInputLabel || 'Choose File'}}</label>
         
             </div>
+            
     
           </div>
     
@@ -31,5 +32,116 @@
     
         </div>
       </form>
+
+      <div id="guidelines">
+        <p>
+        Ange nyckelord separerade med kommatecken utan mellanslag.<br> 
+        Nyckelord bör som minst innehålla vem/vad bilden föreställer och sammanhang. <br>
+        Exempel: Drottning Silvia,Blå Hallen,Nobelmiddag
+      </p>
+      </div>
+
+      <fieldset>
+        <legend>Bilddata</legend>
+            <form [formGroup]="image_data" (ngSubmit)="onFormSubmit()">
+              <p>
+                <label for="date">Datum </label>
+                <input type="text" id="date" name="date" formControlName="date">
+              </p>
+              <p>
+                <label for="photographer">Fotograf </label>
+                <input type="text" id="photographer" name="photographer" formControlName="photographer">
+              </p>
+              <p>
+                <label for="category">Kategori </label>
+                <select id="category" name="category" formControlName="category" multiple>
+                  <option>Nyheter</option>
+                  <option>Sport</option>
+                  <option>Ekonomi</option>
+                  <option>Nöje</option>
+              </select>
+                
+              </p>
+              <p>
+                <label for="dimensions">Underkategori </label>
+                <select id="subcategory" name="subcategory" formControlName="subcategory" multiple>
+                  <option>Inrikes</option>
+                  <option>Ishockey</option>
+                  <option>Börs</option>
+                  <option>Litteratur</option>
+              </select>
+              </p>
+              <p>
+                <label for="keywords">Nyckelord </label>
+                <input type="text" id="keywords" name="keywords" formControlName="keywords">
+              </p>
+              <p>
+                <label for="restrictions">Begränsningar </label>
+                <input type="text" id="restrictions" name="restrictions" formControlName="restrictions">
+              </p>
+            </form>
+          </fieldset>
+
+          <fieldset>
+            <legend>Platsdata</legend>
+                <form [formGroup]="location" (ngSubmit)="onFormSubmit()">
+                  <p>
+                    <label for="GPS">GPS-koordinater </label>
+                    <input type="number" id="GPS" name="GPS" formControlName="GPS">
+                  </p>
+                  <p>
+                    <label for="place">Plats </label>
+                    <input type="text" id="place" name="place" formControlName="place">
+                  </p>
+                  <p>
+                    <label for="city">Stad </label>
+                    <input type="text" id="city" name="city" formControlName="city">
+                  </p>
+                  <p>
+                    <label for="region">Region </label>
+                    <input type="text" id="region" name="region" formControlName="region">
+                  </p>
+                  <p>
+                    <label for="country">Land </label>
+                    <input type="text" id="country" name="country" formControlName="country">
+                  </p>
+                </form>
+              </fieldset>
+
+      <fieldset>
+        <legend>Teknisk data</legend>
+            <form [formGroup]="technical_data" (ngSubmit)="onFormSubmit()">
+              <p>
+                <label for="format">Format </label>
+                <input readonly type="text" id="format" name="format" formControlName="format">
+              </p>
+              <p>
+                <label for="version">Version </label>
+                <input type="text" id="version" name="version" formControlName="version">
+              </p>
+              <p>
+                <label for="height">Bildhöjd (px) </label>
+                <input readonly type="number" id="height" name="height" formControlName="height">
+              </p>
+              <p>
+                <label for="width">Bildbredd (px) </label>
+                <input readonly type="number" id="width" name="width" formControlName="width">
+              </p>
+              <p>
+                <label for="image_size">Filstorlek (MegaByte) </label>
+                <input readonly type="text" id="image_size" name="image_size" formControlName="image_size">
+              </p>
+              <p>
+                <label for="resolution">Upplösning </label>
+                <input readonly type="text" id="resolution" name="resolution" formControlName="resolution">
+              </p>
+              <p>
+                <label for="camera">Kamera </label>
+                <input type="text" id="camera" name="camera" formControlName="camera">
+              </p>
+            </form>
+          </fieldset>
+
+
     
     </div>
