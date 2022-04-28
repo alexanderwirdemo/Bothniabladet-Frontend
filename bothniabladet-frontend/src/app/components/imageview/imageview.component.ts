@@ -29,7 +29,7 @@ export class ImageviewComponent implements OnInit {
       uploadedImage: ['']
     });
     this.location = this.formBuilder.group({
-      GPS: '12, 12',
+      GPS: 12,
       place: 'Scandinavium',
       city: 'Göteborg',
       region: 'Västra Götaland',
@@ -195,13 +195,13 @@ export class BothniaImage{
 }
 
 export class Location{
-  public GPSCoordinates: String;
+  public GPSCoordinates: Number;
   public place: String;
   public city: String;
   public region: String;
   public country: String;
 
-  constructor(GPSCoordinates: String, place: String, city: String, region: String, country: String){
+  constructor(GPSCoordinates: Number, place: String, city: String, region: String, country: String){
     this.GPSCoordinates = GPSCoordinates;
     this.place = place;
     this.city = city;
