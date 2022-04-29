@@ -4,3 +4,16 @@
     <li>"bunta ihop" bilder till kund+fakturaavdelning</li>
     <li>fyll på med fler användarkrav...</li>
 </ul>
+
+<ul class="archiveview">
+    <li *ngFor="let option of options">
+        <button [class.selected]="option === choice" type="button" (click)="onSelect(option)">    
+              <span class="badge">{{option.name}}</span>
+    </button>
+    </li>
+  </ul>
+
+
+<div class="col-sm-6"> <button class="btn btn-primary" (click)="test='JAAAAAA'" type="submit">Search</button> </div>
+
+<h2>{{test}}</h2>
