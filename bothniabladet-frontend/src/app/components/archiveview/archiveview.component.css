@@ -1,0 +1,45 @@
+.search-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.search-full-width {
+  width: 100%;
+}
+
+.search-button {
+  display: table-cell;
+  width: 490px;
+  min-height: 100%;
+}
+
+.parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.categories-field {
+  min-height: 20em !important;
+  height: 20em !important;
+  background-color: whitesmoke;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.category-link {
+  min-width: 20em !important;
+  width: 20em !important;
+  text-align: left;
+  font-size: small;
+}
+
+a:link {
+  text-decoration: none;
+}
+

@@ -8,8 +8,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { ImageviewComponent } from './components/imageview/imageview.component';
 import { ArchiveviewComponent } from './components/archiveview/archiveview.component';
 import { InvoiceviewComponent } from './components/invoiceview/invoiceview.component';
-import { CustomerviewComponent } from './components/customerview/customerview.component';
 import { HeaderComponent } from './components/header/header.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { AdvancedsearchviewComponent } from './components/advancedsearchview/advancedsearchview.component';
+import { CustomerviewComponent } from './components/customerview/customerview.component';
 
 @NgModule({
   declarations: [
@@ -17,15 +29,42 @@ import { HeaderComponent } from './components/header/header.component';
     ImageviewComponent,
     ArchiveviewComponent,
     InvoiceviewComponent,
+    HeaderComponent,
+    AdvancedsearchviewComponent,
     CustomerviewComponent,
-    HeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatRadioModule,
+    MatFormFieldModule
+
+  ],
+
+  exports: [
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatRadioModule,
+    MatFormFieldModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,3 +1,35 @@
+<mat-toolbar class="head">
+  <mat-toolbar-row class="head">
+    <span class="menu-spacer"></span>
+    <span>
+      <h1>Bothniabladets Bildarkiv</h1>
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-toolbar class="tail">
+  <mat-toolbar-row class="tail">
+    <span>
+        <a mat-button [routerLink]="'/archiveview'" routerLinkActive="mat-raised-button" class="button"> Sök </a>
+        <a mat-button [routerLink]="'/imageview'" routerLinkActive="mat-raised-button" class="button"> Ladda upp bild </a>
+        <a mat-button [routerLink]="'/advancedsearchview'" routerLinkActive="mat-raised-button" class="button"> Avancerad sök </a>
+        <a mat-button [routerLink]="'/customerview'" routerLinkActive="mat-raised-button" class="button"> Granskning </a>
+        <a mat-button [routerLink]="'/invoiceview'" routerLinkActive="mat-raised-button" class="button"> Ekonomi </a>
+    </span>
+    <span>
+      <button mat-button [matMenuTriggerFor]="menu">Mina sidor</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Profil</button>
+        <button mat-menu-item>Orderhistorik</button>
+        <button mat-menu-item>Fakturor</button>
+      </mat-menu>
+      <!--<a mat-button [routerLink]="'/loginview'" routerLinkActive="mat-raised-button" class="button"> Logga in </a>-->
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+
+<!--
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <ul class="navbar-nav">
     <li class="nav-item active">
@@ -14,4 +46,4 @@
     </li>
     </ul>
     </nav>
-    <router-outlet></router-outlet> 
+    <router-outlet></router-outlet> -->
