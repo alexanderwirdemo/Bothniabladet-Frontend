@@ -5,15 +5,16 @@
     <li>fyll på med fler användarkrav...</li>
 </ul>
 
-<ul class="archiveview">
-    <li *ngFor="let option of options">
-        <button [class.selected]="option === choice" type="button" (click)="onSelect(option)">    
-              <span class="badge">{{option.name}}</span>
-    </button>
-    </li>
-  </ul>
+<fieldset>
+  <form [formGroup]="searchForm" (ngSubmit)="onFormSubmit()">
+    <div class="col-sm-6">
+      <p>
+        <input type="text" id="searchbar" name="searchbar" formControlName="searchForm"> 
+        <button class="btn btn-primary" (click)="makeSearch()" type="submit">Search</button> 
+        </p>
+    </div>
+  </form>
+</fieldset>
 
-
-<div class="col-sm-6"> <button class="btn btn-primary" (click)="test='JAAAAAA'" type="submit">Search</button> </div>
-
-<h2>{{test}}</h2>
+{{results}}
+{{searchString}}
