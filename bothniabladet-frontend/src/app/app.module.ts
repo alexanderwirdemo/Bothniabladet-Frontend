@@ -10,6 +10,8 @@ import { ArchiveviewComponent } from './components/archiveview/archiveview.compo
 import { InvoiceviewComponent } from './components/invoiceview/invoiceview.component';
 import { CustomerviewComponent } from './components/customerview/customerview.component';
 import { HeaderComponent } from './components/header/header.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
@@ -20,6 +22,8 @@ import { CartComponent } from './components/cart/cart.component';
     InvoiceviewComponent,
     CustomerviewComponent,
     HeaderComponent,
+    LoginComponent,
+    RegisterComponent
     CartComponent
   ],
   imports: [
