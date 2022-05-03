@@ -13,7 +13,8 @@ const routes: Routes = [
   {path: 'invoiceview', component: InvoiceviewComponent},
   {path: 'customerview', component: CustomerviewComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent}
+  {path: 'register', component: RegisterComponent},
+  {path: '', component: ArchiveviewComponent},
 ];
 
 @NgModule({

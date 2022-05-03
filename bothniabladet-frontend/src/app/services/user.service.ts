@@ -21,7 +21,16 @@ export class UserService {
   setuserLoggedIn(userLoggedIn: boolean): any {
     this.userLoggedIn = userLoggedIn;
   }
-  
+
+  getuserRole(): String {
+    return this.currentUser.role;
+  }
+
+  logoutUser(): void {
+    this.currentUser = null;
+    this.setuserLoggedIn(false);
+  }
+
    setUser(user: any): any {
     this.currentUser = user;
   }

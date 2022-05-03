@@ -7,7 +7,7 @@
     <a class="nav-link" [routerLink] = "['archiveview']" routerLinkActive = "active">Arkiv</a>
     </li>
     <li class="nav-item">
-    <a class="nav-link" [routerLink] = "['invoiceview']" routerLinkActive = "active" >Fakturor</a>
+    <a *ngIf="getUserLoggedIn() && getUserRole()==='Admin'" class="nav-link" [routerLink] = "['invoiceview']" routerLinkActive = "active" >Fakturor</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" [routerLink] = "['customerview']" routerLinkActive = "active" >Kund</a>
@@ -17,6 +17,9 @@
     </li>
     <li class="nav-item">
       <a *ngIf="!getUserLoggedIn()" class="nav-link" [routerLink] = "['register']" routerLinkActive = "active" >Registrera</a>
+    </li>
+    <li class="nav-item">
+      <a *ngIf="getUserLoggedIn()" class="nav-link" click="logoutUser()" [routerLink] = "['/']" routerLinkActive = "active" >Logga ut</a>
     </li>
           
           

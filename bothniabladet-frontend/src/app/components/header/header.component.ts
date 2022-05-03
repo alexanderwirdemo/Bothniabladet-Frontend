@@ -19,4 +19,12 @@ export class HeaderComponent implements OnInit {
     return this._userService.getuserLoggedIn();
   }
 
+  getUserRole(): String {
+    return this._userService.getuserRole();
+  }
+
+  logoutUser(): void {
+    return this._userService.logoutUser();
+  }
+
 }

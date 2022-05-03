@@ -12,7 +12,10 @@
     <input  type = "text" name = "invoiceAddress" placeholder = "fakturaadress" formControlName="invoiceAddress">
 </p>
 <p>
-    <input  type = "text" name = "role" placeholder = "roll" formControlName="role">
+    <input type="radio" id="Regular" name="role" value="Regular" formControlName="role">
+    <label for="Regular">Regular</label>
+    <input type="radio" id="Admin" name="role" value="Admin" formControlName="role">
+    <label for="Admin">Admin</label>
 </p>
 <input type = "submit" value = "Registrera">
   </form>
