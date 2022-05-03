@@ -12,6 +12,7 @@ import { CustomerviewComponent } from './components/customerview/customerview.co
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { RegisterComponent } from './components/register/register.component';
     HeaderComponent,
     LoginComponent,
     RegisterComponent
+    CartComponent
   ],
   imports: [
     BrowserModule,

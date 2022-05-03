@@ -6,6 +6,7 @@ import { ImageviewComponent } from './components/imageview/imageview.component';
 import { InvoiceviewComponent } from './components/invoiceview/invoiceview.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { CartComponent } from './components/cart/cart.component';
 
 const routes: Routes = [
   {path: 'imageview', component: ImageviewComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: '', component: ArchiveviewComponent},
+  {path: 'cart', component: CartComponent}
 ];
 
 @NgModule({

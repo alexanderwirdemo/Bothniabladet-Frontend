@@ -21,8 +21,8 @@
     <li class="nav-item">
       <a *ngIf="getUserLoggedIn()" class="nav-link" click="logoutUser()" [routerLink] = "['/']" routerLinkActive = "active" >Logga ut</a>
     </li>
-          
-          
+      <a class="nav-link" [routerLink] = "['cart']" routerLinkActive = "active" >Varukorg</a>
+    </li>
     </ul>
     </nav>
     <router-outlet></router-outlet> 
