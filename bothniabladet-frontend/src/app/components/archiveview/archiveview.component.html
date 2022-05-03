@@ -74,7 +74,21 @@
 
 <p>På den här sidan skall alla mullvadar på arkivet kunna: </p>
 <ul>
-  <li>söka på bilder baserat på t ex sökord</li>
-  <li>"bunta ihop" bilder till kund+fakturaavdelning</li>
-  <li>fyll på med fler användarkrav...</li>
-</ul>-->
+    <li>söka på bilder baserat på t ex sökord</li>
+    <li>"bunta ihop" bilder till kund+fakturaavdelning</li>
+    <li>fyll på med fler användarkrav...</li>
+</ul>
+
+<fieldset>
+  <form [formGroup]="searchForm" (ngSubmit)="onFormSubmit()">
+    <div class="col-sm-6">
+      <p>
+        <input type="text" id="searchbar" name="searchbar" formControlName="searchForm"> 
+        <button class="btn btn-primary" (click)="makeSearch()" type="submit">Search</button> 
+        </p>
+    </div>
+  </form>
+</fieldset>
+
+{{results}}
+{{searchString}}

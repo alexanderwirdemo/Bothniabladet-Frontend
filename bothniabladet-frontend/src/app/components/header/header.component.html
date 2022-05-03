@@ -33,16 +33,27 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <ul class="navbar-nav">
     <li class="nav-item active">
-    <a class="nav-link" [routerLink] = "['imageview']" routerLinkActive = "active">Bilder</a>
+    <a *ngIf="getUserLoggedIn()" class="nav-link" [routerLink] = "['imageview']" routerLinkActive = "active">Ladda upp bilder</a>
     </li>
     <li class="nav-item">
     <a class="nav-link" [routerLink] = "['archiveview']" routerLinkActive = "active">Arkiv</a>
     </li>
     <li class="nav-item">
-    <a class="nav-link" [routerLink] = "['invoiceview']" routerLinkActive = "active" >Fakturor</a>
+    <a *ngIf="getUserLoggedIn() && getUserRole()==='Admin'" class="nav-link" [routerLink] = "['invoiceview']" routerLinkActive = "active" >Fakturor</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" [routerLink] = "['customerview']" routerLinkActive = "active" >Kund</a>
+    </li>
+    <li class="nav-item">
+      <a *ngIf="!getUserLoggedIn()" class="nav-link" [routerLink] = "['login']" routerLinkActive = "active" >Logga in</a>
+    </li>
+    <li class="nav-item">
+      <a *ngIf="!getUserLoggedIn()" class="nav-link" [routerLink] = "['register']" routerLinkActive = "active" >Registrera</a>
+    </li>
+    <li class="nav-item">
+      <a *ngIf="getUserLoggedIn()" class="nav-link" click="logoutUser()" [routerLink] = "['/']" routerLinkActive = "active" >Logga ut</a>
+    </li>
+      <a class="nav-link" [routerLink] = "['cart']" routerLinkActive = "active" >Varukorg</a>
     </li>
     </ul>
     </nav>

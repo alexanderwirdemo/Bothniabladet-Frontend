@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -9,6 +8,11 @@ import { ImageviewComponent } from './components/imageview/imageview.component';
 import { ArchiveviewComponent } from './components/archiveview/archiveview.component';
 import { InvoiceviewComponent } from './components/invoiceview/invoiceview.component';
 import { HeaderComponent } from './components/header/header.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { CartComponent } from './components/cart/cart.component';
+import { AdvancedsearchviewComponent } from './components/advancedsearchview/advancedsearchview.component';
+import { CustomerviewComponent } from './components/customerview/customerview.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -20,8 +24,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { AdvancedsearchviewComponent } from './components/advancedsearchview/advancedsearchview.component';
-import { CustomerviewComponent } from './components/customerview/customerview.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,12 @@ import { CustomerviewComponent } from './components/customerview/customerview.co
     HeaderComponent,
     AdvancedsearchviewComponent,
     CustomerviewComponent,
+    HeaderComponent,
+    LoginComponent,
+    RegisterComponent,
+    CartComponent
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -50,7 +57,6 @@ import { CustomerviewComponent } from './components/customerview/customerview.co
     MatDatepickerModule,
     MatRadioModule,
     MatFormFieldModule
-
   ],
 
   exports: [

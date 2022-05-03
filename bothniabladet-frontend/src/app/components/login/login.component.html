@@ -1,0 +1,11 @@
+
+
+    <form [formGroup]="loginform" (ngSubmit)="onFormSubmit()">
+        <p>
+        <input  type = "text" name = "username" placeholder = "username" formControlName="username">
+    </p>
+    <p>
+    <input  type = "password" name = "password" placeholder = "password" formControlName="password">
+</p>
+    <input type = "submit" value = "Logga in">
+      </form>
