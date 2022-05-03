@@ -1,0 +1,18 @@
+<form [formGroup]="registerform" (ngSubmit)="onFormSubmit()">
+    <p>
+    <input  type = "text" name = "username" placeholder = "användarnamn" formControlName="username">
+</p>
+<p>
+    <input  type = "password" name = "password" placeholder = "lösenord" formControlName="password">
+</p>
+<p>
+    <input  type = "text" name = "name" placeholder = "namn" formControlName="name">
+</p>
+<p>
+    <input  type = "text" name = "invoiceAddress" placeholder = "fakturaadress" formControlName="invoiceAddress">
+</p>
+<p>
+    <input  type = "text" name = "role" placeholder = "roll" formControlName="role">
+</p>
+<input type = "submit" value = "Registrera">
+  </form>

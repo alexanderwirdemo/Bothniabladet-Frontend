@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
       } else {
       console.log(res)
       if(res.user.length===1){
-        alert('Användare hittad!');
         this._userapi.setuserLoggedIn(true);
         this._userapi.setUser(res.user);
       }

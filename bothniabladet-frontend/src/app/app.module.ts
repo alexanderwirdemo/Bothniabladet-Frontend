@@ -11,6 +11,7 @@ import { InvoiceviewComponent } from './components/invoiceview/invoiceview.compo
 import { CustomerviewComponent } from './components/customerview/customerview.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LoginComponent } from './components/login/login.component';
     InvoiceviewComponent,
     CustomerviewComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

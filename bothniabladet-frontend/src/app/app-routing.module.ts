@@ -5,13 +5,15 @@ import { CustomerviewComponent } from './components/customerview/customerview.co
 import { ImageviewComponent } from './components/imageview/imageview.component';
 import { InvoiceviewComponent } from './components/invoiceview/invoiceview.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   {path: 'imageview', component: ImageviewComponent},
   {path: 'archiveview', component: ArchiveviewComponent},
   {path: 'invoiceview', component: InvoiceviewComponent},
   {path: 'customerview', component: CustomerviewComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent}
 ];
 
 @NgModule({
