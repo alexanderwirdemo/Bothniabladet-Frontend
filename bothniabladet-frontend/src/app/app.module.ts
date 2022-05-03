@@ -10,6 +10,7 @@ import { ArchiveviewComponent } from './components/archiveview/archiveview.compo
 import { InvoiceviewComponent } from './components/invoiceview/invoiceview.component';
 import { CustomerviewComponent } from './components/customerview/customerview.component';
 import { HeaderComponent } from './components/header/header.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HeaderComponent } from './components/header/header.component';
     ArchiveviewComponent,
     InvoiceviewComponent,
     CustomerviewComponent,
-    HeaderComponent
+    HeaderComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
