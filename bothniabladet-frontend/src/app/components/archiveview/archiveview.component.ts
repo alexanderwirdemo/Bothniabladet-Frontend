@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../services/api.service';
 import * as _ from 'lodash';
@@ -11,7 +11,6 @@ import * as _ from 'lodash';
 })
 
 export class ArchiveviewComponent implements OnInit {
-
   searchString: String;
   combined: String;
   results: String;
@@ -52,7 +51,16 @@ export class ArchiveviewComponent implements OnInit {
   ngOnInit(): void {
 
     this.searchForm = this.formBuilder.group({})
-
   }
-
 }
+
+
+export class simple_searchString {
+  public simple_searchString: String;
+
+  constructor(simple_searchString: String) {
+    this.simple_searchString = simple_searchString;
+  }
+}
+
+

@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ArchiveviewComponent } from './components/archiveview/archiveview.component';
-import { CustomerviewComponent } from './components/customerview/customerview.component';
 import { ImageviewComponent } from './components/imageview/imageview.component';
+import { CustomerviewComponent } from './components/customerview/customerview.component';
 import { InvoiceviewComponent } from './components/invoiceview/invoiceview.component';
+import { AdvancedsearchviewComponent } from './components/advancedsearchview/advancedsearchview.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CartComponent } from './components/cart/cart.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: '', component: ArchiveviewComponent},
+  { path: 'advancedsearchview', component: AdvancedsearchviewComponent },
   {path: 'cart', component: CartComponent}
 ];
 

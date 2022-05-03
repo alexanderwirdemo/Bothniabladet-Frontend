@@ -1,0 +1,93 @@
+<br />
+<br />
+<br />
+<div class="parent">
+  <form class="advancedsearch-form" [formGroup]="advancedsearch_data" (ngSubmit)="onFormSubmit()">
+    <table style="width:100%">
+      <tr style="text-align:left">
+        <p style="font-weight:600">Avancerad sökning</p>
+      </tr>
+      <tr style="text-align:center">
+        <mat-form-field class="advancedsearch-full-width" appearance="outline">
+          <mat-label style="font-size:large">Nyckelord</mat-label>
+          <input matInput placeholder="Sökord" type="text" id="advanced_searchString" name="advanced_searchString" formControlName="advanced_searchString">
+        </mat-form-field>
+      </tr>
+      <tr style="text-align:center">
+        <mat-form-field class="advancedsearch-full-width" appearance="outline">
+          <mat-label style="font-size:large">Titel</mat-label>
+          <input matInput placeholder="Titel" type="text" id="advanced_searchTitle" name="advanced_searchTitle" formControlName="advanced_searchTitle">
+        </mat-form-field>
+      </tr>
+      <tr style="text-align:center">
+        <mat-form-field class="advancedsearch-full-width" appearance="outline">
+          <mat-label style="font-size:large">Kategori</mat-label>
+          <select matNativeControl placeholder="Kategori" id="advanced_searchCategory" name="advanced_searchCategory" formControlName="advanced_searchCategory">
+            <option>-- Ingen --</option>
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+            <option value="option4">Option 4</option>
+          </select>
+        </mat-form-field>
+      </tr>
+      <tr style="text-align:center">
+        <mat-form-field class="advancedsearch-full-width" appearance="outline">
+          <mat-label style="font-size:large">Underkategori</mat-label>
+          <select matNativeControl placeholder="Underkategori" id="advanced_searchSubcategory" name="advanced_searchSubcategory" formControlName="advanced_searchSubcategory">
+            <option>-- Ingen --</option>
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+            <option value="option4">Option 4</option>
+          </select>
+        </mat-form-field>
+      </tr>
+      <tr style="text-align:center">
+        <mat-form-field class="advancedsearch-full-width" appearance="outline">
+          <mat-label style="font-size:large">Fotograf</mat-label>
+          <input matInput placeholder="Fotograf" type="text" id="advanced_searchPhotografer" name="advanced_searchPhotografer" formControlName="advanced_searchPhotografer">
+        </mat-form-field>
+      </tr>
+      <tr style="text-align:center">
+        <mat-form-field class="advancedsearch-full-width" appearance="outline">
+          <mat-label style="font-size:large">Upplösning</mat-label>
+          <input matInput placeholder="Upplösning" type="number" id="advanced_searchResolution" name="advanced_searchResolution" formControlName="advanced_searchResolution">
+        </mat-form-field>
+      </tr>
+      <tr style="text-align:center">
+        <mat-form-field class="advancedsearch-full-width" appearance="outline">
+          <mat-label style="font-size:large">Plats</mat-label>
+          <input matInput placeholder="Plats" type="text" id="advanced_searchPlace" name="advanced_searchPlace" formControlName="advanced_searchPlace">
+        </mat-form-field>
+      </tr>
+
+      <tr style="text-align:left; font-size:larger">
+        <p>
+          Publicerad?
+          <mat-radio-group class="advancedsearch-full-width" appearance="outline" id="advanced_searchPublished" name="advanced_searchPublished" formControlName="advanced_searchPublished">
+            <mat-radio-button value="Ja" style="font-size:large; padding-right:2em; padding-left:2em">Ja</mat-radio-button>
+            <mat-radio-button value="Nej" style="font-size:large">Nej</mat-radio-button>
+          </mat-radio-group>
+        </p>
+      </tr>
+      <!--
+      <tr style="text-align:center">
+        <mat-form-field class="advancedsearch-full-width" appearance="outline">
+          <mat-label style="font-size:large">Datum från-till</mat-label>
+          <mat-date-range-input>
+            <input matStartDate placeholder="Datum från" type="date" id="advanced_searchDateFrom" name="advanced_searchDateFrom" formControlName="advanced_searchDateFrom">
+            <input matEndDate placeholder="Datum till" type="date" id="advanced_searchDateTo" name="advanced_searchDateTo" formControlName="advanced_searchDateTo">
+          </mat-date-range-input>
+          <mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
+        </mat-form-field>
+      </tr>-->
+
+
+
+      <tr style="text-align:right">
+        <div class="advancedsearch-button"><button mat-raised-button color="primary" type="submit">Sök</button></div>
+      </tr>
+    </table>
+    </form>
+  </div>
