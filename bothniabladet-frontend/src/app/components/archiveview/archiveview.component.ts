@@ -16,7 +16,7 @@ export class ArchiveviewComponent implements OnInit {
   results: String;
   baseUrl: String;
   
-  searchForm: FormGroup;
+  simplesearch_data: FormGroup;
 
   constructor(
 
@@ -26,19 +26,26 @@ export class ArchiveviewComponent implements OnInit {
 
   ) {}
 
-  onFormSubmit(){}
+  onFormSubmit() {
+    console.log('simple search string:');
+    console.dir(this.simplesearch_data.value);
+    this.makeSearch();
+
+  }
 
   makeSearch(){
 
     this.baseUrl = "images/keyword/"
-    this.searchString = (<HTMLInputElement>document.getElementById("searchbar")).value;
+    this.searchString = (<HTMLInputElement>document.getElementById("simple_searchBar")).value;
     this.combined = this.baseUrl.concat(this.searchString.toString())
   
 
     this._api.getTypeRequest(this.combined).subscribe((res: any) => {
       {
           const entries = Object.entries(res);
-          this.results = JSON.stringify(entries);
+        this.results = JSON.stringify(entries);
+        console.log('result:');
+        console.dir(this.results);
           
 
       }}, err => {
@@ -50,12 +57,14 @@ export class ArchiveviewComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.searchForm = this.formBuilder.group({})
+    this.simplesearch_data = this.formBuilder.group({
+      simple_searchString: '',
+    });
   }
 }
 
 
-export class simple_searchString {
+export class simplesearch_data {
   public simple_searchString: String;
 
   constructor(simple_searchString: String) {
