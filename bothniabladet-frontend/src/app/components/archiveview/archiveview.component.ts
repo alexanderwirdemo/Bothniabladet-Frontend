@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl, FormGroupDirective, NgForm, Valida
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../services/api.service';
 import * as _ from 'lodash';
+import { SearchresultsComponent } from '../searchresults/searchresults.component';
 
 @Component({
   selector: 'app-archiveview',
@@ -42,15 +43,17 @@ export class ArchiveviewComponent implements OnInit {
 
     this._api.getTypeRequest(this.combined).subscribe((res: any) => {
       {
-          const entries = Object.entries(res);
+        const entries = Object.entries(res);
         this.results = JSON.stringify(entries);
         console.log('result:');
         console.dir(this.results);
+
+        
           
 
       }}, err => {
       console.log(err);
-      alert("Nehej, du")
+      alert("Något gick fel")
 
       });
   }
