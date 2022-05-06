@@ -44,15 +44,20 @@ export class CustomerviewComponent implements OnInit {
     };
     this._api.putTypeRequest('images/reviewed/update/'+image.id, body).subscribe(response => {
         console.log(response);
+        this.removeElementFromObjectArray(image.id);
+        alert('Godkänd!');
       }, er => {
         console.log(er);
         alert(er.error.error);
       });
-    alert('Godkänd!');
-
-
-
+    
   }
+
+  removeElementFromObjectArray(_id: String) {
+    this.imagesData.forEach((image,index)=>{
+        if(image.id===_id) this.imagesData.splice(index,1);
+    });
+} 
 
 }
 

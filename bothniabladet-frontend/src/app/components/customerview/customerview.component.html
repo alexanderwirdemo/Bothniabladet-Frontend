@@ -4,8 +4,15 @@
   <li>"bunta ihop" bilder som får säljas i en kundkorg och köpa</li>
   <li>fyll på med fler användarkrav...</li>
 </ul>
-<div *ngFor="let image of imagesData">
-  <img src="{{ image.filepath }}" height="280px" width="200px">
-  <p>Fotograf: {{ image.photographer }}</p>
-  <button (click)="approveImage(image)">GODKÄNN</button>
-</div>
+
+<table>
+  <tr>
+  <ng-container *ngFor="let image of imagesData">
+      <td>
+        <img src="{{ image.filepath }}" height="280px" width="200px">
+        <p>Fotograf: {{ image.photographer }}</p>
+        <button (click)="approveImage(image)">GODKÄNN</button>
+      </td>
+  </ng-container>
+</tr>
+</table>
