@@ -7,7 +7,7 @@ import { ApiService } from '../../services/api.service';
   styleUrls: ['./customerview.component.css']
 })
 export class CustomerviewComponent implements OnInit {
-  private imagesData: Array<ImageData> = [];
+  public imagesData: Array<ImageData> = [];
   private imagesToReview: any;
 
   constructor(
@@ -21,7 +21,7 @@ export class CustomerviewComponent implements OnInit {
       for(var imageIndex=0; imageIndex<this.imagesToReview.allImagesToReview.length; imageIndex++){
         console.dir(this.imagesToReview.allImagesToReview[imageIndex]);
         let imageData = new ImageData(
-          'http://localhost:3001/uploaded_images/'+this.imagesToReview.allImagesToReview[imageIndex].title,
+          "http://localhost:3001/uploaded_images/"+this.imagesToReview.allImagesToReview[imageIndex].title,
           this.imagesToReview.allImagesToReview[imageIndex].photographer,
         );
         this.imagesData.push(imageData);

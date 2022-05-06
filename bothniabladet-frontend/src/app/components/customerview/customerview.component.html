@@ -4,6 +4,8 @@
   <li>"bunta ihop" bilder som får säljas i en kundkorg och köpa</li>
   <li>fyll på med fler användarkrav...</li>
 </ul>
-<!--
-<img src="http://localhost:3001/uploaded_images/IMG_1471-202255.jpg">
--->
+<div *ngFor="let image of imagesData">
+  <img src="{{ image.filepath }}">
+  <p>{{ image.filepath }}</p>
+  <p>{{ image.photographer }}</p> 
+</div>
