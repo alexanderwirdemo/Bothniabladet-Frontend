@@ -21,6 +21,7 @@ export class CustomerviewComponent implements OnInit {
       for(var imageIndex=0; imageIndex<this.imagesToReview.allImagesToReview.length; imageIndex++){
         console.dir(this.imagesToReview.allImagesToReview[imageIndex]);
         let imageData = new ImageData(
+          this.imagesToReview.allImagesToReview[imageIndex]._id,
           "http://localhost:3001/uploaded_images/"+this.imagesToReview.allImagesToReview[imageIndex].title,
           this.imagesToReview.allImagesToReview[imageIndex].photographer,
         );
@@ -35,13 +36,33 @@ export class CustomerviewComponent implements OnInit {
     
   }
 
+  approveImage(image: ImageData){
+    console.dir(image);
+    const body = {
+      _id: image.id,
+      reviewed: true
+    };
+    this._api.putTypeRequest('images/reviewed/update/'+image.id, body).subscribe(response => {
+        console.log(response);
+      }, er => {
+        console.log(er);
+        alert(er.error.error);
+      });
+    alert('Godkänd!');
+
+
+
+  }
+
 }
 
 export class ImageData{
+  public id: String;
   public filepath: String;
   public photographer: String;
 
-  constructor(filepath: String, photographer: String){
+  constructor(id: String, filepath: String, photographer: String){
+    this.id = id;
     this.filepath = filepath;
     this.photographer = photographer;
   }
