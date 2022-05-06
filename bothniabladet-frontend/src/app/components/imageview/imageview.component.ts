@@ -11,6 +11,7 @@ import * as _ from 'lodash';
 })
 export class ImageviewComponent implements OnInit {
 
+
   @ViewChild('UploadFileInput', { static: false }) uploadFileInput: ElementRef;
   fileUploadForm: FormGroup;
   image_data: FormGroup;
@@ -125,7 +126,9 @@ export class ImageviewComponent implements OnInit {
     var imageDataForm = this.image_data.value;
     const keywords = imageDataForm.keywords.split(',');
     console.log(keywords);
-    var imageData = new BothniaImage(title, imageDataForm.date, imageDataForm.photographer, imageDataForm.category, imageDataForm.subcategory, location, technical_data, keywords, imageDataForm.restrictions);
+    const price: Number = 199;
+    const reviewed: Boolean = false;
+    var imageData = new BothniaImage(title, imageDataForm.date, imageDataForm.photographer, imageDataForm.category, imageDataForm.subcategory, location, technical_data, keywords, imageDataForm.restrictions, price, reviewed);
     console.log('image data');
     console.dir(imageData);
 
@@ -179,8 +182,10 @@ export class BothniaImage{
   public keywords: Array<String>;
   public restrictions: String;
   public remaining_publications: Number;
+  public price: Number;
+  public reviewed: Boolean;
 
-  constructor(title: String, date: Date, photographer: String, category: Array<String>, subcategory: Array<String>, Location: Location, Technical_data: Technical_data, keywords: Array<String>, restrictions: String){
+  constructor(title: String, date: Date, photographer: String, category: Array<String>, subcategory: Array<String>, Location: Location, Technical_data: Technical_data, keywords: Array<String>, restrictions: String, price: Number, reviewed: Boolean){
     this.title = title;
     this.date = date;
     this.photographer = photographer;
@@ -190,6 +195,8 @@ export class BothniaImage{
     this.Technical_data = Technical_data;
     this.keywords = keywords;
     this.restrictions = restrictions;
+    this.price = price;
+    this.reviewed = reviewed;
   }
 
 }
