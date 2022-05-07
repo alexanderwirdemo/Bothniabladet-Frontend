@@ -19,6 +19,9 @@
   background-color: black;
   color: white;
   justify-content: space-between;
+  position: sticky;
+  top: 0em;
+  z-index:999;
 }
 
 .tail {
@@ -26,6 +29,9 @@
   height: 2em !important;
   background-color: whitesmoke;
   justify-content: space-between;
+  position:sticky;
+  top:5em;
+  z-index:999;
 }
 
 .button{
@@ -35,6 +41,20 @@
 
 .logo {
     padding-left:2em;
+}
+
+.itemsCart {
+  font-size: small;
+  line-height: 2em;
+  z-index: 1000;
+  position: absolute;
+  padding-left: 3em;
+  padding-top: 0.5em;
+  
+}
+
+a.cartButton:any-link {
+  color: white;
 }
 
 a:link {

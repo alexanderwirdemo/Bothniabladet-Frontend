@@ -9,3 +9,28 @@
     margin-bottom: 8px;
     border-radius: 2px;
 }
+
+.cart-full-width {
+  min-width: 700px;
+  max-width: 700px;
+  width: 100%;
+}
+
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: 600;
+}
+
+.pay-button {
+  display: table-cell;
+  width: 700px;
+  min-height: 100%;
+  text-align: right;
+}
+

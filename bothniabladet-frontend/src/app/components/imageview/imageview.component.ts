@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation  } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../services/api.service';
@@ -7,7 +7,9 @@ import * as _ from 'lodash';
 @Component({
   selector: 'app-imageview',
   templateUrl: './imageview.component.html',
-  styleUrls: ['./imageview.component.css']
+  styleUrls: ['./imageview.component.css'],
+
+  encapsulation: ViewEncapsulation.None,
 })
 export class ImageviewComponent implements OnInit {
 
@@ -115,6 +117,7 @@ export class ImageviewComponent implements OnInit {
     console.dir(this.location.value);
     console.log('technical data form:');
     console.dir(this.technical_data.value);
+    
 
     // Add to database
     var locationForm = this.location.value;
@@ -179,7 +182,45 @@ export class ImageviewComponent implements OnInit {
         });
   }
 
+  resetForm() {
+    this.myfilename= '';
+    this.fileUploadForm = this.formBuilder.group({
+      uploadedImage: ['']
+    });
+    this.location = this.formBuilder.group({
+      GPS: 0,
+      place: '',
+      city: '',
+      region: '',
+      country: ''
+    });
+    this.technical_data = this.formBuilder.group({
+      format: '',
+      version: '',
+      height: 0,
+      width: 0,
+      image_size: 0,
+      resolution: 0,
+      camera: ''
+    });
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    const datestring = year + '-' + month + '-' + day;
+    this.image_data = this.formBuilder.group({
+      date: datestring,
+      photographer: '',
+      category: '',
+      subcategory: '',
+      keywords: '',
+      restrictions: ''
+    })
+
+  }
+
 }
+
 
 export class BothniaImage{
   public title: String;

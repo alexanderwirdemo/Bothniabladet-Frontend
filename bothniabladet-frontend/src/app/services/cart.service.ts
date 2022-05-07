@@ -5,6 +5,9 @@ import { Image } from '../images';
   providedIn: 'root'
 })
 export class CartService {
+
+  public antal = 0;
+
   items: Image[] = [{
     id: 1,
     name: 'Julfirande på stortorget 1969',
@@ -22,7 +25,7 @@ export class CartService {
     name: 'Branden i stövelfabriken 2008',
     photograher: 'Owe Sentlig d.y.',
     price: 199,
-  }];
+    }];
 
   addToCart(image: Image) {
     const productExistInCart = this.items.find(({name}) => name === image.name);
@@ -54,8 +57,8 @@ export class CartService {
   }
 
   getNumberOfItems() {
-    let antal = this.items.length;
-    return antal;
+    this.antal = this.items.length;
+    return this.antal;
   }
   constructor() { }
 }
