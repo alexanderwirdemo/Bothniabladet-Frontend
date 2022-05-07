@@ -18,6 +18,7 @@ export class ImageviewComponent implements OnInit {
   location: FormGroup;
   technical_data: FormGroup;
   fileInputLabel: string;
+  myfilename = 'Välj fil';
 
   constructor(
     private http: HttpClient,
@@ -61,7 +62,19 @@ export class ImageviewComponent implements OnInit {
   }
 
   onFileSelect(event) {
+
+    
+    
     const file = event.target.files[0];
+
+    this.myfilename = '';
+    Array.from(event.target.files).forEach((file: File) => {
+      console.log(file);
+      this.myfilename += file.name;
+    });
+     
+ 
+    
 
     const fileExtension = file.name.replace(/^.*\./, '');
     console.log(fileExtension);

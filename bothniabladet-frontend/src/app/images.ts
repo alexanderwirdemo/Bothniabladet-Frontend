@@ -6,3 +6,10 @@ export interface Image {
   }
   
   export const images = [];
+
+  export interface ImageWIP {
+    id: number;
+    name: string;
+    photograher: string;
+    price: number;
+  }

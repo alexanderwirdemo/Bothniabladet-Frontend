@@ -8,6 +8,7 @@ import { AdvancedsearchviewComponent } from './components/advancedsearchview/adv
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CartComponent } from './components/cart/cart.component';
+import { SearchresultsComponent } from './components/searchresults/searchresults.component';
 
 const routes: Routes = [
   {path: 'imageview', component: ImageviewComponent},
@@ -17,8 +18,9 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: '', component: ArchiveviewComponent},
-  { path: 'advancedsearchview', component: AdvancedsearchviewComponent },
-  {path: 'cart', component: CartComponent}
+  {path: 'advancedsearchview', component: AdvancedsearchviewComponent },
+  {path: 'cart', component: CartComponent},
+  {path: 'searchresults', component: SearchresultsComponent},
 ];
 
 @NgModule({

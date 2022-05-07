@@ -1,19 +1,19 @@
-<!--
+
 <br />
 <br />
 <br />
 <div class="parent">
   <form class="search-form" [formGroup]="simplesearch_data" (ngSubmit)="onFormSubmit()">
-    <table style="width:100%">
-      <tr style="text-align:center">
+    <table class="search-full-width">
+      <tr class="tableRowCenter">
         <h1>Välkommen till <br />Bothniabladets bildarkiv</h1>
         <p>Skriv valfria sökord för att göra en ny sökning i bildarkivet. Alternativt bläddra bland kategorier nedan.</p>
       </tr>
-      <tr style="text-align:center">
+      <tr class="tableRowCenter">
         <th style="width:80%">
           <mat-form-field class="search-full-width" appearance="outline">
-            <mat-label style="font-size:large"><mat-icon style="width:2em">search</mat-icon>Skriv valfria sökord här</mat-label>
-            <input matInput placeholder="Sökord" type="text" id="simple_searchString" name="simple_searchString" formControlName="simple_searchString">
+            <mat-label class="matLabel"><mat-icon class="matIcon">search</mat-icon>Skriv valfria sökord här</mat-label>
+            <input matInput placeholder="Sökord" type="text" id="simple_searchBar" name="simple_searchString" formControlName="simple_searchString">
           </mat-form-field>
         </th>
         <th style="width:20%; align-content:center">
@@ -31,11 +31,11 @@
   <mat-toolbar-row class="categories-field">
     <span class="menu-spacer"></span>
     <table>
-      <tr style="text-align:left">
+      <tr class="tableRowLeft">
         <th>
           <h1>Kategorier</h1>
         </th>
-       </tr>
+      </tr>
       <tr>
         <th class="category-link">
           <a href=""> Aktuella händelser <br /><img src="" width="220" height="280" /></a>
@@ -55,13 +55,34 @@
 
       </tr>
 
-      </table>
+    </table>
   </mat-toolbar-row>
 </mat-toolbar>
--->
+
+<!--
+<mat-toolbar class="categories-field">
+  <mat-toolbar-row class="categories-field">
+    <span class="menu-spacer"></span>
+    <span><h1>Kategorier</h1></span>
+    <span class="menu-spacer"></span>
+    <span class="menu-spacer"></span>
+    <span class="menu-spacer"></span>
+    <span class="menu-spacer"></span>
+    <span class="menu-spacer"></span>
+  </mat-toolbar-row>
+  <mat-toolbar-row class="categories-field">
+    <span class="menu-spacer"></span>
+    <span><a href=""> Aktuella händelser <br /><img src="" width="220" height="280" /></a></span>
+    <span><a href=""> Nyhetshändelser <br /><img src="" width="220" height="280" /></a></span>
+    <span><a href=""> Sport <br /><img src="" width="220" height="280" /></a></span>
+    <span><a href=""> Ekonomi <br /><img src="" width="220" height="280" /></a></span>
+    <span><a href=""> Nöje <br /><img src="" width="220" height="280" /></a></span>
+    <span class="menu-spacer"></span>
 
 
-
+  </mat-toolbar-row>
+</mat-toolbar>
+  -->
 <!--<fieldset>
   <legend>Ny sökning</legend>
   <form [formGroup]="simplesearch_data" (ngSubmit)="onFormSubmit()">
@@ -84,8 +105,8 @@
   <form [formGroup]="searchForm" (ngSubmit)="onFormSubmit()">
     <div class="col-sm-6">
       <p>
-        <input type="text" id="searchbar" name="searchbar" formControlName="searchForm"> 
-        <button class="btn btn-primary" (click)="makeSearch()" type="submit">Search</button> 
+        <input type="text" id="searchbar" name="searchbar" formControlName="searchForm">
+        <button class="btn btn-primary" (click)="makeSearch()" type="submit">Search</button>
         </p>
     </div>
   </form>

@@ -1,147 +1,361 @@
+<br />
+<br />
+<br />
+<!--<div class="parent">
+  <form class="fileupload-form" [formGroup]="fileUploadForm" (ngSubmit)="onFormSubmit()">-->
+
+
+<div class="parent">
+  <div class="fileupload-form">
+    <table class="fileupload-full-width">
+      <tr class="tableRowLeft">
+        <p style="font-weight:600">Ladda upp bild</p>
+      </tr>
+      <tr class="tableRowCenter">
+        <mat-form-field class="fileupload-full-width" appearance="outline">
+          <div class="fileupload-full-width">
+            <mat-toolbar>
+              <input matInput [(ngModel)]="myfilename" placeholder="Välj fil" readonly name="uploadedImage">
+
+
+              <input type="file" #UploadFileInput id="customFile" (change)="onFileSelect($event)" name="uploadedImage"
+                     multiple="multiple" accept="image/*">
+
+            </mat-toolbar>
+          </div>
+        </mat-form-field>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+
+
+<div class="parent">
+  <div class="fileupload-form">
+    <form [formGroup]="image_data" (ngSubmit)="onFormSubmit()">
+      <table class="fileupload-full-width">
+        <tr class="tableRowLeft">
+          <p style="font-weight:400">Bilddata</p>
+        </tr>
+        <tr class="tableRowCenter">
+          <mat-form-field class="fileupload-full-width" appearance="outline">
+            <mat-label class="matLabel">Datum</mat-label>
+            <input matInput placeholder="Datum" type="text" id="date" name="date" formControlName="date">
+          </mat-form-field>
+        </tr>
+        <tr class="tableRowCenter">
+          <mat-form-field class="fileupload-full-width" appearance="outline">
+            <mat-label class="matLabel">Fotograf</mat-label>
+            <input matInput placeholder="Fotograf" type="text" id="photographer" name="photographer" formControlName="photographer">
+          </mat-form-field>
+        </tr>
+        <tr class="tableRowCenter">
+          <mat-form-field class="fileupload-full-width" appearance="outline">
+            <mat-label class="matLabel">Kategori</mat-label>
+            <select matNativeControl placeholder="Kategori" id="category" name="category" formControlName="category">
+              <option>-- Ingen --</option>
+              <option value="Nyheter">Nyheter</option>
+              <option value="Sport">Sport</option>
+              <option value="Ekonomi">Ekonomi</option>
+              <option value="Nöje">Nöje</option>
+            </select>
+          </mat-form-field>
+        </tr>
+        <tr class="tableRowCenter">
+          <mat-form-field class="fileupload-full-width" appearance="outline">
+            <mat-label class="matLabel">Underkategori</mat-label>
+            <select matNativeControl placeholder="Underkategori" id="subcategory" name="subcategory" formControlName="subcategory">
+              <option>-- Ingen --</option>
+              <option value="Inrikes">Inrikes</option>
+              <option value="Ishockey">Ishockey</option>
+              <option value="Börs">Börs</option>
+              <option value="Litteratur">Litteratur</option>
+            </select>
+          </mat-form-field>
+        </tr>
+        <tr class="tableRowCenter">
+          <mat-form-field class="fileupload-full-width" appearance="outline">
+            <mat-label class="matLabel">Nyckelord</mat-label>
+            <input matInput placeholder="Nyckelord" type="text" id="keywords" name="keywords" formControlName="keywords">
+          </mat-form-field>
+        </tr>
+        <tr class="tableRowCenter">
+          <mat-form-field class="fileupload-full-width" appearance="outline">
+            <mat-label class="matLabel">Begränsningar</mat-label>
+            <input matInput placeholder="Begränsningar" type="text" id="restrictions" name="restrictions" formControlName="restrictions">
+          </mat-form-field>
+        </tr>
+
+      </table>
+    </form>
+  </div>
+</div>
+
+
+<div class="parent">
+  <div class="fileupload-form">
+    <form [formGroup]="location" (ngSubmit)="onFormSubmit()">
+      <table class="fileupload-full-width">
+        <tr class="tableRowLeft">
+          <p style="font-weight:400">Platsdata</p>
+        </tr>
+        <tr class="tableRowCenter">
+          <mat-form-field class="fileupload-full-width" appearance="outline">
+            <mat-label class="matLabel">GPS-koordinater</mat-label>
+            <input matInput placeholder="GPS-koordinater" type="number" id="GPS" name="GPS" formControlName="GPS">
+          </mat-form-field>
+        </tr>
+        <tr class="tableRowCenter">
+          <mat-form-field class="fileupload-full-width" appearance="outline">
+            <mat-label class="matLabel">Plats</mat-label>
+            <input matInput placeholder="Plats" type="text" id="place" name="place" formControlName="place">
+          </mat-form-field>
+        </tr>
+        <tr class="tableRowCenter">
+          <mat-form-field class="fileupload-full-width" appearance="outline">
+            <mat-label class="matLabel">Stad</mat-label>
+            <input matInput placeholder="Stad" type="text" id="city" name="city" formControlName="city">
+          </mat-form-field>
+        </tr>
+        <tr class="tableRowCenter">
+          <mat-form-field class="fileupload-full-width" appearance="outline">
+            <mat-label class="matLabel">Region</mat-label>
+            <input matInput placeholder="Region" type="text" id="region" name="region" formControlName="region">
+          </mat-form-field>
+        </tr>
+        <tr class="tableRowCenter">
+          <mat-form-field class="fileupload-full-width" appearance="outline">
+            <mat-label class="matLabel">Land</mat-label>
+            <input matInput placeholder="Land" type="text" id="country" name="country" formControlName="country">
+          </mat-form-field>
+        </tr>
+
+      </table>
+    </form>
+  </div>
+</div>
+
+<div class="parent">
+  <div class="fileupload-form">
+    <form [formGroup]="technical_data" (ngSubmit)="onFormSubmit()">
+      <table class="fileupload-full-width">
+        <tr class="tableRowLeft">
+          <p style="font-weight:400">Teknisk data</p>
+        </tr>
+        <tr class="tableRowCenter">
+          <mat-form-field class="fileupload-full-width" appearance="outline">
+            <mat-label class="matLabel">Format</mat-label>
+            <input matInput placeholder="Format" type="text" id="format" name="format" formControlName="format">
+          </mat-form-field>
+        </tr>
+        <tr class="tableRowCenter">
+          <mat-form-field class="fileupload-full-width" appearance="outline">
+            <mat-label class="matLabel">Version</mat-label>
+            <input matInput placeholder="Version" type="text" id="version" name="version" formControlName="version">
+          </mat-form-field>
+        </tr>
+        <tr class="tableRowCenter">
+          <mat-form-field class="fileupload-full-width" appearance="outline">
+            <mat-label class="matLabel">Bildhöjd (px)</mat-label>
+            <input matInput readonly placeholder="Bildhöjd (px)" type="number" id="height" name="height" formControlName="height">
+          </mat-form-field>
+        </tr>
+        <tr class="tableRowCenter">
+          <mat-form-field class="fileupload-full-width" appearance="outline">
+            <mat-label class="matLabel">Bildbredd (px)</mat-label>
+            <input matInput readonly placeholder="Bildbredd (px)" type="number" id="weight" name="weight" formControlName="weight">
+          </mat-form-field>
+        </tr>
+        <tr class="tableRowCenter">
+          <mat-form-field class="fileupload-full-width" appearance="outline">
+            <mat-label class="matLabel">Filstorlek (MB)</mat-label>
+            <input matInput readonly placeholder="Filstorlek (MB)" type="text" id="image_size" name="image_size" formControlName="image_size">
+          </mat-form-field>
+        </tr>
+        <tr class="tableRowCenter">
+          <mat-form-field class="fileupload-full-width" appearance="outline">
+            <mat-label class="matLabel">Upplösning</mat-label>
+            <input matInput readonly placeholder="Upplösning" type="text" id="resolution" name="resolution" formControlName="resolution">
+          </mat-form-field>
+        </tr>
+        <tr class="tableRowCenter">
+          <mat-form-field class="fileupload-full-width" appearance="outline">
+            <mat-label class="matLabel">Kamera</mat-label>
+            <input matInput placeholder="Kamera" type="text" id="camera" name="camera" formControlName="camera">
+          </mat-form-field>
+        </tr>
+
+      </table>
+    </form>
+  </div>
+</div>
+
+
+<!--
+
+    
+
+  -->
+
+
+
+<form [formGroup]="fileUploadForm" (ngSubmit)="onFormSubmit()">
+  <div class="col-sm-6"> <button class="btn btn-primary" type="submit">Upload</button> </div>
+</form>
+
+
+
+
+
+<!--
+
 <p>På den här sidan skall alla fotografer kunna: </p>
 <ul>
-    <li>ladda upp bilder</li>
-    <li>fyll på med fler användarkrav...</li>
+  <li>ladda upp bilder</li>
+  <li>fyll på med fler användarkrav...</li>
 </ul>
 <div class="container">
-    <h3>Upload File</h3>
-  
-  
-    <form [formGroup]="fileUploadForm" (ngSubmit)="onFormSubmit()">
-      <div class="row">
-        <div class="col-sm-12">
-          <div>
-            <h6 class="head-title margin-top-8"><span>Select Image File</span></h6>
-          </div>
-        </div>
-        <div class="col-sm-6">
-  
-          <div class="custom-file">
-  
-            <input type="file" class="custom-file-input" id="customFile" name="uploadedImage"
-              (change)="onFileSelect($event)" #UploadFileInput>
-  
-              <label class="custom-file-label" for="customFile">{{fileInputLabel || 'Choose File'}}</label>
-        
-            </div>
-            
-    
-          </div>
-    
-          <div class="col-sm-6"> <button class="btn btn-primary" type="submit">Upload</button> </div>
-    
-        </div>
-      </form>
+  <h3>Upload File</h3>
 
-      <div id="guidelines">
-        <p>
-        Ange nyckelord separerade med kommatecken utan mellanslag.<br> 
-        Nyckelord bör som minst innehålla vem/vad bilden föreställer och sammanhang. <br>
-        Exempel: Drottning Silvia,Blå Hallen,Nobelmiddag
-      </p>
+
+  <form [formGroup]="fileUploadForm" (ngSubmit)="onFormSubmit()">
+    <div class="row">
+      <div class="col-sm-12">
+        <div>
+          <h6 class="head-title margin-top-8"><span>Select Image File</span></h6>
+        </div>
+      </div>
+      <div class="col-sm-6">
+
+        <div class="custom-file">
+
+          <input type="file" class="custom-file-input" id="customFile" name="uploadedImage"
+                 (change)="onFileSelect($event)" #UploadFileInput>
+
+          <label class="custom-file-label" for="customFile">{{fileInputLabel || 'Choose File'}}</label>
+
+        </div>
+
+
       </div>
 
-      <fieldset>
-        <legend>Bilddata</legend>
-            <form [formGroup]="image_data" (ngSubmit)="onFormSubmit()">
-              <p>
-                <label for="date">Datum </label>
-                <input type="text" id="date" name="date" formControlName="date">
-              </p>
-              <p>
-                <label for="photographer">Fotograf </label>
-                <input type="text" id="photographer" name="photographer" formControlName="photographer">
-              </p>
-              <p>
-                <label for="category">Kategori </label>
-                <select id="category" name="category" formControlName="category" multiple>
-                  <option>Nyheter</option>
-                  <option>Sport</option>
-                  <option>Ekonomi</option>
-                  <option>Nöje</option>
-              </select>
-                
-              </p>
-              <p>
-                <label for="dimensions">Underkategori </label>
-                <select id="subcategory" name="subcategory" formControlName="subcategory" multiple>
-                  <option>Inrikes</option>
-                  <option>Ishockey</option>
-                  <option>Börs</option>
-                  <option>Litteratur</option>
-              </select>
-              </p>
-              <p>
-                <label for="keywords">Nyckelord </label>
-                <input type="text" id="keywords" name="keywords" formControlName="keywords">
-              </p>
-              <p>
-                <label for="restrictions">Begränsningar </label>
-                <input type="text" id="restrictions" name="restrictions" formControlName="restrictions">
-              </p>
-            </form>
-          </fieldset>
+      <div class="col-sm-6"> <button class="btn btn-primary" type="submit">Upload</button> </div>
 
-          <fieldset>
-            <legend>Platsdata</legend>
-                <form [formGroup]="location" (ngSubmit)="onFormSubmit()">
-                  <p>
-                    <label for="GPS">GPS-koordinater </label>
-                    <input type="number" id="GPS" name="GPS" formControlName="GPS">
-                  </p>
-                  <p>
-                    <label for="place">Plats </label>
-                    <input type="text" id="place" name="place" formControlName="place">
-                  </p>
-                  <p>
-                    <label for="city">Stad </label>
-                    <input type="text" id="city" name="city" formControlName="city">
-                  </p>
-                  <p>
-                    <label for="region">Region </label>
-                    <input type="text" id="region" name="region" formControlName="region">
-                  </p>
-                  <p>
-                    <label for="country">Land </label>
-                    <input type="text" id="country" name="country" formControlName="country">
-                  </p>
-                </form>
-              </fieldset>
-
-      <fieldset>
-        <legend>Teknisk data</legend>
-            <form [formGroup]="technical_data" (ngSubmit)="onFormSubmit()">
-              <p>
-                <label for="format">Format </label>
-                <input readonly type="text" id="format" name="format" formControlName="format">
-              </p>
-              <p>
-                <label for="version">Version </label>
-                <input type="text" id="version" name="version" formControlName="version">
-              </p>
-              <p>
-                <label for="height">Bildhöjd (px) </label>
-                <input readonly type="number" id="height" name="height" formControlName="height">
-              </p>
-              <p>
-                <label for="width">Bildbredd (px) </label>
-                <input readonly type="number" id="width" name="width" formControlName="width">
-              </p>
-              <p>
-                <label for="image_size">Filstorlek (MegaByte) </label>
-                <input readonly type="text" id="image_size" name="image_size" formControlName="image_size">
-              </p>
-              <p>
-                <label for="resolution">Upplösning </label>
-                <input readonly type="text" id="resolution" name="resolution" formControlName="resolution">
-              </p>
-              <p>
-                <label for="camera">Kamera </label>
-                <input type="text" id="camera" name="camera" formControlName="camera">
-              </p>
-            </form>
-          </fieldset>
-
-
-    
     </div>
+  </form>
+
+  <div id="guidelines">
+    <p>
+      Ange nyckelord separerade med kommatecken utan mellanslag.<br>
+      Nyckelord bör som minst innehålla vem/vad bilden föreställer och sammanhang. <br>
+      Exempel: Drottning Silvia,Blå Hallen,Nobelmiddag
+    </p>
+  </div>
+
+  <fieldset>
+    <legend>Bilddata</legend>
+    <form [formGroup]="image_data" (ngSubmit)="onFormSubmit()">
+      <p>
+        <label for="date">Datum </label>
+        <input type="text" id="date" name="date" formControlName="date">
+      </p>
+      <p>
+        <label for="photographer">Fotograf </label>
+        <input type="text" id="photographer" name="photographer" formControlName="photographer">
+      </p>
+      <p>
+        <label for="category">Kategori </label>
+        <select id="category" name="category" formControlName="category" multiple>
+          <option>Nyheter</option>
+          <option>Sport</option>
+          <option>Ekonomi</option>
+          <option>Nöje</option>
+        </select>
+
+      </p>
+      <p>
+        <label for="dimensions">Underkategori </label>
+        <select id="subcategory" name="subcategory" formControlName="subcategory" multiple>
+          <option>Inrikes</option>
+          <option>Ishockey</option>
+          <option>Börs</option>
+          <option>Litteratur</option>
+        </select>
+      </p>
+      <p>
+        <label for="keywords">Nyckelord </label>
+        <input type="text" id="keywords" name="keywords" formControlName="keywords">
+      </p>
+      <p>
+        <label for="restrictions">Begränsningar </label>
+        <input type="text" id="restrictions" name="restrictions" formControlName="restrictions">
+      </p>
+    </form>
+  </fieldset>
+
+  <fieldset>
+    <legend>Platsdata</legend>
+    <form [formGroup]="location" (ngSubmit)="onFormSubmit()">
+      <p>
+        <label for="GPS">GPS-koordinater </label>
+        <input type="number" id="GPS" name="GPS" formControlName="GPS">
+      </p>
+      <p>
+        <label for="place">Plats </label>
+        <input type="text" id="place" name="place" formControlName="place">
+      </p>
+      <p>
+        <label for="city">Stad </label>
+        <input type="text" id="city" name="city" formControlName="city">
+      </p>
+      <p>
+        <label for="region">Region </label>
+        <input type="text" id="region" name="region" formControlName="region">
+      </p>
+      <p>
+        <label for="country">Land </label>
+        <input type="text" id="country" name="country" formControlName="country">
+      </p>
+    </form>
+  </fieldset>
+
+  <fieldset>
+    <legend>Teknisk data</legend>
+    <form [formGroup]="technical_data" (ngSubmit)="onFormSubmit()">
+      <p>
+        <label for="format">Format </label>
+        <input readonly type="text" id="format" name="format" formControlName="format">
+      </p>
+      <p>
+        <label for="version">Version </label>
+        <input type="text" id="version" name="version" formControlName="version">
+      </p>
+      <p>
+        <label for="height">Bildhöjd (px) </label>
+        <input readonly type="number" id="height" name="height" formControlName="height">
+      </p>
+      <p>
+        <label for="width">Bildbredd (px) </label>
+        <input readonly type="number" id="width" name="width" formControlName="width">
+      </p>
+      <p>
+        <label for="image_size">Filstorlek (MegaByte) </label>
+        <input readonly type="text" id="image_size" name="image_size" formControlName="image_size">
+      </p>
+      <p>
+        <label for="resolution">Upplösning </label>
+        <input readonly type="text" id="resolution" name="resolution" formControlName="resolution">
+      </p>
+      <p>
+        <label for="camera">Kamera </label>
+        <input type="text" id="camera" name="camera" formControlName="camera">
+      </p>
+    </form>
+  </fieldset>
+
+
+
+</div>
+  -->

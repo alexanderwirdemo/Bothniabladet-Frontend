@@ -43,3 +43,28 @@ a:link {
   text-decoration: none;
 }
 
+.matLabel {
+  font-size: large;
+}
+
+.tableRowLeft {
+  text-align: left;
+  font-size: larger;
+}
+
+.tableRowCenter {
+  text-align: center;
+}
+
+.tableRowRight {
+  text-align: center;
+}
+
+.radioButton {
+  font-size: large;
+  padding-left: 2em;
+}
+
+.matIcon {
+  width: 2em;
+}

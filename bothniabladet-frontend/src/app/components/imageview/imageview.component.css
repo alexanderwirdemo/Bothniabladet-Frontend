@@ -7,3 +7,50 @@
     border: 0.2em dashed red; 
     font-size: small;   
 }
+
+
+.fileupload-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.fileupload-full-width {
+  width: 100%;
+}
+
+
+.fileupload-button {
+  display: table-cell;
+  width: 490px;
+  min-height: 100%;
+}
+
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.matLabel {
+  font-size: large;
+}
+
+.tableRowLeft {
+  text-align: left;
+  font-size: larger;
+}
+
+.tableRowCenter {
+  text-align: center;
+}
+
+.tableRowRight {
+  text-align: center;
+}
+
+.radioButton {
+  font-size: large;
+  padding-left: 2em;
+}
