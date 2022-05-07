@@ -8,6 +8,8 @@ import { AdvancedsearchviewComponent } from './components/advancedsearchview/adv
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CartComponent } from './components/cart/cart.component';
+import { UserlistComponent } from './components/userlist/userlist.component';
+import { UserdetailsComponent } from './components/userdetails/userdetails.component';
 import { SearchresultsComponent } from './components/searchresults/searchresults.component';
 
 const routes: Routes = [
@@ -18,6 +20,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: '', component: ArchiveviewComponent},
+  {path: 'userlist', component: UserlistComponent },
+  {path: 'lusers/:luserId', component: UserdetailsComponent },
   {path: 'advancedsearchview', component: AdvancedsearchviewComponent },
   {path: 'cart', component: CartComponent},
   {path: 'searchresults', component: SearchresultsComponent},

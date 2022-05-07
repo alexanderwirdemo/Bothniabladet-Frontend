@@ -24,6 +24,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { UserlistComponent } from './components/userlist/userlist.component';
+import { UserdetailsComponent } from './components/userdetails/userdetails.component';
 import { SearchresultsComponent } from './components/searchresults/searchresults.component';
 
 @NgModule({
@@ -39,7 +41,9 @@ import { SearchresultsComponent } from './components/searchresults/searchresults
     LoginComponent,
     RegisterComponent,
     CartComponent,
-    SearchresultsComponent,
+    UserlistComponent,
+    UserdetailsComponent,
+    SearchresultsComponent
   ],
   
   imports: [

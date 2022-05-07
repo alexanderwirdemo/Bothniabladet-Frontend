@@ -1,0 +1,14 @@
+<h2>User Details</h2>
+
+<div *ngIf="user">
+  <p>Användarnamn: {{ user.username }}</p>
+  <p>Namn: {{ user.name }}</p>
+  <p>Adress: {{ user.invoiceAddress }}</p>
+  <p>Roll: {{ user.role }}</p>
+
+  <p *ngIf=user.discount>
+    Rabatt: {{ luser.discount }} %
+    </p>
+
+
+</div>

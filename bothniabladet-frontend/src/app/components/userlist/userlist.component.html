@@ -1,0 +1,15 @@
+  
+    <div >
+        <h2>Användare</h2>
+
+        <div *ngFor="let anv of users, index as i" >
+        <h4> <a *ngIf="anv.role == 'Admin'"> *admin* </a>
+            {{ anv.name }} <!-- {{ anv.role }} -->
+        <button (click)='selectUser(i)'> val </button>
+        <button [routerLink]="['/lusers', anv.id]">detalj</button>
+        </h4>
+        </div>
+
+    </div>
+
+    <!-- <button (click)="extraknapp()"> adress-knapp</button> -->
