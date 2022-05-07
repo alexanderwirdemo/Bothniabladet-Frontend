@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../services/api.service';
 import * as _ from 'lodash';
-import { SearchresultsComponent } from '../searchresults/searchresults.component';
+import { SearchService } from 'src/app/services/search.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-archiveview',
@@ -16,13 +16,15 @@ export class ArchiveviewComponent implements OnInit {
   combined: String;
   results: String;
   baseUrl: String;
+
   
   simplesearch_data: FormGroup;
 
   constructor(
 
-    private http: HttpClient,
+    private _router: Router,
     private formBuilder: FormBuilder,
+    private searchService: SearchService,
     private _api: ApiService,
 
   ) {}
@@ -38,19 +40,15 @@ export class ArchiveviewComponent implements OnInit {
 
     this.baseUrl = "images/keyword/"
     this.searchString = (<HTMLInputElement>document.getElementById("simple_searchBar")).value;
+    this.searchService.setSearchTerm(this.searchString)
     this.combined = this.baseUrl.concat(this.searchString.toString())
   
 
     this._api.getTypeRequest(this.combined).subscribe((res: any) => {
       {
-        const entries = Object.entries(res);
-        this.results = JSON.stringify(entries);
-        console.log('result:');
-        console.dir(this.results);
-
+        this.searchService.setSearchResult(res)
+        this._router.navigate(['/searchresults']);
         
-          
-
       }}, err => {
       console.log(err);
       alert("Något gick fel")

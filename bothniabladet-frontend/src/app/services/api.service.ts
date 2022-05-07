@@ -17,12 +17,12 @@ export class ApiService {
     return res;
     }));
     }
-    postTypeRequest(url, payload) {
+  postTypeRequest(url, payload) {
     return this._http.post(`${this.baseUrl}${url}`, payload, {withCredentials:true}).pipe(map(res => {
     return res;
     }));
     }
-    putTypeRequest(url, payload) {
+  putTypeRequest(url, payload) {
     return this._http.put(`${this.baseUrl}${url}`, payload).pipe(map(res => {
     return res;
     }));

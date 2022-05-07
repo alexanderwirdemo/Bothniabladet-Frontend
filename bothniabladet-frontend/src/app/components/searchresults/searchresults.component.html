@@ -1,1 +1,30 @@
-<p>{{displayresults}}</p>
+
+<div class="parent">
+    <form class="search-form" [formGroup]="simplesearch_data" (ngSubmit)="onFormSubmit()">
+      <table class="search-full-width">
+        <tr class="tableRowCenter">
+        </tr>
+        <tr class="tableRowCenter">
+          <th style="width:80%">
+            <mat-form-field class="search-full-width" appearance="outline">
+              <mat-label class="matLabel"><mat-icon class="matIcon">search</mat-icon>Skriv valfria sökord här</mat-label>
+              <input matInput placeholder="Sökord" type="text" id="simple_searchBar" name="simple_searchString" formControlName="simple_searchString">
+            </mat-form-field>
+          </th>
+          <th style="width:20%; align-content:center">
+            <div class="search-button"><button mat-raised-button color="primary" type="submit">Sök</button></div>
+          </th>
+        </tr>
+      </table>
+    </form>
+  </div>
+
+<tr>{{a}}</tr>
+<tr>{{b}}</tr>
+<tr>{{c}}</tr>
+<tr>{{d}}</tr>
+<tr>{{e}}</tr>
+<tr>{{f}}</tr>
+<tr>{{g}}</tr>
+<tr>{{h}}</tr>
+<tr>{{i}}</tr>
