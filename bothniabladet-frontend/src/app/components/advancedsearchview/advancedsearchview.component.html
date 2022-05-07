@@ -5,7 +5,7 @@
   <form class="advancedsearch-form" [formGroup]="advancedsearch_data" (ngSubmit)="onFormSubmit()">
     <table class="advancedsearch-full-width">
       <tr class="tableRowLeft">
-        <p style="font-weight:600">Avancerad sökning</p>
+        <p class="title">Avancerad sökning</p>
       </tr>
       <tr class="tableRowCenter">
         <mat-form-field class="advancedsearch-full-width" appearance="outline">
@@ -23,7 +23,7 @@
         <mat-form-field class="advancedsearch-full-width" appearance="outline">
           <mat-label class="matLabel">Kategori</mat-label>
           <select matNativeControl placeholder="Kategori" id="advanced_searchCategory" name="advanced_searchCategory" formControlName="advanced_searchCategory">
-            <option>-- Ingen --</option>
+            <option></option>
             <option value="option1">Option 1</option>
             <option value="option2">Option 2</option>
             <option value="option3">Option 3</option>
@@ -35,7 +35,7 @@
         <mat-form-field class="advancedsearch-full-width" appearance="outline">
           <mat-label class="matLabel">Underkategori</mat-label>
           <select matNativeControl placeholder="Underkategori" id="advanced_searchSubcategory" name="advanced_searchSubcategory" formControlName="advanced_searchSubcategory">
-            <option>-- Ingen --</option>
+            <option></option>
             <option value="option1">Option 1</option>
             <option value="option2">Option 2</option>
             <option value="option3">Option 3</option>
@@ -86,7 +86,9 @@
 
 
       <tr class="tableRowRight">
-        <div class="advancedsearch-button"><button mat-raised-button color="primary" type="submit">Sök</button></div>
+        <br />
+        <span class="paddingLeft"><button class="advancedsearch-button" mat-raised-button color="white" type="reset">Rensa</button></span>
+        <span class="paddingLeft"><button class="advancedsearch-button" mat-raised-button color="primary" type="submit">Sök</button></span>
       </tr>
     </table>
     </form>

@@ -10,8 +10,12 @@
 
 .advancedsearch-button {
   display: table-cell;
-  width: 490px;
+  width: 100px;
   min-height: 100%;
+}
+
+.paddingLeft {
+  padding-left: 2em;
 }
 
 .parent {
@@ -35,10 +39,14 @@
 }
 
 .tableRowRight {
-  text-align: center;
+  text-align: right;
 }
 
 .radioButton {
   font-size: large;
   padding-left: 2em;
+}
+
+.title {
+  font-weight: 600;
 }

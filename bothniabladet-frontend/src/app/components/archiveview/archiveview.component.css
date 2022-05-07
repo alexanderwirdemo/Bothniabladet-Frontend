@@ -1,7 +1,7 @@
 .search-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
 }
 
 .search-full-width {
@@ -15,10 +15,10 @@
 }
 
 .parent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .categories-field {
@@ -57,7 +57,7 @@ a:link {
 }
 
 .tableRowRight {
-  text-align: center;
+  text-align: right;
 }
 
 .radioButton {
@@ -68,3 +68,9 @@ a:link {
 .matIcon {
   width: 2em;
 }
+
+.title {
+  font-weight: 600;
+}
+
+
