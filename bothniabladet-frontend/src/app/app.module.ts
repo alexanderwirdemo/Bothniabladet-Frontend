@@ -24,6 +24,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { UserlistComponent } from './components/userlist/userlist.component';
+import { UserdetailsComponent } from './components/userdetails/userdetails.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
-    CartComponent
+    CartComponent,
+    UserlistComponent,
+    UserdetailsComponent
   ],
   
   imports: [

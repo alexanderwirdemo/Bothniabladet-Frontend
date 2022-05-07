@@ -8,6 +8,8 @@ import { AdvancedsearchviewComponent } from './components/advancedsearchview/adv
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CartComponent } from './components/cart/cart.component';
+import { UserlistComponent } from './components/userlist/userlist.component';
+import { UserdetailsComponent } from './components/userdetails/userdetails.component';
 
 const routes: Routes = [
   {path: 'imageview', component: ImageviewComponent},
@@ -18,7 +20,10 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: '', component: ArchiveviewComponent},
   { path: 'advancedsearchview', component: AdvancedsearchviewComponent },
-  {path: 'cart', component: CartComponent}
+  {path: 'cart', component: CartComponent},
+  {path: 'userlist', component: UserlistComponent },
+  {path: 'lusers/:luserId', component: UserdetailsComponent },
+
 ];
 
 @NgModule({
