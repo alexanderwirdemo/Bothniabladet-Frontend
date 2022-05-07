@@ -1,11 +1,50 @@
+<br />
+<br />
+<br />
+<div class="parent">
+  <form class="login-form" [formGroup]="loginform" (ngSubmit)="onFormSubmit()">
+    <table class="login-full-width">
+      <tr class="tableRowCenter">
+        <span>
+          <a mat-button [routerLink]="'/login'" routerLinkActive="mat-raised-button" class="button"> Logga in </a>
+          <a mat-button [routerLink]="'/register'" routerLinkActive="mat-raised-button" class="button"> Registrera ny användare </a>
+         </span>
+       </tr>
+      <tr class="tableRowCenter">
+        <br />
+        <br />
+        <br />
+        <h1>Välkommen tillbaka</h1>
+        <p>Skriv in dina användaruppgifter för att logga in nedan.</p>
+      </tr>
+      <tr class="tableRowCenter">
+        <mat-form-field class="login-full-width" appearance="outline">
+          <mat-label class="matLabel">Användarnamn</mat-label>
+          <input matInput placeholder="Användarnamn" type="text" id="usernamne" name="username" formControlName="username">
+        </mat-form-field>
+      </tr>
+      <tr class="tableRowCenter">
+        <mat-form-field class="login-full-width" appearance="outline">
+          <mat-label class="matLabel">Lösenord</mat-label>
+          <input matInput placeholder="Lösenord" type="password" id="password" name="password" formControlName="password">
+        </mat-form-field>
+      </tr>
+      <tr class="tableRowRight">
+        <div class="login-button"><button mat-raised-button color="primary" type="submit">Logga in</button></div>
+      </tr>
+    </table>
+  </form>
+</div>
 
 
-    <form [formGroup]="loginform" (ngSubmit)="onFormSubmit()">
-        <p>
-        <input  type = "text" name = "username" placeholder = "username" formControlName="username">
-    </p>
-    <p>
-    <input  type = "password" name = "password" placeholder = "password" formControlName="password">
-</p>
-    <input type = "submit" value = "Logga in">
-      </form>
+
+<!--<form [formGroup]="loginform" (ngSubmit)="onFormSubmit()">
+  <p>
+    <input type="text" name="username" placeholder="username" formControlName="username">
+  </p>
+  <p>
+    <input type="password" name="password" placeholder="password" formControlName="password">
+  </p>
+  <input type="submit" value="Logga in">
+</form>
+  -->

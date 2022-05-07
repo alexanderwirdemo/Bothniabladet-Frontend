@@ -26,6 +26,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { UserlistComponent } from './components/userlist/userlist.component';
 import { UserdetailsComponent } from './components/userdetails/userdetails.component';
+import { SearchresultsComponent } from './components/searchresults/searchresults.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { UserdetailsComponent } from './components/userdetails/userdetails.compo
     RegisterComponent,
     CartComponent,
     UserlistComponent,
-    UserdetailsComponent
+    UserdetailsComponent,
+    SearchresultsComponent
   ],
   
   imports: [

@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../services/api.service';
 import * as _ from 'lodash';
+import { SearchService } from 'src/app/services/search.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-archiveview',
@@ -15,47 +16,56 @@ export class ArchiveviewComponent implements OnInit {
   combined: String;
   results: String;
   baseUrl: String;
+
   
-  searchForm: FormGroup;
+  simplesearch_data: FormGroup;
 
   constructor(
 
-    private http: HttpClient,
+    private _router: Router,
     private formBuilder: FormBuilder,
+    private searchService: SearchService,
     private _api: ApiService,
 
   ) {}
 
-  onFormSubmit(){}
+  onFormSubmit() {
+    console.log('simple search string:');
+    console.dir(this.simplesearch_data.value);
+    this.makeSearch();
+
+  }
 
   makeSearch(){
 
     this.baseUrl = "images/keyword/"
-    this.searchString = (<HTMLInputElement>document.getElementById("searchbar")).value;
+    this.searchString = (<HTMLInputElement>document.getElementById("simple_searchBar")).value;
+    this.searchService.setSearchTerm(this.searchString)
     this.combined = this.baseUrl.concat(this.searchString.toString())
   
 
     this._api.getTypeRequest(this.combined).subscribe((res: any) => {
       {
-          const entries = Object.entries(res);
-          this.results = JSON.stringify(entries);
-          
-
+        this.searchService.setSearchResult(res)
+        this._router.navigate(['/searchresults']);
+        
       }}, err => {
       console.log(err);
-      alert("Nehej, du")
+      alert("Något gick fel")
 
       });
   }
 
   ngOnInit(): void {
 
-    this.searchForm = this.formBuilder.group({})
+    this.simplesearch_data = this.formBuilder.group({
+      simple_searchString: '',
+    });
   }
 }
 
 
-export class simple_searchString {
+export class simplesearch_data {
   public simple_searchString: String;
 
   constructor(simple_searchString: String) {

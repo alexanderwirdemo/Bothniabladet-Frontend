@@ -1,7 +1,7 @@
 .search-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
 }
 
 .search-full-width {
@@ -15,10 +15,10 @@
 }
 
 .parent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .categories-field {
@@ -42,4 +42,35 @@
 a:link {
   text-decoration: none;
 }
+
+.matLabel {
+  font-size: large;
+}
+
+.tableRowLeft {
+  text-align: left;
+  font-size: larger;
+}
+
+.tableRowCenter {
+  text-align: center;
+}
+
+.tableRowRight {
+  text-align: right;
+}
+
+.radioButton {
+  font-size: large;
+  padding-left: 2em;
+}
+
+.matIcon {
+  width: 2em;
+}
+
+.title {
+  font-weight: 600;
+}
+
 

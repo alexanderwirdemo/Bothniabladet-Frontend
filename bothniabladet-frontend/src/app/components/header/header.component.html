@@ -1,8 +1,11 @@
 <mat-toolbar class="head">
   <mat-toolbar-row class="head">
-    <span class="menu-spacer"></span>
     <span>
-      <h1>Bothniabladets Bildarkiv</h1>
+      <!--<h1 class="logo">Bothniabladets Bildarkiv</h1>-->
+      <a [routerLink]="'/archiveview'"><img src="assets/img/bothniabladet_logo.png" style="width:9em" /></a>
+    </span>
+    <span>
+      <a [routerLink]="'/cart'" class="cartButton"><p class="itemsCart">{{numberOfItems()}}st varor<br />Till kassan</p><img src="assets/img/shopping_cart.png" style="width:9em" /></a>
     </span>
   </mat-toolbar-row>
 </mat-toolbar>
@@ -18,16 +21,18 @@
         <a mat-button [routerLink]="'/userlist'" routerLinkActive="mat-raised-button" class="button"> Administrera Användare </a>
     </span>
     <span>
-      <button mat-button [matMenuTriggerFor]="menu">Mina sidor</button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>Profil</button>
-        <button mat-menu-item>Orderhistorik</button>
-        <button mat-menu-item>Fakturor</button>
-      </mat-menu>
-      <!--<a mat-button [routerLink]="'/loginview'" routerLinkActive="mat-raised-button" class="button"> Logga in </a>-->
+      <!--<button mat-button [matMenuTriggerFor]="menu">Mina sidor</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Profil</button>
+    <button mat-menu-item>Orderhistorik</button>
+    <button mat-menu-item>Fakturor</button>
+  </mat-menu>-->
+      <a mat-button [routerLink]="'/login'" routerLinkActive="mat-raised-button" class="button"> Logga in </a>
     </span>
   </mat-toolbar-row>
 </mat-toolbar>
+
+
 
 
 

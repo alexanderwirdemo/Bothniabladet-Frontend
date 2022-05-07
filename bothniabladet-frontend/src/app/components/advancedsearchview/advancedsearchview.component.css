@@ -10,8 +10,12 @@
 
 .advancedsearch-button {
   display: table-cell;
-  width: 490px;
+  width: 100px;
   min-height: 100%;
+}
+
+.paddingLeft {
+  padding-left: 2em;
 }
 
 .parent {
@@ -19,4 +23,30 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.matLabel {
+  font-size: large;
+}
+
+.tableRowLeft {
+  text-align: left;
+  font-size: larger;
+}
+
+.tableRowCenter {
+  text-align: center;
+}
+
+.tableRowRight {
+  text-align: right;
+}
+
+.radioButton {
+  font-size: large;
+  padding-left: 2em;
+}
+
+.title {
+  font-weight: 600;
 }
