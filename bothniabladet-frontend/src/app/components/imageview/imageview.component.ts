@@ -149,7 +149,10 @@ export class ImageviewComponent implements OnInit {
         // fancy async syntax
         // older promise syntax
       exifr.gps(this.filepath).then(gps => {
-  console.log(gps.latitude, gps.longitude)
+  //console.log(gps.latitude, gps.longitude)
+  if(gps===undefined){
+    gps={latitude:0, longitude:0}
+  }
   this.location.get('GPS').setValue(gps.latitude +","+gps.longitude);
   // Add to database
   var locationForm = this.location.value;
