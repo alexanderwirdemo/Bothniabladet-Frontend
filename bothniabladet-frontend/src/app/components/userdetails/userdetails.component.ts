@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { User, users } from '../userlist/luser';
 import { UserlistComponent } from '../userlist/userlist.component';
+import { ApiService } from '../../services/api.service';
+import { User, users } from '../userlist/luser';
+import { FormGroup, FormBuilder, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-userdetails',
@@ -11,7 +14,7 @@ import { UserlistComponent } from '../userlist/userlist.component';
   styleUrls: ['./userdetails.component.css']
 })
 export class UserdetailsComponent implements OnInit {
- 
+  @ViewChild('UploadFileInput', { static: false }) uploadFileInput: ElementRef;
   user: User | undefined; 
   editable: boolean = false; 
   users = users; 
@@ -24,8 +27,10 @@ export class UserdetailsComponent implements OnInit {
     invoiceAddress: this.selected.invoiceAddress,
     role: [this.selected.role,[Validators.required]]
   });
+  userData_fields: FormGroup;
 
   constructor(
+    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private _userapi: UserService,
@@ -37,6 +42,13 @@ export class UserdetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userData_fields = this.formBuilder.group({
+      username: this.user.username,
+      name: this.user.name,
+      invoiceAddress: this.user.invoiceAddress,
+      role: this.user.role,
+    });
+
   }
 
   edit(): void {
@@ -79,4 +91,19 @@ export class UserdetailsComponent implements OnInit {
     this.selected = this.user; 
   }
 
+}
+
+export class userData_fields {
+  public username: String;
+  public name: String;
+  public invoiceAddress: String;
+  public role: String;
+
+  constructor(username: String, name: String, invoiceAddress: String, role: String) {
+
+    this.username = username;
+    this.name = name;
+    this.invoiceAddress = invoiceAddress;
+    this.role = role;
+  }
 }

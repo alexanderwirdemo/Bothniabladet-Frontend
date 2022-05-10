@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\bothniabladet-frontend",
+    "\\bothniabladet-frontend\\e2e",
+    "\\bothniabladet-frontend\\src",
+    "\\bothniabladet-frontend\\src\\app",
+    "\\bothniabladet-frontend\\src\\app\\components",
+    "\\bothniabladet-frontend\\src\\app\\components\\customerview",
+    "\\bothniabladet-frontend\\src\\app\\components\\searchresults",
+    "\\bothniabladet-frontend\\src\\app\\components\\userdetails",
+    "\\bothniabladet-frontend\\src\\app\\components\\userlist"
+  ],
+  "SelectedNode": "\\bothniabladet-frontend\\src\\app\\components\\userdetails\\userdetails.component.html",
+  "PreviewInSolutionExplorer": false
+}

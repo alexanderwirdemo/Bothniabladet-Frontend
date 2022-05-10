@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../services/api.service';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import * as _ from 'lodash';
+import { SearchService } from 'src/app/services/search.service'
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-advancedsearchview',
@@ -14,10 +15,54 @@ export class AdvancedsearchviewComponent implements OnInit {
   @ViewChild('UploadFileInput', { static: false }) uploadFileInput: ElementRef;
   advancedsearch_data: FormGroup;
 
+  searchString: String;
+  searchTitle: String;
+  searchPhotographer: String;
+  searchPlace: String;
+  combined: String;
+  results: any;
+  baseUrl: String;
+  payload: Array<any> = [];
+
+  
+
+  makeSearch(){
+    
+  
+    this.baseUrl = "images/advanced/"
+    this.searchString = (<HTMLInputElement>document.getElementById("advanced_searchString")).value;
+    this.searchPlace = (<HTMLInputElement>document.getElementById("advanced_searchPlace")).value;
+    this.combined = (((this.baseUrl.concat(this.searchString.toString())).concat("#")).concat(this.searchPlace.toString()))
+    console.dir(this.combined)
+
+  
+    this._api.getTypeRequest(this.combined).subscribe(res => {
+      {
+        res
+        
+      }}, err => {
+      console.log(err);
+      alert("Något gick fel")
+  
+      });
+
+      console.dir(this.results)
+
+
+
+
+  }
+
+
+
+
   constructor(
     private http: HttpClient,
     private formBuilder: FormBuilder,
     private _api: ApiService,
+    private _router: Router,
+    private searchService: SearchService,
+ 
   )
   { }
 
@@ -37,11 +82,16 @@ export class AdvancedsearchviewComponent implements OnInit {
 
     });
 
+  
+
   }
 
   onFormSubmit() {
     console.log('advanced search array:');
     console.dir(this.advancedsearch_data.value);
+
+    this.makeSearch()
+  
   }
 }
 

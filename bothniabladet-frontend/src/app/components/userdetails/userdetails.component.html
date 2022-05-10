@@ -6,10 +6,63 @@
     Adress: {{ user.invoiceAddress }} <br>
     Roll: {{ user.role }}</p>
 
-  <p *ngIf=user.discount>
-    Rabatt: {{ luser.discount }} %
-    </p>
+<!--<br />
+<br />
+<br />
+<div class="parent">
+  <form class="userdetail-form" [formGroup]="userData_fields" *ngIf="user">
+    <table class="userdetail-full-width">
+      <tr class="tableRowLeft">
+        <p class="title">Användardetaljer</p>
+      </tr>
 
+      <tr class="tableRowLeft">
+        <th class="columnSmall"><img width="80" height="120" /></th>
+        <th class="columnLarge">
+      <tr class="tableRowCenter">
+        <mat-form-field class="userdetail-form-width" appearance="outline">
+          <mat-label class="matLabel">Användarnamn</mat-label>
+          <input matInput readonly type="text" id="username" name="username" formControlName="username">
+        </mat-form-field>
+      </tr>
+      <tr class="tableRowCenter">
+        <mat-form-field class="userdetail-form-width" appearance="outline">
+          <mat-label class="matLabel">Namn</mat-label>
+          <input matInput readonly type="text" id="name" name="name" formControlName="name">
+        </mat-form-field>
+      </tr>
+      <tr class="tableRowCenter">
+        <mat-form-field class="userdetail-form-width" appearance="outline">
+          <mat-label class="matLabel">Fakturaadress</mat-label>
+          <input matInput readonly type="text" id="invoiceAddress" name="invoiceAddress" formControlName="invoiceAddress">
+        </mat-form-field>
+      </tr>
+      <tr class="tableRowCenter">
+        <mat-form-field class="userdetail-form-width" appearance="outline">
+          <mat-label class="matLabel">Roll</mat-label>
+          <input matInput readonly type="text" id="role" name="role" formControlName="role">
+        </mat-form-field>
+      </tr>
+      <tr class="tableRowRight">
+        <br />
+        <span class="paddingLeft"><button class="userdetail-button" mat-raised-button color="primary" type="submit">Redigera</button></span>
+      </tr>
+    </table>
+  </form>
+</div>-->
+<!--<div *ngIf="user">
+          <p class="tableRowLeft">Användarnamn: {{ user.username }}</p>
+  <p class="tableRowLeft">Namn: {{ user.name }}</p>
+  <p class="tableRowLeft">Adress: {{ user.invoiceAddress }}</p>
+  <p class="tableRowLeft">Roll: {{ user.role }}</p>
+
+    <p *ngIf=user.discount>
+      Rabatt: {{ luser.discount }} %
+    </p>
+</div>
+</th>
+</tr>-->
+  
     <button [routerLink]="'/userlist'">Tillbaka</button>
     <button (click)="edit()">Redigera</button>
 </div>
@@ -57,6 +110,3 @@
     Rabatt: {{ luser.discount }} %
     </p>
 </div>
-
-
-
