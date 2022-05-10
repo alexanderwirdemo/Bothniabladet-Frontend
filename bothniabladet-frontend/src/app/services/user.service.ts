@@ -9,6 +9,7 @@ export class UserService {
   baseUrl = 'http://localhost:3001/';
   currentUser: any; // This variable represents the current user logged in, if any
   userLoggedIn: any; // This variable represents the boolean value if a user is logged in or not (true/false)
+  userRole: any;
 
   constructor(private _http: HttpClient) { 
 
@@ -22,17 +23,23 @@ export class UserService {
     this.userLoggedIn = userLoggedIn;
   }
 
-  getuserRole(): String {
-    return this.currentUser.role;
+  setUserRole(userRole: any): any {
+    this.userRole = userRole;
+  }
+
+  getuserRole(): any {
+    return this.userRole;
   }
 
   logoutUser(): void {
     this.currentUser = null;
+    this.userRole = null;
     this.setuserLoggedIn(false);
   }
 
    setUser(user: any): any {
-    this.currentUser = user;
+     this.currentUser = user;
+     this.setUserRole(user.role);
   }
 
   getTypeRequest(url) {

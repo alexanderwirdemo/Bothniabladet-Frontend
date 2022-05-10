@@ -1,0 +1,73 @@
+.review-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.review-full-width {
+  width: 100%;
+  min-width: 150px;
+  max-width: 500px;
+  border-collapse: separate;
+  border-spacing:0;
+}
+
+.review-button {
+  display: table-cell;
+  width: 100px;
+  min-height: 100%;
+}
+
+.paddingLeft {
+  padding-left: 0.5em;
+}
+
+.paddingBottom {
+  padding-bottom: 2em;
+}
+
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.matLabel {
+  font-size: large;
+}
+
+.tableRowLeft {
+  text-align: left;
+  font-size: larger;
+}
+
+.toolbarRow {
+  text-align: left;
+  font-size: larger;
+  background-color: whitesmoke;
+  border-radius: 15px;
+  border: solid 1px grey !important;
+  min-width: 150px;
+  max-width: 700px;
+  justify-content: space-between;
+  min-height: 12em !important;
+  height: 12em !important;
+}
+
+.tableRowCenter {
+  text-align: center;
+}
+
+.tableRowRight {
+  text-align: right;
+}
+
+.radioButton {
+  font-size: large;
+  padding-left: 2em;
+}
+
+.title {
+  font-weight: 600;
+}

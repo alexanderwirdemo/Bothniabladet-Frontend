@@ -23,12 +23,14 @@ export class HeaderComponent implements OnInit {
     return this._userService.getuserLoggedIn();
   }
 
-  getUserRole(): String {
+  getUserRole(): any {
     return this._userService.getuserRole();
   }
 
   logoutUser(): void {
-    return this._userService.logoutUser();
+    this._userService.logoutUser();
+    console.log('check if user logged in');
+    console.dir(this._userService.currentUser);
   }
 
   numberOfItems(): number {

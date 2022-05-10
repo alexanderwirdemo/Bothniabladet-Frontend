@@ -18,9 +18,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -62,7 +64,9 @@ import { SearchresultsComponent } from './components/searchresults/searchresults
     MatInputModule,
     MatDatepickerModule,
     MatRadioModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatGridListModule,
+    MatExpansionModule
   ],
 
   exports: [
@@ -75,7 +79,9 @@ import { SearchresultsComponent } from './components/searchresults/searchresults
     MatInputModule,
     MatDatepickerModule,
     MatRadioModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatGridListModule,
+    MatExpansionModule
 
   ],
   providers: [],
