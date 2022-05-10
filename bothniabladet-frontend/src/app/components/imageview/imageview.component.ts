@@ -2,7 +2,13 @@ import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation  } from '@a
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../services/api.service';
+//const EXIF = require('exif-js');
+
+
 import * as _ from 'lodash';
+import exifr from 'exifr';
+
+
 
 @Component({
   selector: 'app-imageview',
@@ -21,6 +27,7 @@ export class ImageviewComponent implements OnInit {
   technical_data: FormGroup;
   fileInputLabel: string;
   myfilename = 'Välj fil';
+  filepath = '';
 
   constructor(
     private http: HttpClient,
@@ -70,7 +77,7 @@ export class ImageviewComponent implements OnInit {
     const file = event.target.files[0];
 
     this.myfilename = '';
-    Array.from(event.target.files).forEach((file: File) => {
+    Array.from(event.target.files).forEach(async (file: File) => {
       console.log(file);
       this.myfilename += file.name;
     });
@@ -118,35 +125,6 @@ export class ImageviewComponent implements OnInit {
     console.dir(this.location.value);
     console.log('technical data form:');
     console.dir(this.technical_data.value);
-    
-
-    // Add to database
-    var locationForm = this.location.value;
-    let location = new Location(locationForm.GPS, locationForm.place, locationForm.city, locationForm.region, locationForm.country);
-    console.log('location:');
-    console.dir(location);
-
-    var technicalDataForm = this.technical_data.value;
-    var technical_data = new Technical_data(technicalDataForm.format, technicalDataForm.version, technicalDataForm.image_size, technicalDataForm.resolution, technicalDataForm.camera);
-    console.log('technical data');
-    console.dir(technical_data);
-
-    const today = new Date();
-      const year = today.getFullYear();
-      const month = today.getMonth()+1;
-      const day = today.getDate();
-      const name = this.fileInputLabel.substring(0,this.fileInputLabel.indexOf('.'));
-      const fileExtension = this.fileInputLabel.split('.').pop();
-      const title = name + '-' + year + month + day + '.' + fileExtension;
-
-    var imageDataForm = this.image_data.value;
-    const keywords = imageDataForm.keywords.split(',');
-    console.log(keywords);
-    const price: Number = 199;
-    const reviewed: Boolean = false;
-    var imageData = new BothniaImage(title, imageDataForm.date, imageDataForm.photographer, imageDataForm.category, imageDataForm.subcategory, location, technical_data, keywords, imageDataForm.restrictions, price, reviewed);
-    console.log('image data');
-    console.dir(imageData);
 
     if (!this.fileUploadForm.get('uploadedImage').value) {
       alert('Please fill valid details!');
@@ -158,11 +136,75 @@ export class ImageviewComponent implements OnInit {
     formData.append('uploadedImage', this.fileUploadForm.get('uploadedImage').value);
     console.dir(this.fileUploadForm.get('uploadedImage').value);
 
+    
+
+
+
 
     this.http
-      .post<any>('http://localhost:3001/uploadfile', formData).subscribe(response => {
+      .post<any>('http://localhost:3001/uploadfile', formData).subscribe(async response => {
         console.log(response);
+        this.filepath = 'http://localhost:3001/'+response.uploadedFile.path;
+
+        // fancy async syntax
+        // older promise syntax
+      exifr.gps(this.filepath).then(gps => {
+  //console.log(gps.latitude, gps.longitude)
+  if(gps===undefined){
+    gps={latitude:0, longitude:0}
+  }
+  this.location.get('GPS').setValue(gps.latitude +","+gps.longitude);
+  // Add to database
+  var locationForm = this.location.value;
+  let location = new Location(locationForm.GPS, locationForm.place, locationForm.city, locationForm.region, locationForm.country);
+  console.log('location:');
+  console.dir(location);
+
+  var technicalDataForm = this.technical_data.value;
+  var technical_data = new Technical_data(technicalDataForm.format, technicalDataForm.version, technicalDataForm.image_size, technicalDataForm.resolution, technicalDataForm.camera);
+  console.log('technical data');
+  console.dir(technical_data);
+
+  const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth()+1;
+    const day = today.getDate();
+    //const name = this.fileInputLabel.substring(0,this.fileInputLabel.indexOf('.'));
+    //const fileExtension = this.fileInputLabel.split('.').pop();
+    //const title = name + '-' + year + month + day + '.' + fileExtension;
+    const title = response.uploadedFile.filename;
+
+  var imageDataForm = this.image_data.value;
+  const keywords = imageDataForm.keywords.split(',');
+  console.log(keywords);
+  const price: Number = 199;
+  const reviewed: Boolean = false;
+  var imageData = new BothniaImage(title, imageDataForm.date, imageDataForm.photographer, imageDataForm.category, imageDataForm.subcategory, location, technical_data, keywords, imageDataForm.restrictions, price, reviewed);
+  console.log('image data');
+  console.dir(imageData);
+
+    this._api.postTypeRequest('images/add', imageData).subscribe((res: any) => {
+      console.dir(res);
+      if (res.success) {
+      console.log(res)
+      } else {
+      console.log(res)
+      alert('Bild tillagd!');
+      }
+      }, err => {
+      console.log(err);
+      });
+})
+
         if (response.statusCode === 200) {
+
+          
+          
+          //let {latitude, longitude} = await exifr.gps(this.filepath);
+          
+       
+
+        
           // Reset the file input
           this.uploadFileInput.nativeElement.value = "";
           this.fileInputLabel = undefined;
@@ -172,17 +214,7 @@ export class ImageviewComponent implements OnInit {
         alert(er.error.error);
       });
 
-      this._api.postTypeRequest('images/add', imageData).subscribe((res: any) => {
-        console.dir(res);
-        if (res.success) {
-        console.log(res)
-        } else {
-        console.log(res)
-        alert('Bild tillagd!');
-        }
-        }, err => {
-        console.log(err);
-        });
+      
   }
 
   resetForm() {
