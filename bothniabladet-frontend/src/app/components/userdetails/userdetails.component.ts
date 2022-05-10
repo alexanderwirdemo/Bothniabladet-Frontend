@@ -1,11 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { User, users } from '../userlist/luser';
 import { UserlistComponent } from '../userlist/userlist.component';
 import { ApiService } from '../../services/api.service';
-import { User, users } from '../userlist/luser';
 import { FormGroup, FormBuilder, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 
 @Component({
@@ -32,7 +30,6 @@ export class UserdetailsComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder,
     private _userapi: UserService,
   ) {
     const routeParams = this.route.snapshot.paramMap;
