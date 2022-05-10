@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SearchService {
 
+
   private searchResult = new BehaviorSubject<any>({});
   private searchTerm = new BehaviorSubject<any>({});
   rawResult = this.searchResult.asObservable();
