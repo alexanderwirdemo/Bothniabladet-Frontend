@@ -21,8 +21,14 @@
       <hr>
 
       <div class="cart-item">
-        <span>  </span>
-        <span> Att betala: {{ summa|number:"1.2" }} kr </span>
+        <span></span>
+        <span *ngIf="rabatt>0"> Totalt: {{ summa|number:"1.2" }} kr <br>
+          Rabatt: {{ rabatt|number }}%
+        </span>
+      </div>
+      <div class="cart-item">
+      <span></span>
+      <span> Att betala: {{ pris|number:"1.2" }} kr </span>
       </div>
 
       <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">

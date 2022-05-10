@@ -12,7 +12,7 @@ export class UserlistComponent implements OnInit {
   user: User;
   users = users;
   Anvandare?: any;
-  
+
   constructor(
     private _userapi: UserService 
     ) { 

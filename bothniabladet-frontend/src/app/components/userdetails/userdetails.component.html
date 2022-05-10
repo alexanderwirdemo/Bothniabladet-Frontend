@@ -1,14 +1,62 @@
-<h2>User Details</h2>
+<h2 div class="parent">User Details</h2>
 
-<div *ngIf="user">
-  <p>Användarnamn: {{ user.username }}</p>
-  <p>Namn: {{ user.name }}</p>
-  <p>Adress: {{ user.invoiceAddress }}</p>
-  <p>Roll: {{ user.role }}</p>
+<div div class="parent" *ngIf="user && editable==false">
+  <p>Användarnamn: {{ user.username }} <br>
+    Namn: {{ user.name }} <br>
+    Adress: {{ user.invoiceAddress }} <br>
+    Roll: {{ user.role }}</p>
 
   <p *ngIf=user.discount>
     Rabatt: {{ luser.discount }} %
     </p>
 
-
+    <button [routerLink]="'/userlist'">Tillbaka</button>
+    <button (click)="edit()">Redigera</button>
 </div>
+
+<div div class="parent" *ngIf="user && editable==true">
+  <form [formGroup]="userUpdateForm" (ngSubmit)="onSubmit()">
+    <div>
+      <h3>Användarnamn: {{ user.username }} </h3>
+    </div>
+    <div>
+      <label for="name">
+        Namn
+      </label>
+      <input id="name" type="text" formControlName="name">
+    </div>
+    <div>
+      <label for="password">
+        Lösenord
+      </label>
+      <input id="password" type="text" formControlName="password">
+    </div>
+    <div>
+      <label for="invoiceAddress">
+          Adress
+      </label>
+      <input id="invoiceAddress" type="text" formControlName="invoiceAddress">
+    </div>
+    <div>
+      <span>
+        <label for="role">
+          Roll
+        </label>
+      </span>
+      <span>  
+        <input id="role" type="radio" value="Regular" formControlName="role"> Regular
+        <input id="role" type="radio" value="Admin" formControlName="role"> Admin
+      </span>
+    </div>
+        <button (click)="edit()">Ångra</button>
+    <button class="button" type="submit">Ändra</button>
+    
+    </form> 
+  
+  <p *ngIf=user.discount>
+    Rabatt: {{ luser.discount }} %
+    </p>
+</div>
+
+
+
