@@ -1,3 +1,10 @@
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .userdetail-form {
   min-width: 150px;
   max-width: 500px;
@@ -25,14 +32,6 @@
 .paddingLeft {
   padding-left: 2em;
 }
-
-.parent {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
 .matLabel {
   font-size: large;
 }
