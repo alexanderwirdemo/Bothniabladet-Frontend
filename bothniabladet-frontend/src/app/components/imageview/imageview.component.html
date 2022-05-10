@@ -113,7 +113,7 @@
         <tr class="tableRowCenter">
           <mat-form-field class="fileupload-full-width" appearance="outline">
             <mat-label class="matLabel">GPS-koordinater</mat-label>
-            <input matInput placeholder="GPS-koordinater" type="number" id="GPS" name="GPS" formControlName="GPS">
+            <input matInput placeholder="GPS-koordinater" type="text" id="GPS" name="GPS" formControlName="GPS">
           </mat-form-field>
         </tr>
         <tr class="tableRowCenter">
@@ -205,8 +205,9 @@
     <form [formGroup]="fileUploadForm" (ngSubmit)="onFormSubmit()">
       <table class="fileupload-full-width">
         <tr class="tableRowRight">
-          <span class="paddingLeft"><button class="fileupload-button" mat-raised-button color="white" type="reset" (click)="resetForm()">Rensa</button></span>
+          <span class="paddingLeft"><button class="fileupload-button" id="uploadButton" mat-raised-button color="white" type="reset" (click)="resetForm()">Rensa</button></span>
           <span class="paddingLeft"><button class="fileupload-button" mat-raised-button color="primary" type="submit">Ladda upp</button></span>
+          <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.min.js"></script>
         </tr>
       </table>
      </form>
