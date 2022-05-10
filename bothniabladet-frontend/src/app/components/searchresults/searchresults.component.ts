@@ -6,6 +6,7 @@ import { SearchService } from 'src/app/services/search.service'
 import { Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-searchresults',
   templateUrl: './searchresults.component.html',
@@ -13,32 +14,17 @@ import { Router } from '@angular/router';
 })
 export class SearchresultsComponent implements OnInit {
 
-  rawSearch;
+  rawSearch: any;
   value;
   firstLayer: string;
   secondLayer: string;
   finalLayer: string;
   searchTerm: string;
   resultsAmount;
-  titleList: string[] = [];
-  a: String = "";
-  b: String = "";
-  c: string = "";
-  d: String = "";
-  e: string = "";
-  f: string = "";
-  g: string = "";
-  h: string = "";
-  i: string = "";
-  image1: string[] = [];
-  image2: string[] = [];
-  image3: string[] = [];
-  image4: string[] = [];
-  image5: string[] = [];
-  image6: string[] = [];
-  image7: string[] = [];
-  image8: string[] = [];
-  image9: string[] = [];
+  public imagesData: Array<ImageData> = [];
+  heightValue: string;
+  widthValue: string;
+  keywords: Array<string> = [];
 
 
   simplesearch_data: FormGroup;
@@ -53,14 +39,14 @@ export class SearchresultsComponent implements OnInit {
     console.dir(this.simplesearch_data.value);
     this.makeSearch();
 
+
   }
 
   makeSearch(){
 
-    this.baseUrl = "images/keyword/"
+    this.baseUrl = "images/keywords/"
     this.searchString = (<HTMLInputElement>document.getElementById("simple_searchBar")).value;
     this.combined = this.baseUrl.concat(this.searchString.toString())
-  
 
     this._api.getTypeRequest(this.combined).subscribe((res: any) => {
       {
@@ -74,6 +60,22 @@ export class SearchresultsComponent implements OnInit {
       });
   }
 
+  displayResults(){
+
+    this.imagesData = [];
+
+    for(var imageIndex=0; imageIndex<this.rawSearch.allImages.length; imageIndex++){
+      console.dir(this.rawSearch.allImages[imageIndex]);
+      let imageData = new ImageData(
+        this.rawSearch.allImages[imageIndex]._id,
+        "http://localhost:3001/uploaded_images/"+this.rawSearch.allImages[imageIndex].title,
+        this.rawSearch.allImages[imageIndex].photographer
+      );
+      this.imagesData.push(imageData);
+    }
+
+  }
+
   constructor(
 
     private _router: Router,
@@ -85,25 +87,7 @@ export class SearchresultsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.titleList = [];
-    this.image1 = [];
-    this.image2 = [];
-    this.image3 = [];
-    this.image4 = [];
-    this.image5 = [];
-    this.image6 = [];
-    this.image7 = [];
-    this.image8 = [];
-    this.image9 = [];
-    this.a = ""
-    this.b = ""
-    this.c = ""
-    this.d = ""
-    this.e = ""
-    this.f = ""
-    this.g = ""
-    this.h = ""
-    this.i = ""
+    console.dir
     
     this.searchService.rawResult.subscribe((searchoutput) => {
       
@@ -118,42 +102,11 @@ export class SearchresultsComponent implements OnInit {
     });
 
 
-    Object.getOwnPropertyNames(this.rawSearch).forEach(key => {
-      this.value = this.rawSearch[key];
-    });
+    this.displayResults();
 
-    for (let i = 0; i < Object(this.value)["length"]; i++) {
-      this.firstLayer = Object(this.value)[JSON.stringify(i)]
-      this.secondLayer = Object(this.firstLayer)["Administrative_data"]
-      this.finalLayer = Object(this.secondLayer)["title"]
-      this.titleList.push(this.finalLayer)
-    }
+    console.dir(this.imagesData)
 
-    console.dir(this.titleList)
-
-    const [aa,bb,cc,dd,ee,ff,gg,hh,ii] = this.titleList
-    this.a = aa
-    this.b = bb
-    this.c = cc
-    this.d = dd
-    this.e = ee
-    this.f = ff
-    this.g = gg
-    this.h = hh
-    this.i = ii
-
-    const [a1,a2,a3,a4,a5,a6,a7,a8,a9] = this.value
-    this.image1 = a1
-    this.image2 = a2
-    this.image3 = a3
-    this.image4 = a4
-    this.image5 = a5
-    this.image6 = a6
-    this.image7 = a7
-    this.image8 = a8
-    this.image9 = a9
-
-    console.dir(a1)
+    
     
     this.simplesearch_data = this.formBuilder.group({
       simple_searchString: '',
@@ -168,5 +121,17 @@ export class simplesearch_data {
 
   constructor(simple_searchString: String) {
     this.simple_searchString = simple_searchString;
+  }
+}
+
+export class ImageData{
+  public id: String;
+  public filepath: String;
+  public photographer: String;
+
+  constructor(id: String, filepath: String, photographer: String){
+    this.id = id;
+    this.filepath = filepath;
+    this.photographer = photographer;
   }
 }

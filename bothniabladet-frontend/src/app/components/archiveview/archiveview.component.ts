@@ -16,6 +16,7 @@ export class ArchiveviewComponent implements OnInit {
   combined: String;
   results: String;
   baseUrl: String;
+  keywords: string;
 
   
   simplesearch_data: FormGroup;
@@ -32,7 +33,7 @@ export class ArchiveviewComponent implements OnInit {
   onFormSubmit() {
     console.log('simple search string:');
     console.dir(this.simplesearch_data.value);
-    this.makeSearch();
+    this.makeMultipleSearch();
 
   }
 
@@ -44,9 +45,10 @@ export class ArchiveviewComponent implements OnInit {
     this.combined = this.baseUrl.concat(this.searchString.toString())
   
 
-    this._api.getTypeRequest(this.combined).subscribe((res: any) => {
+    this._api.getTypeRequest(this.combined).subscribe(res => {
       {
         this.searchService.setSearchResult(res)
+        console.dir(res)
         this._router.navigate(['/searchresults']);
         
       }}, err => {
@@ -54,6 +56,29 @@ export class ArchiveviewComponent implements OnInit {
       alert("Något gick fel")
 
       });
+  }
+
+  makeMultipleSearch(){
+
+    this.baseUrl = "images/keywords/"
+    this.searchString = (<HTMLInputElement>document.getElementById("simple_searchBar")).value;
+    this.searchService.setSearchTerm(this.searchString)
+    this.combined = this.baseUrl.concat(this.searchString.toString())
+    
+      this._api.getTypeRequest(this.combined).subscribe(res => {
+        {
+          this.searchService.setSearchResult(res)
+          console.dir(res)
+          this._router.navigate(['/searchresults']);
+          
+        }}, err => {
+        console.log(err);
+        alert("Något gick fel")
+  
+        });
+    
+
+
   }
 
   ngOnInit(): void {

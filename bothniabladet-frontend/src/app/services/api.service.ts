@@ -17,6 +17,11 @@ export class ApiService {
     return res;
     }));
     }
+  getMultipleTypeRequest(url, payload) {
+    return this._http.get(`${this.baseUrl}${url}`, payload).pipe(map(res => {
+    return res;
+    }));
+    }  
   postTypeRequest(url, payload) {
     return this._http.post(`${this.baseUrl}${url}`, payload, {withCredentials:true}).pipe(map(res => {
     return res;

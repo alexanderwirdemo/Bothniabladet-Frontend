@@ -19,12 +19,14 @@
     </form>
   </div>
 
-<tr>{{a}}</tr>
-<tr>{{b}}</tr>
-<tr>{{c}}</tr>
-<tr>{{d}}</tr>
-<tr>{{e}}</tr>
-<tr>{{f}}</tr>
-<tr>{{g}}</tr>
-<tr>{{h}}</tr>
-<tr>{{i}}</tr>
+  <table>
+    <tr>
+    <ng-container *ngFor="let image of imagesData">
+        <td>
+          <img src="{{ image.filepath }}" height="280px" width="200px">
+          <p>Fotograf: {{ image.photographer }}</p>
+
+        </td>
+    </ng-container>
+  </tr>
+  </table>
