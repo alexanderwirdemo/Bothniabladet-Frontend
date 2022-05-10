@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Image } from '../../images';
 import { ApiService } from '../../services/api.service';
+
 
 @Component({
   selector: 'app-customerview',

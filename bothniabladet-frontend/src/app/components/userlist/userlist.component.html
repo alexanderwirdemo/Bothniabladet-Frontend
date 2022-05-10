@@ -1,15 +1,53 @@
-  
-    <div >
-        <h2>Användare</h2>
 
-        <div *ngFor="let anv of users, index as i" >
-        <h4> <a *ngIf="anv.role == 'Admin'"> *admin* </a>
-            {{ anv.name }} <!-- {{ anv.role }} -->
-        <button (click)='selectUser(i)'> val </button>
-        <button [routerLink]="['/lusers', anv.id]">detalj</button>
-        </h4>
-        </div>
-
+<br />
+<br />
+<br />
+<div class="parent">
+  <table class="userlist-full-width">
+    <tr class="tableRowLeft">
+      <p class="title">Användarregister</p>
+    </tr>
+    <div *ngFor="let anv of users, index as i">
+      <mat-accordion class="headers-align" multi>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> {{ anv.name }} </mat-panel-title>
+            <mat-panel-description> {{ anv.role }} <mat-icon class="paddingLeft">account_circle</mat-icon></mat-panel-description>
+          </mat-expansion-panel-header>
+          <table class="userlist-form-width">
+            <tr class="tableRowLeft">
+              <p class="paddingLeft">Användarnamn: {{ anv.username }}</p>
+              <p class="paddingLeft">Namn: {{ anv.name }}</p>
+              <p class="paddingLeft">Adress: {{ anv.invoiceAddress }}</p>
+              <p class="paddingLeft">Roll: {{ anv.role }}</p>
+            </tr>
+            <tr class="tableRowRight">
+              <span class="paddingLeft"><button mat-raised-button color="primary" (click)='selectUser(i)'> Välj </button></span>
+              <span class="paddingLeft"><button mat-raised-button color="primary" [routerLink]="['/lusers', anv.id]">Detalj</button></span>
+            </tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
     </div>
+  </table>
+</div>
 
-    <!-- <button (click)="extraknapp()"> adress-knapp</button> -->
+
+
+<!--
+
+    <div >
+           <h2>Användare</h2>
+
+           <div *ngFor="let anv of users, index as i" >
+           <h4> <a *ngIf="anv.role == 'Admin'"> *admin* </a>
+               {{ anv.name }}
+    {{ anv.role }}
+
+    <button (click)='selectUser(i)'> val </button>
+    <button [routerLink]="['/lusers', anv.id]">detalj</button>
+            </h4>
+            </div>
+
+        </div>-->
+<!-- <button (click)="extraknapp()"> adress-knapp</button> -->

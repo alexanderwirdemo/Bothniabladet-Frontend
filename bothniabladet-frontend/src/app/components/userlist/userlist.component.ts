@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { users, User } from './luser';
+import { MatAccordion } from '@angular/material/expansion';
 
 
 @Component({
@@ -12,6 +13,8 @@ export class UserlistComponent implements OnInit {
   user: User;
   users = users;
   Anvandare?: any;
+
+  @ViewChild(MatAccordion) accordion: MatAccordion;
   
   constructor(
     private _userapi: UserService 

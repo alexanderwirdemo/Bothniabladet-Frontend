@@ -1,18 +1,29 @@
-<p>På den här sidan skall alla kunder kunna: </p>
-<ul>
-  <li>söka på bilder baserat på t ex sökord</li>
-  <li>"bunta ihop" bilder som får säljas i en kundkorg och köpa</li>
-  <li>fyll på med fler användarkrav...</li>
-</ul>
+<br />
+<br />
+<br />
+<div class="parent">
+  <table class="review-full-width">
+    <tr class="tableRowLeft">
+      <p class="title">Uppladdade bilder för granskning</p>
+    </tr>
+    <ng-container *ngFor="let image of imagesData">
+      <div class="paddingBottom">
+        <mat-toolbar-row class="toolbarRow">
+          <span>
+            <img src="{{ image.filepath }}" height="150">
+            <p>Fotograf: {{ image.photographer }}</p>
+          </span>
 
-<table>
-  <tr>
-  <ng-container *ngFor="let image of imagesData">
-      <td>
-        <img src="{{ image.filepath }}" height="280px" width="200px">
-        <p>Fotograf: {{ image.photographer }}</p>
-        <button (click)="approveImage(image)">GODKÄNN</button>
-      </td>
-  </ng-container>
-</tr>
-</table>
+          <span class="paddingLeft">
+            <button class="review-button" mat-raised-button color="white">Neka</button>
+
+            <button class="review-button" mat-raised-button color="primary" (click)="approveImage(image)">GODKÄNN</button>
+          </span>
+
+
+        </mat-toolbar-row>
+      </div>
+    </ng-container>
+
+  </table>
+  </div>
