@@ -24,7 +24,7 @@ export class UserdetailsComponent implements OnInit {
     password: this.selected.password,
     invoiceAddress: this.selected.invoiceAddress,
     role: [this.selected.role,[Validators.required]],
-    discount: this.selected.discount
+    discount: [this.selected.discount, [Validators.max(100), Validators.min(0)]]
   });
   userData_fields: FormGroup;
 

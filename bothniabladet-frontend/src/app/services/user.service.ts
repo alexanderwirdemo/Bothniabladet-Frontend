@@ -10,6 +10,7 @@ export class UserService {
   currentUser: any; // This variable represents the current user logged in, if any
   userLoggedIn: any; // This variable represents the boolean value if a user is logged in or not (true/false)
   userRole: any;
+  userDiscount: number;
 
   constructor(private _http: HttpClient) { 
 
@@ -31,15 +32,27 @@ export class UserService {
     return this.userRole;
   }
 
+  setUserDiscount(userDiscount: any): void {
+    this.userDiscount = userDiscount;
+    console.log(userDiscount);
+  }
+
+  getUserDiscount(): any {
+    return this.userDiscount;
+  }
+
   logoutUser(): void {
     this.currentUser = null;
     this.userRole = null;
+    this.userDiscount = null;
     this.setuserLoggedIn(false);
   }
 
    setUser(user: any): any {
      this.currentUser = user;
-     this.setUserRole(user.role);
+     //*console.dir(user[0]);
+     this.setUserRole(user[0].role);
+     this.setUserDiscount(user[0].discount);
   }
 
   getTypeRequest(url) {
