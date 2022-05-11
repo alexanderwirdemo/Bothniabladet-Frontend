@@ -5,6 +5,7 @@ export interface User {
     name: String;  
     invoiceAddress: String; 
     role: String;
+    discount: number;
 }
 
 export const users = [];

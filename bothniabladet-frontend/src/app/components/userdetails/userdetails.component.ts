@@ -23,7 +23,8 @@ export class UserdetailsComponent implements OnInit {
     name: this.selected.name,
     password: this.selected.password,
     invoiceAddress: this.selected.invoiceAddress,
-    role: [this.selected.role,[Validators.required]]
+    role: [this.selected.role,[Validators.required]],
+    discount: this.selected.discount
   });
   userData_fields: FormGroup;
 
@@ -44,6 +45,7 @@ export class UserdetailsComponent implements OnInit {
       name: this.user.name,
       invoiceAddress: this.user.invoiceAddress,
       role: this.user.role,
+      discount: this.user.discount,
     });
 
   }
@@ -64,6 +66,7 @@ export class UserdetailsComponent implements OnInit {
     console.log('address: ',updateForm.invoiceAddress)
     console.log('role: ',updateForm.role)
     console.log('password: ',updateForm.password)
+    console.log('discount: ',updateForm.discount)
 
     const body = {
         _id: this.selected.id,
@@ -71,6 +74,7 @@ export class UserdetailsComponent implements OnInit {
         name: updateForm.name,
         invoiceAddress: updateForm.invoiceAddress,
         role: updateForm.role,
+        discount: updateForm.discount,
       };
       this._userapi.putTypeRequest('users/update/'+this.selected.id, body).subscribe(response => {
           console.log(response);
@@ -83,7 +87,8 @@ export class UserdetailsComponent implements OnInit {
     this.users = [];
     this.user.password = updateForm.password; 
     this.user.name = updateForm.name; 
-    this.user.invoiceAddress = updateForm.invoiceAddress; 
+    this.user.invoiceAddress = updateForm.invoiceAddress;
+    this.user.discount = updateForm.discount; 
     this.user.role = updateForm.role; 
     this.selected = this.user; 
   }
@@ -95,12 +100,14 @@ export class userData_fields {
   public name: String;
   public invoiceAddress: String;
   public role: String;
+  public discount: number;
 
-  constructor(username: String, name: String, invoiceAddress: String, role: String) {
+  constructor(username: String, name: String, invoiceAddress: String, role: String, discount: number) {
 
     this.username = username;
     this.name = name;
     this.invoiceAddress = invoiceAddress;
     this.role = role;
+    this.discount = discount;
   }
 }
