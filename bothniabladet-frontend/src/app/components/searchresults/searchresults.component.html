@@ -23,9 +23,8 @@
     <tr>
     <ng-container *ngFor="let image of imagesData">
         <td>
-          <img src="{{ image.filepath }}" height="280px" width="200px">
+          <img src="{{ image.filepath }}" height="280px" width="200px" onclick=alert()>
           <p>Fotograf: {{ image.photographer }}</p>
-
         </td>
     </ng-container>
   </tr>

@@ -14,7 +14,7 @@
     <span>
         <a mat-button [routerLink]="'/archiveview'" routerLinkActive="mat-raised-button" class="button"> Sök </a>
         <a mat-button [routerLink]="'/imageview'" routerLinkActive="mat-raised-button" class="button" *ngIf="getUserLoggedIn()"> Ladda upp bild </a>
-        <a mat-button [routerLink]="'/advancedsearchview'" routerLinkActive="mat-raised-button" class="button" *ngIf="getUserLoggedIn() && getUserRole()==='Admin'"> Avancerad sök </a>
+        <a mat-button [routerLink]="'/advancedsearchview'" routerLinkActive="mat-raised-button" class="button" *ngIf="getUserLoggedIn()"> Avancerad sök </a>
         <a mat-button [routerLink]="'/customerview'" routerLinkActive="mat-raised-button" class="button" *ngIf="getUserLoggedIn()"> Granskning </a>
         <a mat-button [routerLink]="'/invoiceview'" routerLinkActive="mat-raised-button" class="button" *ngIf="getUserLoggedIn()"> Ekonomi </a>
         <a mat-button [routerLink]="'/userlist'" routerLinkActive="mat-raised-button" class="button" *ngIf="getUserLoggedIn()"> Administrera Användare </a>

@@ -28,25 +28,36 @@ export class AdvancedsearchviewComponent implements OnInit {
 
   makeSearch(){
     
-  
-    this.baseUrl = "images/advanced/"
-    this.searchString = (<HTMLInputElement>document.getElementById("advanced_searchString")).value;
-    this.searchPlace = (<HTMLInputElement>document.getElementById("advanced_searchPlace")).value;
-    this.combined = (((this.baseUrl.concat(this.searchString.toString())).concat("#")).concat(this.searchPlace.toString()))
-    console.dir(this.combined)
+    var imageDataForm = this.advancedsearch_data.value;
+    const keywords = imageDataForm.advanced_searchString.split(',');
+    
+    var imageData = new advancedsearch_data(
+      keywords,
+      imageDataForm.advanced_searchTitle,
+      imageDataForm.advanced_searchCategory,
+      imageDataForm.advanced_searchSubcategory,
+      imageDataForm.advanced_searchPhotografer,
+      imageDataForm.advanced_searchResolution,
+      imageDataForm.advanced_searchPlace,
+      imageDataForm.advanced_searchPublished,
+      imageDataForm.advanced_searchDateFrom,
+      imageDataForm.advanced_searchDateTo
+    )
+
+    console.dir(imageData)
 
   
-    this._api.getTypeRequest(this.combined).subscribe(res => {
+    this._api.postTypeRequest("images/advanced", imageData).subscribe(res => {
       {
-        res
+        this.searchService.setSearchResult(res)
+        console.dir(res)
+        this._router.navigate(['/searchresults']);
         
       }}, err => {
       console.log(err);
       alert("Något gick fel")
   
       });
-
-      console.dir(this.results)
 
 
 
@@ -97,7 +108,7 @@ export class AdvancedsearchviewComponent implements OnInit {
 
 
 export class advancedsearch_data {
-  public advanced_searchString: String;
+  public advanced_searchString: Array<String>;
   public advanced_searchTitle: String;
   public advanced_searchCategory: Array<String>;
   public advanced_searchSubcategory: Array<String>;
@@ -108,7 +119,7 @@ export class advancedsearch_data {
   public advanced_searchDateFrom: Date;
   public advanced_searchDateTo: Date;
 
-  constructor(advanced_searchString: String, advanced_searchTitle: String, advanced_searchCategory: Array<String>, advanced_searchSubcategory: Array<String>, advanced_searchPhotografer: String, advanced_searchResolution: Number, advanced_searchPlace: String, advanced_searchDateFrom: Date, advanced_searchDateTo: Date, advanced_searchPublished: String) {
+  constructor(advanced_searchString: Array<String>, advanced_searchTitle: String, advanced_searchCategory: Array<String>, advanced_searchSubcategory: Array<String>, advanced_searchPhotografer: String, advanced_searchResolution: Number, advanced_searchPlace: String, advanced_searchDateFrom: Date, advanced_searchDateTo: Date, advanced_searchPublished: String) {
 
     this.advanced_searchString = advanced_searchString;
     this.advanced_searchTitle = advanced_searchTitle;
