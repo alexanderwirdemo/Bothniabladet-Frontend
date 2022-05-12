@@ -16,8 +16,8 @@ export class CartComponent implements OnInit {
   images = images;
   summa = this.cartService.getSumOfPrice();
   antalVaror = this.cartService.getNumberOfItems();
-  // rabatt = this.userService.getDiscount();
-  rabatt = 10;
+  rabatt = this.userService.getUserDiscount();
+  rabattKr = this.summa*this.rabatt/100;
   pris = this.summa*(100-this.rabatt)/100;
 
   checkoutForm = this.formBuilder.group({

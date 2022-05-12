@@ -22,13 +22,17 @@
 
       <div class="cart-item">
         <span></span>
-        <span *ngIf="rabatt>0"> Totalt: {{ summa|number:"1.2" }} kr <br>
-          Rabatt: {{ rabatt|number }}%
-        </span>
+        <span > Totalt: {{ summa|number:"1.2" }} kr </span>
       </div>
       <div class="cart-item">
-      <span></span>
-      <span> Att betala: {{ pris|number:"1.2" }} kr </span>
+        <span></span>
+        <span *ngIf="rabatt>0"> Rabatt {{ rabatt|number }}% : {{rabattKr|number:"1.2"}} kr </span>
+      </div>
+      <div class="cart-item">
+        <span></span>
+        <span *ngIf="summa>pris; then omrabatt else utanrabatt"></span>
+        <ng-template #omrabatt> Att betala: {{ pris|number:"1.2" }} kr </ng-template>
+        <ng-template #utanrabatt> Att betala: {{ summa|number:"1.2" }} kr </ng-template>
       </div>
 
       <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">

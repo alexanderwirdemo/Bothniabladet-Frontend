@@ -4,7 +4,8 @@
   <p>Användarnamn: {{ user.username }} <br>
     Namn: {{ user.name }} <br>
     Adress: {{ user.invoiceAddress }} <br>
-    Roll: {{ user.role }}</p>
+    Roll: {{ user.role }}<br>
+    Rabatt: {{ user.discount }}</p>
 
 <!--<br />
 <br />
@@ -91,6 +92,13 @@
       <input id="invoiceAddress" type="text" formControlName="invoiceAddress">
     </div>
     <div>
+      <label for="discount">
+          Rabatt
+      </label>
+      <input id="discount" type="number" formControlName="discount">
+      <div *ngIf="userUpdateForm.controls['discount'].invalid">Rabatt kan ges mellan 0-100</div>
+    </div>
+    <div>
       <span>
         <label for="role">
           Roll
@@ -102,11 +110,8 @@
       </span>
     </div>
         <button (click)="edit()">Ångra</button>
-    <button class="button" type="submit">Ändra</button>
+    <button class="button" type="submit" *ngIf="!userUpdateForm.controls['discount'].invalid">Ändra</button>
     
     </form> 
   
-  <p *ngIf=user.discount>
-    Rabatt: {{ luser.discount }} %
-    </p>
 </div>
