@@ -37,6 +37,14 @@
   flex-direction: column;
 }
 
+.hiddenContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: none !important;
+}
+
 .matLabel {
   font-size: large;
 }

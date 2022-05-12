@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,14 @@ export class UserService {
   userRole: any;
   userDiscount: number;
 
-  constructor(private _http: HttpClient) { 
+
+  //private currentUserRole = new BehaviorSubject<any>({});
+  //currentUserRoleObservable = this.currentUserRole.asObservable();
+
+  constructor(
+    private _http: HttpClient
+
+  ) { 
 
   }
 
@@ -24,7 +33,7 @@ export class UserService {
     this.userLoggedIn = userLoggedIn;
   }
 
-  setUserRole(userRole: any): any {
+  setUserRole(userRole:any): any {
     this.userRole = userRole;
   }
 
@@ -50,7 +59,6 @@ export class UserService {
 
    setUser(user: any): any {
      this.currentUser = user;
-     //*console.dir(user[0]);
      this.setUserRole(user[0].role);
      this.setUserDiscount(user[0].discount);
   }

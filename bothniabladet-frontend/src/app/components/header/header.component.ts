@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { CartService } from 'src/app/services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,13 +11,14 @@ import { CartService } from 'src/app/services/cart.service';
 
 export class HeaderComponent implements OnInit {
 
-
   constructor(
     private _userService: UserService,
-    private _cartService: CartService
+    private _cartService: CartService,
+    private _router: Router
   ) { }
 
   ngOnInit(): void {
+   
   }
 
   getUserLoggedIn(): boolean {
@@ -29,8 +31,8 @@ export class HeaderComponent implements OnInit {
 
   logoutUser(): void {
     this._userService.logoutUser();
-    console.log('check if user logged in');
-    console.dir(this._userService.currentUser);
+    this._router.navigate(['/archiveview']);
+
   }
 
   numberOfItems(): number {

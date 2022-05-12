@@ -22,13 +22,18 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
 import { UserlistComponent } from './components/userlist/userlist.component';
 import { UserdetailsComponent } from './components/userdetails/userdetails.component';
 import { SearchresultsComponent } from './components/searchresults/searchresults.component';
+import { DialogComponent } from './components/dialog/dialog.component';
+
+
 
 @NgModule({
   declarations: [
@@ -45,7 +50,8 @@ import { SearchresultsComponent } from './components/searchresults/searchresults
     CartComponent,
     UserlistComponent,
     UserdetailsComponent,
-    SearchresultsComponent
+    SearchresultsComponent,
+    DialogComponent,
   ],
   
   imports: [
@@ -66,6 +72,8 @@ import { SearchresultsComponent } from './components/searchresults/searchresults
     MatRadioModule,
     MatFormFieldModule,
     MatGridListModule,
+    MatDialogModule,
+    MatSelectModule,
     MatExpansionModule
   ],
 
@@ -81,10 +89,13 @@ import { SearchresultsComponent } from './components/searchresults/searchresults
     MatRadioModule,
     MatFormFieldModule,
     MatGridListModule,
+    MatDialogModule,
+    MatSelectModule,
     MatExpansionModule
 
   ],
   providers: [],
+  entryComponents:[DialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

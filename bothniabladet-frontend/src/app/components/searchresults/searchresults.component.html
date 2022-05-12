@@ -1,31 +1,57 @@
-
+<!DOCTYPE html>
 <div class="parent">
-    <form class="search-form" [formGroup]="simplesearch_data" (ngSubmit)="onFormSubmit()">
-      <table class="search-full-width">
-        <tr class="tableRowCenter">
-        </tr>
-        <tr class="tableRowCenter">
-          <th style="width:80%">
-            <mat-form-field class="search-full-width" appearance="outline">
-              <mat-label class="matLabel"><mat-icon class="matIcon">search</mat-icon>Skriv valfria sökord här</mat-label>
-              <input matInput placeholder="Sökord" type="text" id="simple_searchBar" name="simple_searchString" formControlName="simple_searchString">
-            </mat-form-field>
-          </th>
-          <th style="width:20%; align-content:center">
-            <div class="search-button"><button mat-raised-button color="primary" type="submit">Sök</button></div>
-          </th>
-        </tr>
-      </table>
-    </form>
-  </div>
+  <form class="search-form" [formGroup]="simplesearch_data" (ngSubmit)="onFormSubmit()">
+    <table class="search-full-width">
+      <tr class="tableRowCenter">
+      </tr>
+      <tr class="tableRowCenter">
+        <th style="width:80%">
+          <mat-form-field class="search-full-width" appearance="outline">
+            <mat-label class="matLabel"><mat-icon class="matIcon">search</mat-icon>Skriv valfria sökord här</mat-label>
+            <input matInput placeholder="Sökord" type="text" id="simple_searchBar" name="simple_searchString" formControlName="simple_searchString">
+          </mat-form-field>
+        </th>
+        <th style="width:20%; align-content:center">
+          <div class="search-button"><button mat-raised-button color="primary" type="submit">Sök</button></div>
+        </th>
+      </tr>
+    </table>
+  </form>
+</div>
 
   <table>
     <tr>
-    <ng-container *ngFor="let image of imagesData">
-        <td>
-          <img src="{{ image.filepath }}" height="280px" width="200px" onclick=alert()>
-          <p>Fotograf: {{ image.photographer }}</p>
-        </td>
-    </ng-container>
+      <mat-grid-list cols="3" rowHeight="2:1">
+        <ng-container *ngFor="let image of imagesData">
+            <td>
+              <ol>
+                <li>
+                  <img src="{{ image.filepath }}" height="280px" width="200px">
+                  <p>Fotograf: {{ image.photographer }}</p>
+                </li>
+                <li>
+                  <button mat-raised-button (click)="openDialog()">Välj</button>
+                </li>
+              </ol>
+            </td>
+        </ng-container>
+      </mat-grid-list>
   </tr>
   </table>
+
+
+
+<ol>
+  <li>
+    <mat-form-field appearance="fill">
+      <mat-label>Vad är ditt namn?</mat-label>
+      <input matInput [(ngModel)]="name" />
+    </mat-form-field>
+  </li>
+  <li>
+    <button mat-raised-button (click)="openDialog()">Välj</button>
+  </li>
+  <li *ngIf="animal">
+    Du väljer: <i>{{animal}}</i>
+  </li>
+</ol>

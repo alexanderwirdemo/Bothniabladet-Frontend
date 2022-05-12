@@ -16,7 +16,7 @@ export class UserdetailsComponent implements OnInit {
   user: User | undefined; 
   editable: boolean = false; 
   users = users; 
-  index: number; 
+  index: number;
 
   selected = users.find(user => user.id === String(this.route.snapshot.paramMap.get('luserId')))
   userUpdateForm = this.formBuilder.group({

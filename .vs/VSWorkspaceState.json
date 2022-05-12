@@ -2,15 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\bothniabladet-frontend",
-    "\\bothniabladet-frontend\\e2e",
     "\\bothniabladet-frontend\\src",
     "\\bothniabladet-frontend\\src\\app",
     "\\bothniabladet-frontend\\src\\app\\components",
-    "\\bothniabladet-frontend\\src\\app\\components\\customerview",
+    "\\bothniabladet-frontend\\src\\app\\components\\dialog",
+    "\\bothniabladet-frontend\\src\\app\\components\\imageview",
     "\\bothniabladet-frontend\\src\\app\\components\\searchresults",
-    "\\bothniabladet-frontend\\src\\app\\components\\userdetails",
-    "\\bothniabladet-frontend\\src\\app\\components\\userlist"
+    "\\bothniabladet-frontend\\src\\app\\components\\userlist",
+    "\\bothniabladet-frontend\\src\\app\\services"
   ],
-  "SelectedNode": "\\bothniabladet-frontend\\src\\app\\components\\userdetails\\userdetails.component.html",
+  "SelectedNode": "\\bothniabladet-frontend\\src\\app\\components\\dialog\\dialog.component.ts",
   "PreviewInSolutionExplorer": false
 }
