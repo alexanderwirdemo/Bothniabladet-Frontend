@@ -42,7 +42,8 @@ export class UserlistComponent implements OnInit {
               password: this.Anvandare?.allUsers[i].password, 
               name: this.Anvandare?.allUsers[i].name,   
               invoiceAddress: this.Anvandare?.allUsers[i].invoiceAddress,  
-              role: this.Anvandare?.allUsers[i].role})
+              role: this.Anvandare?.allUsers[i].role,
+              discount: this.Anvandare?.allUsers[i].discount})
               console.log(this.users[i].name);
             }
           }
