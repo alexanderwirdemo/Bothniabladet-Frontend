@@ -51,7 +51,13 @@
 
 .radioButton {
   font-size: large;
+  font-weight:400;
   padding-left: 2em;
+}
+
+.smallerText {
+  font-size: large;
+  font-weight: 400;
 }
 
 .title {

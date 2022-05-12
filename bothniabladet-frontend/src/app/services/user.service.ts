@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,14 @@ export class UserService {
   userLoggedIn: any; // This variable represents the boolean value if a user is logged in or not (true/false)
   userRole: any;
 
-  constructor(private _http: HttpClient) { 
+
+  //private currentUserRole = new BehaviorSubject<any>({});
+  //currentUserRoleObservable = this.currentUserRole.asObservable();
+
+  constructor(
+    private _http: HttpClient
+
+  ) { 
 
   }
 
@@ -23,7 +32,7 @@ export class UserService {
     this.userLoggedIn = userLoggedIn;
   }
 
-  setUserRole(userRole: any): any {
+  setUserRole(userRole:any): any {
     this.userRole = userRole;
   }
 
@@ -39,7 +48,8 @@ export class UserService {
 
    setUser(user: any): any {
      this.currentUser = user;
-     this.setUserRole(user.role);
+     this.setUserRole(user[0].role);
+     this.setuserLoggedIn(true);
   }
 
   getTypeRequest(url) {

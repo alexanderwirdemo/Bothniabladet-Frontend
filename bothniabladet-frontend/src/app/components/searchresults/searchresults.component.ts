@@ -1,11 +1,16 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import * as _ from 'lodash';
-import { SearchService } from 'src/app/services/search.service'
+import { SearchService } from 'src/app/services/search.service';
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
+export interface DialogData {
+  animal: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-searchresults',
@@ -13,6 +18,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./searchresults.component.css']
 })
 export class SearchresultsComponent implements OnInit {
+
+  animal: string;
+  name: string;
 
   rawSearch: any;
   value;
@@ -82,6 +90,7 @@ export class SearchresultsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private searchService: SearchService,
     private _api: ApiService,
+    public dialog: MatDialog
  
   ) { }
 
@@ -114,7 +123,24 @@ export class SearchresultsComponent implements OnInit {
 
   }
 
-}
+  openDialog(): void {
+
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '1000px',
+      height: '500px',
+      data: { name: this.name, animal: this.animal },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialogen stängdes')
+      this.animal = result;
+    })
+    };
+  }
+
+  
+
+
 
 export class simplesearch_data {
   public simple_searchString: String;
@@ -134,4 +160,17 @@ export class ImageData{
     this.filepath = filepath;
     this.photographer = photographer;
   }
+}
+
+@Component({
+
+  selector: 'app-dialog',
+  templateUrl: '../dialog/dialog.component.html'
+})
+
+export class DialogComponent {
+  constructor(
+    public dialogRef: MatDialogRef<DialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+  ) { }
 }

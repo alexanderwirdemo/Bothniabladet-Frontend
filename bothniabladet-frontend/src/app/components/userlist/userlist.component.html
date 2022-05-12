@@ -1,23 +1,21 @@
-
- 
-    <div class="parent">
-        <h2 class="title">Användare</h2>
-        <h3>Administratörer</h3>
-        <div *ngFor="let anv of users, index as i">
-        <mat-nav-list *ngIf="anv.role == 'Admin'">
-                <a  [routerLink]="['/lusers', anv.id]">   {{ anv.name }} </a>
-        </mat-nav-list>
-        </div>
+<!--<div class="parent">
+    <h2 class="title">Användare</h2>
+    <h3>Administratörer</h3>
+    <div *ngFor="let anv of users, index as i">
+    <mat-nav-list *ngIf="anv.role == 'Admin'">
+            <a  [routerLink]="['/lusers', anv.id]">   {{ anv.name }} </a>
+    </mat-nav-list>
     </div>
-    <hr>
-    <div class="parent">
-        <h3>Kunder</h3>
-        <div *ngFor="let anv of users, index as i">
-        <mat-nav-list  *ngIf="anv.role == 'Regular'">
-            <a [routerLink]="['/lusers', anv.id]">   {{ anv.name }} </a>
-        </mat-nav-list>
-        </div>
-<!--
+</div>
+<hr>
+<div class="parent">
+    <h3>Kunder</h3>
+    <div *ngFor="let anv of users, index as i">
+    <mat-nav-list  *ngIf="anv.role == 'Regular'">
+        <a [routerLink]="['/lusers', anv.id]">   {{ anv.name }} </a>
+    </mat-nav-list>
+    </div>-->
+
 <br />
 <br />
 <br />
@@ -27,7 +25,30 @@
       <p class="title">Användarregister</p>
     </tr>
     <div *ngFor="let anv of users, index as i">
-      <mat-accordion class="headers-align" multi>
+      <mat-accordion class="headers-align" multi *ngIf="anv.role == 'Admin'">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> {{ anv.name }} </mat-panel-title>
+            <mat-panel-description> {{ anv.role }} <mat-icon class="paddingLeft">account_circle</mat-icon></mat-panel-description>
+          </mat-expansion-panel-header>
+          <table class="userlist-form-width">
+            <tr class="tableRowLeft">
+              <p class="paddingLeft">Användarnamn: {{ anv.username }}</p>
+              <p class="paddingLeft">Namn: {{ anv.name }}</p>
+              <p class="paddingLeft">Adress: {{ anv.invoiceAddress }}</p>
+              <p class="paddingLeft">Roll: {{ anv.role }}</p>
+            </tr>
+            <tr class="tableRowRight">
+              <span class="paddingLeft"><button mat-raised-button color="primary" (click)='selectUser(i)'> Välj </button></span>
+              <span class="paddingLeft"><button mat-raised-button color="primary" [routerLink]="['/lusers', anv.id]">Detalj</button></span>
+            </tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <br />
+    <div *ngFor="let anv of users, index as i">
+      <mat-accordion class="headers-align" multi *ngIf="anv.role == 'Regular'">
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title> {{ anv.name }} </mat-panel-title>
@@ -50,9 +71,6 @@
     </div>
   </table>
 </div>
--->
-
-
 
 <!--
 
@@ -70,17 +88,15 @@
             </h4>
             </div>
             -->
+<!--
+    <button (click)="extraknapp()"> adress-knapp</button>
+    <span><button [routerLink]="['/lusers', anv.id]">
+    <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18"><path d="M9 39H11.2L35.45 14.75L34.35 13.65L33.25 12.55L9 36.8ZM6 42V35.6L35.4 6.2Q36.25 5.35 37.525 5.375Q38.8 5.4 39.65 6.25L41.8 8.4Q42.65 9.25 42.65 10.5Q42.65 11.75 41.8 12.6L12.4 42ZM39.5 10.45 37.45 8.4ZM35.45 14.75 34.35 13.65 33.25 12.55 35.45 14.75Z"/></svg>
+    </button> </span>
 
+    *ngIF="anv.role == 'Admin'"
 
-    <!-- 
-        <button (click)="extraknapp()"> adress-knapp</button> 
-        <span><button [routerLink]="['/lusers', anv.id]">
-        <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18"><path d="M9 39H11.2L35.45 14.75L34.35 13.65L33.25 12.55L9 36.8ZM6 42V35.6L35.4 6.2Q36.25 5.35 37.525 5.375Q38.8 5.4 39.65 6.25L41.8 8.4Q42.65 9.25 42.65 10.5Q42.65 11.75 41.8 12.6L12.4 42ZM39.5 10.45 37.45 8.4ZM35.45 14.75 34.35 13.65 33.25 12.55 35.45 14.75Z"/></svg>
-        </button> </span>
+    *ngIF="anv.role == 'Regular'"
 
-        *ngIF="anv.role == 'Admin'"
-
-        *ngIF="anv.role == 'Regular'"
-    -->
         </div>-->
 <!-- <button (click)="extraknapp()"> adress-knapp</button> -->

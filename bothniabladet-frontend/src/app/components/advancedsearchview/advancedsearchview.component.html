@@ -22,25 +22,17 @@
       <tr class="tableRowCenter">
         <mat-form-field class="advancedsearch-full-width" appearance="outline">
           <mat-label class="matLabel">Kategori</mat-label>
-          <select matNativeControl placeholder="Kategori" id="advanced_searchCategory" name="advanced_searchCategory" formControlName="advanced_searchCategory">
-            <option></option>
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-            <option value="option4">Option 4</option>
-          </select>
+          <mat-select matNativeControl multiple placeholder="Kategori" id="advanced_searchCategory" name="advanced_searchCategory" formControlName="advanced_searchCategory">
+            <mat-option *ngFor="let category of categoriesOptions" [value]="category">{{category}}</mat-option>
+          </mat-select>
         </mat-form-field>
       </tr>
       <tr class="tableRowCenter">
         <mat-form-field class="advancedsearch-full-width" appearance="outline">
           <mat-label class="matLabel">Underkategori</mat-label>
-          <select matNativeControl placeholder="Underkategori" id="advanced_searchSubcategory" name="advanced_searchSubcategory" formControlName="advanced_searchSubcategory">
-            <option></option>
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-            <option value="option4">Option 4</option>
-          </select>
+          <mat-select matNativeControl multiple placeholder="Underkategori" id="advanced_searchSubcategory" name="advanced_searchSubcategory" formControlName="advanced_searchSubcategory">
+            <mat-option *ngFor="let subcategory of subCategoriesOptions" [value]="subcategory">{{subcategory}}</mat-option>
+          </mat-select>
         </mat-form-field>
       </tr>
       <tr class="tableRowCenter">

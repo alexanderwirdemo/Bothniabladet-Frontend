@@ -1,16 +1,16 @@
-<h2 div class="parent">User Details</h2>
+<!--<h2 div class="parent">User Details</h2>
 
 <div div class="parent" *ngIf="user && editable==false">
   <p>Användarnamn: {{ user.username }} <br>
     Namn: {{ user.name }} <br>
     Adress: {{ user.invoiceAddress }} <br>
-    Roll: {{ user.role }}</p>
+    Roll: {{ user.role }}</p>-->
 
-<!--<br />
+<br />
 <br />
 <br />
 <div class="parent">
-  <form class="userdetail-form" [formGroup]="userData_fields" *ngIf="user">
+  <form class="userdetail-form" [formGroup]="userData_fields" *ngIf="user && editable==false">
     <table class="userdetail-full-width">
       <tr class="tableRowLeft">
         <p class="title">Användardetaljer</p>
@@ -37,35 +37,84 @@
           <input matInput readonly type="text" id="invoiceAddress" name="invoiceAddress" formControlName="invoiceAddress">
         </mat-form-field>
       </tr>
-      <tr class="tableRowCenter">
-        <mat-form-field class="userdetail-form-width" appearance="outline">
-          <mat-label class="matLabel">Roll</mat-label>
-          <input matInput readonly type="text" id="role" name="role" formControlName="role">
-        </mat-form-field>
+      <tr class="tableRowLeft">
+        <p class="smallerText">
+          Användarroll
+          <mat-radio-group class="register-full-width" appearance="outline" id="role" name="role" formControlName="role">
+            <mat-radio-button disabled="true" value="Regular" class="radioButton">Regular</mat-radio-button>
+            <mat-radio-button disabled="true" value="Admin" class="radioButton">Admin</mat-radio-button>
+          </mat-radio-group>
+        </p>
       </tr>
       <tr class="tableRowRight">
         <br />
-        <span class="paddingLeft"><button class="userdetail-button" mat-raised-button color="primary" type="submit">Redigera</button></span>
+        <span class="paddingLeft"><button class="userdetail-button" mat-raised-button color="white" [routerLink]="'/userlist'">Tillbaka</button></span>
+        <span class="paddingLeft"><button class="userdetail-button" mat-raised-button color="primary" (click)="edit()">Redigera</button></span>
       </tr>
     </table>
   </form>
-</div>-->
-<!--<div *ngIf="user">
-          <p class="tableRowLeft">Användarnamn: {{ user.username }}</p>
-  <p class="tableRowLeft">Namn: {{ user.name }}</p>
-  <p class="tableRowLeft">Adress: {{ user.invoiceAddress }}</p>
-  <p class="tableRowLeft">Roll: {{ user.role }}</p>
+</div>
 
-    <p *ngIf=user.discount>
-      Rabatt: {{ luser.discount }} %
-    </p>
+
+
+
+
+<div class="parent">
+  <form class="userdetail-form" [formGroup]="userUpdateForm" *ngIf="user && editable==true">
+    <table class="userdetail-full-width">
+      <tr class="tableRowLeft">
+        <p class="title">Användardetaljer</p>
+      </tr>
+
+      <tr class="tableRowLeft">
+        <th class="columnSmall"><img width="80" height="120" /></th>
+        <th class="columnLarge">
+      <tr class="tableRowCenter">
+        <mat-form-field class="userdetail-form-width" appearance="outline">
+          <mat-label class="matLabel">Användarnamn</mat-label>
+          <input matInput readonly value="{{ user.username }}" type="text">
+        </mat-form-field>
+      </tr>
+      <tr class="tableRowCenter">
+        <mat-form-field class="userdetail-form-width" appearance="outline">
+          <mat-label class="matLabel">Namn</mat-label>
+          <input matInput type="text" id="name" name="name" formControlName="name">
+        </mat-form-field>
+      </tr>
+      <tr class="tableRowCenter">
+        <mat-form-field class="userdetail-form-width" appearance="outline">
+          <mat-label class="matLabel">Fakturaadress</mat-label>
+          <input matInput type="text" id="password" name="password" formControlName="password">
+        </mat-form-field>
+      </tr>
+      <tr class="tableRowCenter">
+        <mat-form-field class="userdetail-form-width" appearance="outline">
+          <mat-label class="matLabel">Fakturaadress</mat-label>
+          <input matInput type="text" id="invoiceAddress" name="invoiceAddress" formControlName="invoiceAddress">
+        </mat-form-field>
+      </tr>
+      <tr class="tableRowLeft">
+        <p class="smallerText">
+          Användarroll
+          <mat-radio-group value="{{ user.role }}" class="register-full-width" appearance="outline" id="role" name="role" formControlName="role">
+            <mat-radio-button value="Regular" class="radioButton">Regular</mat-radio-button>
+            <mat-radio-button value="Admin" class="radioButton">Admin</mat-radio-button>
+          </mat-radio-group>
+        </p>
+      </tr>
+      <tr class="tableRowRight">
+        <br />
+        <span class="paddingLeft"><button class="userdetail-button" mat-raised-button color="white" (click)="edit()">Ångra</button></span>
+        <span class="paddingLeft"><button class="userdetail-button" mat-raised-button color="primary" type="submit">Ändra</button></span>
+      </tr>
+    </table>
+  </form>
 </div>
-</th>
-</tr>-->
-  
-    <button [routerLink]="'/userlist'">Tillbaka</button>
-    <button (click)="edit()">Redigera</button>
-</div>
+
+
+
+
+<!--</div>
 
 <div div class="parent" *ngIf="user && editable==true">
   <form [formGroup]="userUpdateForm" (ngSubmit)="onSubmit()">
@@ -86,7 +135,7 @@
     </div>
     <div>
       <label for="invoiceAddress">
-          Adress
+        Adress
       </label>
       <input id="invoiceAddress" type="text" formControlName="invoiceAddress">
     </div>
@@ -96,17 +145,17 @@
           Roll
         </label>
       </span>
-      <span>  
+      <span>
         <input id="role" type="radio" value="Regular" formControlName="role"> Regular
         <input id="role" type="radio" value="Admin" formControlName="role"> Admin
       </span>
     </div>
-        <button (click)="edit()">Ångra</button>
+    <button (click)="edit()">Ångra</button>
     <button class="button" type="submit">Ändra</button>
-    
-    </form> 
-  
+
+  </form>
+
   <p *ngIf=user.discount>
     Rabatt: {{ luser.discount }} %
-    </p>
-</div>
+  </p>
+</div>-->

@@ -24,6 +24,10 @@ export class AdvancedsearchviewComponent implements OnInit {
   baseUrl: String;
   payload: Array<any> = [];
 
+  categoriesOptions: string[] = ['Nyheter', 'Sport', 'Nöje', 'Kultur', 'Ekonomi'];
+  subCategoriesOptions: string[] = ['Nyheter', 'Sport', 'Nöje', 'Kultur', 'Ekonomi'];
+  
+
   
 
   makeSearch(){
