@@ -123,7 +123,9 @@ export class SearchresultsComponent implements OnInit {
 
   }
 
-  openDialog(): void {
+  openDialog(image: any): void {
+
+    console.dir(image);
 
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '1000px',

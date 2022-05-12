@@ -30,7 +30,7 @@
                   <p>Fotograf: {{ image.photographer }}</p>
                 </li>
                 <li>
-                  <button mat-raised-button (click)="openDialog()">Välj</button>
+                  <button mat-raised-button (click)="openDialog(image)">Mer Info</button>
                 </li>
               </ol>
             </td>
@@ -38,20 +38,3 @@
       </mat-grid-list>
   </tr>
   </table>
-
-
-
-<ol>
-  <li>
-    <mat-form-field appearance="fill">
-      <mat-label>Vad är ditt namn?</mat-label>
-      <input matInput [(ngModel)]="name" />
-    </mat-form-field>
-  </li>
-  <li>
-    <button mat-raised-button (click)="openDialog()">Välj</button>
-  </li>
-  <li *ngIf="animal">
-    Du väljer: <i>{{animal}}</i>
-  </li>
-</ol>
