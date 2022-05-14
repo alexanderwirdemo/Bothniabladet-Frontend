@@ -26,7 +26,8 @@
       </div>
       <div class="cart-item">
         <span></span>
-        <span *ngIf="rabatt>0"> Rabatt {{ rabatt|number }}% : {{rabattKr|number:"1.2"}} kr </span>
+        <span *ngIf="rabatt>0 && roll=='Admin'"> Inloggad med administratörsbehörighet: - {{rabattKr|number:"1.2"}} kr </span>
+        <span *ngIf="rabatt>0 && roll!='Admin'"> Rabatt {{ rabatt|number }}% : - {{rabattKr|number:"1.2"}} kr </span>
       </div>
       <div class="cart-item">
         <span></span>
@@ -35,21 +36,24 @@
         <ng-template #utanrabatt> Att betala: {{ summa|number:"1.2" }} kr </ng-template>
       </div>
 
-      <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-        <h4>Välj betalningsmetod </h4>
-        <div>
+      <form  [formGroup]="checkoutForm" (ngSubmit)="onSubmit()" >
+        <h4 *ngIf="inloggad && roll!='Admin'">Välj betalningsmetod </h4>
+        <h4 *ngIf="!inloggad">Logga in för att genomföra köpet</h4>
+        <div *ngIf="inloggad && roll!='Admin'">
           <input type="radio" value="kontokort" formControlName="betalningsmetod"> Kontokort
         </div>
-        <div>
-          <input type="radio" value="faktura" formControlName="betalningsmetod"> Faktura
+        <div *ngIf="inloggad && roll!='Admin'">
+          <input  type="radio" value="faktura" formControlName="betalningsmetod"> Faktura
         </div>
 
         <hr>
         <hr>
+        <div *ngIf="inloggad && roll!='Admin'" class="pay-button"><button mat-raised-button color="primary" type="submit">Betala</button></div>
+        <div *ngIf="inloggad && roll=='Admin'" class="pay-button"><button mat-raised-button color="primary" type="submit">Ladda ned</button></div>
+        <div *ngIf="!inloggad" class="pay-button"><button mat-raised-button color="primary" [routerLink]="'/login'">Logga in</button></div>
 
-        
-        <div class="pay-button"><button mat-raised-button color="primary" type="submit">Betala</button></div>
       </form>
+    
 
     </fieldset>
   </table>

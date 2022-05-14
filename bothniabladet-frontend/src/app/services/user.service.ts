@@ -47,7 +47,8 @@ export class UserService {
   }
 
   getUserDiscount(): any {
-    return this.userDiscount;
+    if (this.userRole=="Admin") {return 100}
+    else {return this.userDiscount};
   }
 
   logoutUser(): void {

@@ -16,6 +16,8 @@ export class CartComponent implements OnInit {
   images = images;
   summa = this.cartService.getSumOfPrice();
   antalVaror = this.cartService.getNumberOfItems();
+  inloggad = this.userService.getuserLoggedIn();
+  roll = this.userService.getuserRole();
   rabatt = this.userService.getUserDiscount();
   rabattKr = this.summa*this.rabatt/100;
   pris = this.summa*(100-this.rabatt)/100;
@@ -47,6 +49,8 @@ export class CartComponent implements OnInit {
     this.checkoutForm.reset();
     this.summa = this.cartService.getSumOfPrice();
     this.antalVaror = this.cartService.getNumberOfItems();
+    this.rabatt = this.userService.getUserDiscount();
+    this.rabattKr = this.summa*this.rabatt/100;
   }
 
   ngOnInit(): void {
