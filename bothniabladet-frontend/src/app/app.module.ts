@@ -53,7 +53,6 @@ import { DialogComponent } from './components/dialog/dialog.component';
     UserlistComponent,
     UserdetailsComponent,
     SearchresultsComponent,
-    DialogComponent,
   ],
   
   imports: [

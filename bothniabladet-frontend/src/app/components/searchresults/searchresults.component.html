@@ -26,11 +26,35 @@
             <td>
               <ol>
                 <li>
-                  <img src="{{ image.filepath }}" height="280px" width="200px">
+                  <img src="{{ image.variants[0] }}" height="280px" width="200px">
                   <p>Fotograf: {{ image.photographer }}</p>
+                  <p>Pris: {{ image.price }}</p>
+                  <table>
+                    <th>Varianter</th>
+                    <tr *ngFor="let variant of image.variants">
+                      <img src="{{ variant }}" height="30px" width="20px">
+                    </tr>
+                  </table>
                 </li>
                 <li>
                   <button mat-raised-button (click)="openDialog(image)">Mer Info</button>
+                </li>
+                <li>
+                  <form [formGroup]="uploadVariantForm" (ngSubmit)="uploadVariant(image)">
+                  <mat-form-field class="fileupload-full-width" appearance="outline" id="fileUploader">
+                    <div class="fileupload-full-width">
+                      <mat-toolbar>
+                        <input matInput placeholder="Välj fil" readonly name="uploadedImage">
+          
+          
+                        <input type="file" #UploadFileInput id="customFile" (change)="onFileSelect($event)" name="uploadedImage"
+                               multiple="multiple" accept="image/*">
+          
+                      </mat-toolbar>
+                      <button class="fileupload-button" mat-raised-button color="primary" type="sumbit">Ladda upp</button>
+                    </div>
+                  </mat-form-field>
+                </form>
                 </li>
               </ol>
             </td>
