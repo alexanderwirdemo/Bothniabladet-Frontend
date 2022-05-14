@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from "@angular/common";
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { CustomerviewComponent } from './components/customerview/customerview.co
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCommonModule } from '@angular/material/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -27,7 +29,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule, MatDialogTitle } from '@angular/material/dialog';
 import { UserlistComponent } from './components/userlist/userlist.component';
 import { UserdetailsComponent } from './components/userdetails/userdetails.component';
 import { SearchresultsComponent } from './components/searchresults/searchresults.component';
@@ -56,6 +58,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
   
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -73,6 +76,10 @@ import { DialogComponent } from './components/dialog/dialog.component';
     MatFormFieldModule,
     MatGridListModule,
     MatDialogModule,
+    MatButtonModule,
+    MatCommonModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatSelectModule,
     MatExpansionModule
   ],
@@ -91,7 +98,11 @@ import { DialogComponent } from './components/dialog/dialog.component';
     MatGridListModule,
     MatDialogModule,
     MatSelectModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDialogActions,
+    MatDialogClose,
+    MatDialogContent,
+    MatDialogTitle,
 
   ],
   providers: [],

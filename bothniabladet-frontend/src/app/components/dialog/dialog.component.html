@@ -1,4 +1,22 @@
-<!DOCTYPE html>
-<h1 mat-dialog-title> Hej {{data.name}}</h1>
 
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+
+
+<div mat-dialog-actions>
+    <button mat-button type="button">Lägg till variant</button>
+    <button mat-button>Redigera data</button>
+    <button mat-button>Radera bild</button>
+    <button mat-button>Lägg till i kundvagn</button>
+
+
+<table>
+    <th>Varianter</th>
+    <tr *ngFor="let variant of data.variants">
+    <img src=" {{ variants }}">    
+    </tr>
+    
+  </table>
+</div>
+</div>
 <!--{{data.name}}-->

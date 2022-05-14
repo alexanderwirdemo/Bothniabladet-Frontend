@@ -4,7 +4,8 @@ import { ApiService } from '../../services/api.service';
 import * as _ from 'lodash';
 import { SearchService } from 'src/app/services/search.service';
 import { Router } from '@angular/router';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { BothniaImage } from '../imageview/imageview.component';
 
 
 export interface DialogData {
@@ -29,7 +30,7 @@ export class SearchresultsComponent implements OnInit {
   finalLayer: string;
   searchTerm: string;
   resultsAmount;
-  public imagesData: Array<ImageData> = [];
+  public imagesData: Array<BothniaImage> = [];
   heightValue: string;
   widthValue: string;
   keywords: Array<string> = [];
@@ -73,12 +74,13 @@ export class SearchresultsComponent implements OnInit {
     this.imagesData = [];
 
     for(var imageIndex=0; imageIndex<this.rawSearch.allImages.length; imageIndex++){
-      console.dir(this.rawSearch.allImages[imageIndex]);
-      let imageData = new ImageData(
+      let imageData = this.rawSearch.allImages[imageIndex];
+      console.dir(imageData);
+      /*let imageData = new ImageData(
         this.rawSearch.allImages[imageIndex]._id,
         "http://localhost:3001/uploaded_images/"+this.rawSearch.allImages[imageIndex].title,
         this.rawSearch.allImages[imageIndex].photographer
-      );
+      );*/
       this.imagesData.push(imageData);
     }
 
@@ -96,7 +98,7 @@ export class SearchresultsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.dir
+    //console.dir
     
     this.searchService.rawResult.subscribe((searchoutput) => {
       
@@ -113,7 +115,7 @@ export class SearchresultsComponent implements OnInit {
 
     this.displayResults();
 
-    console.dir(this.imagesData)
+    console.dir(this.imagesData);
 
     
     
@@ -124,14 +126,31 @@ export class SearchresultsComponent implements OnInit {
   }
 
   openDialog(image: any): void {
-
     console.dir(image);
 
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = image;
+    dialogConfig.width = '1000px';
+    dialogConfig.height = '500px';
+
+    this.dialog.open(DialogComponent, dialogConfig);
+    
+    const dialogRef = this.dialog.open(DialogComponent, dialogConfig);
+
+
+
+
+    
+/*
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '1000px',
       height: '500px',
-      data: { name: this.name, animal: this.animal },
-    });
+      data: image,
+    });*/
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialogen stängdes')
@@ -173,6 +192,6 @@ export class ImageData{
 export class DialogComponent {
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    @Inject(MAT_DIALOG_DATA) public data: BothniaImage,
   ) { }
 }

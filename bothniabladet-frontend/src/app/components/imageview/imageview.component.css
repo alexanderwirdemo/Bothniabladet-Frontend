@@ -45,6 +45,10 @@
   display: none !important;
 }
 
+#GPSfield {
+  display: none !important;
+}
+
 .matLabel {
   font-size: large;
 }
