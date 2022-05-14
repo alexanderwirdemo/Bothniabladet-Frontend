@@ -144,7 +144,7 @@ export class SearchresultsComponent implements OnInit {
     variants.push(filepath);
 
     const data = {
-      id: image.id,
+      id: image._id,
       variants: variants
     }
 

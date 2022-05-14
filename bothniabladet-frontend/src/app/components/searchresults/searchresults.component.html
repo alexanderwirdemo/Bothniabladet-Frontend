@@ -31,8 +31,10 @@
                   <p>Pris: {{ image.price }}</p>
                   <table>
                     <th>Varianter</th>
-                    <tr *ngFor="let variant of image.variants">
+                    <tr>
+                      <td  *ngFor="let variant of image.variants">
                       <img src="{{ variant }}" height="30px" width="20px">
+                    </td>
                     </tr>
                   </table>
                 </li>
