@@ -22,18 +22,19 @@
   <table>
     <tr>
       <mat-grid-list cols="3" rowHeight="2:1">
-        <ng-container *ngFor="let image of imagesData">
+        <ng-container *ngFor="let image of imagesData; let i = index">
             <td>
               <ol>
                 <li>
-                  <img src="{{ image.variants[0] }}" height="280px" width="200px">
+                  <img src="{{ image.variants[0] }}" height="280px" width="200px" id="image_{{ i }}">
                   <p>Fotograf: {{ image.photographer }}</p>
                   <p>Pris: {{ image.price }}</p>
+                  <p>indexs: {{ i }}</p>
                   <table>
                     <th>Varianter</th>
                     <tr>
                       <td  *ngFor="let variant of image.variants">
-                      <img src="{{ variant }}" height="30px" width="20px">
+                      <img src="{{ variant }}" height="30px" width="20px" (click)="changePicture(i,variant)">
                     </td>
                     </tr>
                   </table>

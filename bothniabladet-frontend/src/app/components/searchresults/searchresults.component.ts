@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BothniaImage } from '../imageview/imageview.component';
 import { HttpClient } from '@angular/common/http';
+import { __importDefault } from 'tslib';
 
 
 export interface DialogData {
@@ -173,6 +174,12 @@ export class SearchresultsComponent implements OnInit {
       });
 
     //});  
+  }
+
+  changePicture(imageNumber:string, imageVariant:string){
+    const imageId = 'image_'+imageNumber;
+    console.log(imageId, imageVariant);
+    (document.getElementById(imageId) as HTMLImageElement).src = imageVariant;
   }
 
   onFormSubmit() {
