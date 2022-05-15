@@ -10,6 +10,7 @@ import { Variable } from '@angular/compiler/src/render3/r3_ast';
 import { BothniaImage } from '../imageview/imageview.component';
 import { HttpClient } from '@angular/common/http';
 import { __importDefault } from 'tslib';
+import { UserService } from "../../services/user.service";
 
 
 export interface DialogData {
@@ -50,6 +51,8 @@ export class SearchresultsComponent implements OnInit {
   keywords: Array<string> = [];
   resultLength: any;
 
+  loadedRole: any;
+
 
   simplesearch_data: FormGroup;
 
@@ -69,6 +72,7 @@ export class SearchresultsComponent implements OnInit {
     private _api: ApiService,
     public dialog: MatDialog,
     private http: HttpClient,
+    private _user: UserService,
  
   ) { }
 
@@ -91,6 +95,7 @@ export class SearchresultsComponent implements OnInit {
       this.searchTerm = JSON.stringify(termoutput);
 
     });
+
 
 
     this.displayResults();
@@ -200,6 +205,10 @@ export class SearchresultsComponent implements OnInit {
     this.makeSearch();
 
 
+  }
+
+  getUserRole(): any {
+    return this._user.getuserRole();
   }
 
   makeSearch(){
