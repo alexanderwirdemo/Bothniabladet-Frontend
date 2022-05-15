@@ -35,9 +35,9 @@ export class CartComponent implements OnInit {
    }
      
   public remove(index: number): void {
-    var name = this.items[index].name; 
+    var title = this.items[index].title; 
     this.items = this.cartService.clearItem(index);
-    console.warn('Item: ', name, ' has been deleted');
+    console.warn('Item: ', title, ' has been deleted');
     this.summa = this.cartService.getSumOfPrice();
     this.antalVaror = this.cartService.getNumberOfItems();
   }

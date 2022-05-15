@@ -3,12 +3,10 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../services/api.service';
 import { UserService } from 'src/app/services/user.service';
-//const EXIF = require('exif-js');
-
-
 import * as _ from 'lodash';
 import exifr from 'exifr';
-import { UserService } from 'src/app/services/user.service';
+//const EXIF = require('exif-js');
+
 
 
 
@@ -67,7 +65,7 @@ export class ImageviewComponent implements OnInit {
       const datestring = year + '-' + month + '-' + day;
     this.image_data = this.formBuilder.group({
       date: datestring,
-      photographer:this._userapi.currentUser[0].name,
+      photographer:this._userService.currentUser[0].name,
       category:'',
       subcategory:'',
       description:'',

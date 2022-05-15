@@ -80,7 +80,7 @@ export class SearchresultsComponent implements OnInit {
 
     //console.dir
     
-    this.searchService.rawResult.subscribe((searchoutput) => {
+    this.searchService.rawResultBig.subscribe((searchoutput) => {
       
       this.rawSearch = searchoutput;
 
@@ -231,9 +231,11 @@ export class SearchresultsComponent implements OnInit {
         this.rawSearch.allImages[imageIndex]._id,
         "http://localhost:3001/uploaded_images/"+this.rawSearch.allImages[imageIndex].title,
         this.rawSearch.allImages[imageIndex].photographer
-      );*/
+      ); */
       this.imagesData.push(imageData);
     }
+
+    console.dir(this.imagesData)
 
     if(this.imagesData.length>0){
 
@@ -256,23 +258,9 @@ export class SearchresultsComponent implements OnInit {
   
 
   openDialog(image: any): void {
-    console.dir(image);
-
-    const dialogConfig = new MatDialogConfig();
-    
-    this.searchService.rawResultBig.subscribe((searchoutput) => {}
-   
-
-    dialogConfig.data = image;
-    dialogConfig.width = '1000px';
-    dialogConfig.height = '500px';
-
-    this.dialog.open(DialogComponent, dialogConfig);
-    
-    const dialogRef = this.dialog.open(DialogComponent, dialogConfig);
 
     console.dir(image);
-    this.image_filepath = image.filepath;
+    this.image_filepath = image.variants[0];
     this.photographer = image.photographer;
 
 
@@ -325,6 +313,6 @@ export class ImageData{
 export class DialogComponent {
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: BothniaImage,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) { }
 }

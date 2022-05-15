@@ -126,7 +126,7 @@
         <tr class="tableRowCenter" *ngIf="userAdmin==='Admin'">
           <mat-form-field class="fileupload-full-width" appearance="outline">
             <mat-label class="matLabel">GPS-koordinater</mat-label>
-            <mat-form-field class="fileupload-full-width" appearance="outline" id="GPSfield">
+            <input matInput placeholder="GPS-koordinater" type="text" id="GPS" name="GPS" formControlName="GPS">
           </mat-form-field>
         </tr>
         <tr class="tableRowCenter" *ngIf="userAdmin==='Admin'">
