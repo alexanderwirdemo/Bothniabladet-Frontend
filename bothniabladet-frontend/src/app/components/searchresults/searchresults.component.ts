@@ -5,11 +5,13 @@ import * as _ from 'lodash';
 import { SearchService } from 'src/app/services/search.service';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
+import { Variable } from '@angular/compiler/src/render3/r3_ast';
 
 
 export interface DialogData {
-  animal: string;
-  name: string;
+
+  name: any;
 }
 
 @Component({
@@ -33,6 +35,7 @@ export class SearchresultsComponent implements OnInit {
   heightValue: string;
   widthValue: string;
   keywords: Array<string> = [];
+  resultLength: any;
 
 
   simplesearch_data: FormGroup;
@@ -58,7 +61,7 @@ export class SearchresultsComponent implements OnInit {
 
     this._api.getTypeRequest(this.combined).subscribe((res: any) => {
       {
-        this.searchService.setSearchResult(res)
+        this.searchService.setSearchResultBig(res)
         this.ngOnInit();
         
       }}, err => {
@@ -82,6 +85,22 @@ export class SearchresultsComponent implements OnInit {
       this.imagesData.push(imageData);
     }
 
+    if(this.imagesData.length>0){
+
+      this.resultLength = this.imagesData.length;
+
+    } else {
+
+      this.resultLength = "inga"
+
+    }
+
+  }
+
+  addToCart(pictureData){
+
+    alert(pictureData.filepath)
+
   }
 
   constructor(
@@ -98,7 +117,7 @@ export class SearchresultsComponent implements OnInit {
 
     console.dir
     
-    this.searchService.rawResult.subscribe((searchoutput) => {
+    this.searchService.rawResultBig.subscribe((searchoutput) => {
       
       this.rawSearch = searchoutput;
 
@@ -113,7 +132,7 @@ export class SearchresultsComponent implements OnInit {
 
     this.displayResults();
 
-    console.dir(this.imagesData)
+    
 
     
     
@@ -130,7 +149,7 @@ export class SearchresultsComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '1000px',
       height: '500px',
-      data: { name: this.name, animal: this.animal },
+      data: { placeholder: image, animal: this.animal },
     });
 
     dialogRef.afterClosed().subscribe(result => {

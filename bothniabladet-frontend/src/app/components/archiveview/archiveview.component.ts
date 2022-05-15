@@ -18,6 +18,18 @@ export class ArchiveviewComponent implements OnInit {
   baseUrl: String;
   keywords: string;
 
+  rawSearchFresh: any;
+  rawSearchNews: any;
+  rawSearchSport: any;
+  rawSearchEconomy: any;
+  rawSearchEntertainment: any;
+
+  freshSearchRandom: number;
+  newsSearchRandom: number;
+  sportSearchRandom: number;
+  economySearchRandom: number;
+  entertainmentSearchRandom: number;
+
   
   simplesearch_data: FormGroup;
 
@@ -33,32 +45,11 @@ export class ArchiveviewComponent implements OnInit {
   onFormSubmit() {
     console.log('simple search string:');
     console.dir(this.simplesearch_data.value);
-    this.makeMultipleSearch();
+    this.makeSearch();
 
   }
 
   makeSearch(){
-
-    this.baseUrl = "images/keyword/"
-    this.searchString = (<HTMLInputElement>document.getElementById("simple_searchBar")).value;
-    this.searchService.setSearchTerm(this.searchString)
-    this.combined = this.baseUrl.concat(this.searchString.toString())
-  
-
-    this._api.getTypeRequest(this.combined).subscribe(res => {
-      {
-        this.searchService.setSearchResult(res)
-        console.dir(res)
-        this._router.navigate(['/searchresults']);
-        
-      }}, err => {
-      console.log(err);
-      alert("Något gick fel")
-
-      });
-  }
-
-  makeMultipleSearch(){
 
     this.baseUrl = "images/keywords/"
     this.searchString = (<HTMLInputElement>document.getElementById("simple_searchBar")).value;
@@ -67,7 +58,7 @@ export class ArchiveviewComponent implements OnInit {
     
       this._api.getTypeRequest(this.combined).subscribe(res => {
         {
-          this.searchService.setSearchResult(res)
+          this.searchService.setSearchResultBig(res)
           console.dir(res)
           this._router.navigate(['/searchresults']);
           
@@ -76,16 +67,128 @@ export class ArchiveviewComponent implements OnInit {
         alert("Något gick fel")
   
         });
-    
-
 
   }
+
+  initSearchCategoryFresh(){
+
+    this._api.getTypeRequest("images/category/").subscribe(res => {
+      {
+        this.rawSearchFresh = res;
+        this.freshSearchRandom = Math.floor(Math.random()*(this.rawSearchFresh.allImages.length));
+        
+      }}, err => {
+      console.log(err);
+      alert("Något gick fel")
+
+      });
+
+  };
+
+  initSearchCategoryNews(){
+
+    this._api.getTypeRequest("images/category/Nyheter").subscribe(res => {
+      {
+        console.dir(res)
+        this.rawSearchNews = res;
+        this.newsSearchRandom = Math.floor(Math.random()*(this.rawSearchNews.allImages.length));
+        
+      }}, err => {
+      console.log(err);
+      alert("Något gick fel")
+
+      });
+  };
+
+  initSearchCategorySport(){
+
+    this._api.getTypeRequest("images/category/Sport").subscribe(res => {
+      {
+        this.rawSearchSport = res;
+        this.sportSearchRandom = Math.floor(Math.random()*(this.rawSearchSport.allImages.length))        
+
+      }}, err => {
+      console.log(err);
+      alert("Något gick fel")
+
+      });
+
+  };
+
+  initSearchCategoryEconomy(){
+
+    this._api.getTypeRequest("images/category/Ekonomi").subscribe(res => {
+      {
+        this.rawSearchEconomy = res;
+        this.economySearchRandom = Math.floor(Math.random()*(this.rawSearchEconomy.allImages.length))
+        console.dir(this.rawSearchEconomy)
+        console.dir(this.economySearchRandom)
+        
+      }}, err => {
+      console.log(err);
+      alert("Något gick fel")
+
+      });
+
+  };
+
+  initSearchCategoryEntertainment(){
+
+    this._api.getTypeRequest("images/category/Nöje").subscribe(res => {
+      {
+        this.rawSearchEntertainment = res;
+        this.entertainmentSearchRandom = Math.floor(Math.random()*(this.rawSearchEntertainment.allImages.length));
+        
+      }}, err => {
+      console.log(err);
+      alert("Något gick fel")
+
+      });
+
+  };      
+
+  economyClick(){
+
+    this.searchService.setSearchResultBig(this.rawSearchEconomy)
+    this._router.navigate(['/searchresults']);
+
+  }
+
+  sportClick(){
+
+    this.searchService.setSearchResultBig(this.rawSearchSport)
+    this._router.navigate(['/searchresults']);
+
+  }
+
+  entertainmentClick(){
+
+    this.searchService.setSearchResultBig(this.rawSearchEntertainment)
+    this._router.navigate(['/searchresults']);
+
+  }
+
+  newsClick(){
+
+    this.searchService.setSearchResultBig(this.rawSearchNews)
+    this._router.navigate(['/searchresults']);
+
+  }
+    
+  
 
   ngOnInit(): void {
 
     this.simplesearch_data = this.formBuilder.group({
       simple_searchString: '',
     });
+
+    /**this.initSearchCategoryFresh(); - Finns ingen kategori som heter Aktuella Händelser i databasen*/
+    this.initSearchCategoryNews();
+    this.initSearchCategorySport();
+    this.initSearchCategoryEconomy();
+    this.initSearchCategoryEntertainment();
+
   }
 }
 

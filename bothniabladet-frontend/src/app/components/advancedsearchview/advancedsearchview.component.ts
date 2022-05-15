@@ -53,7 +53,7 @@ export class AdvancedsearchviewComponent implements OnInit {
   
     this._api.postTypeRequest("images/advanced", imageData).subscribe(res => {
       {
-        this.searchService.setSearchResult(res)
+        this.searchService.setSearchResultBig(res)
         console.dir(res)
         this._router.navigate(['/searchresults']);
         

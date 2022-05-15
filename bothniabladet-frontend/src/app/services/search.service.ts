@@ -7,18 +7,18 @@ import { BehaviorSubject } from 'rxjs';
 export class SearchService {
 
 
-  private searchResult = new BehaviorSubject<any>({});
+  private searchResultBig = new BehaviorSubject<any>({});
   private searchTerm = new BehaviorSubject<any>({});
-  rawResult = this.searchResult.asObservable();
+  rawResultBig = this.searchResultBig.asObservable();
   enteredTerm = this.searchTerm.asObservable();
 
 
-  public setSearchResult(value){
-      this.searchResult.next(value);
+  public setSearchResultBig(value){
+      this.searchResultBig.next(value);
   }
 
   public setSearchTerm(value){
-    this.searchResult.next(value);
+    this.searchTerm.next(value);
   }
 
 

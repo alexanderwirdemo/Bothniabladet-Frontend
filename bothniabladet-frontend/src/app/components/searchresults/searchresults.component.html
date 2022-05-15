@@ -19,6 +19,9 @@
   </form>
 </div>
 
+
+  <tr><h1><b>Din sökning genererade {{ resultLength }} träffar.</b></h1></tr>
+
   <table>
     <tr>
       <mat-grid-list cols="3" rowHeight="2:1">
@@ -30,11 +33,11 @@
                   <p>Fotograf: {{ image.photographer }}</p>
                 </li>
                 <li>
-                  <button mat-raised-button (click)="openDialog(image)">Mer Info</button>
+                  <button mat-raised-button (click)="addToCart(image)">Lägg till i varukorg</button>
                 </li>
               </ol>
             </td>
         </ng-container>
       </mat-grid-list>
-  </tr>
+    </tr>
   </table>
