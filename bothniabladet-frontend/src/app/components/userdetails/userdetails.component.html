@@ -1,11 +1,3 @@
-<!--<h2 div class="parent">User Details</h2>
-
-<div div class="parent" *ngIf="user && editable==false">
-  <p>Användarnamn: {{ user.username }} <br>
-    Namn: {{ user.name }} <br>
-    Adress: {{ user.invoiceAddress }} <br>
-    Roll: {{ user.role }}<br>
-    Rabatt: {{ user.discount }}</p>
 
 <br />
 <br />
@@ -61,7 +53,7 @@
 
 
 <div class="parent">
-  <form class="userdetail-form" [formGroup]="userUpdateForm" *ngIf="user && editable==true">
+  <form class="userdetail-form" [formGroup]="userUpdateForm" (ngSubmit)="onSubmit()" *ngIf="user && editable==true">
     <table class="userdetail-full-width">
       <tr class="tableRowLeft">
         <p class="title">Användardetaljer</p>
@@ -94,6 +86,13 @@
           <input matInput type="text" id="invoiceAddress" name="invoiceAddress" formControlName="invoiceAddress">
         </mat-form-field>
       </tr>
+      <tr class="tableRowCenter">
+        <mat-form-field class="userdetail-form-width" appearance="outline">
+          <mat-label class="matLabel">Rabatt</mat-label>
+          <input matInput type="number" id="discount" name="discount" formControlName="discount">
+          <div *ngIf="userUpdateForm.controls['discount'].invalid">Rabatt kan ges mellan 0-100</div>
+        </mat-form-field>
+      </tr>
       <tr class="tableRowLeft">
         <p class="smallerText">
           Användarroll
@@ -106,7 +105,7 @@
       <tr class="tableRowRight">
         <br />
         <span class="paddingLeft"><button class="userdetail-button" mat-raised-button color="white" (click)="edit()">Ångra</button></span>
-        <span class="paddingLeft"><button class="userdetail-button" mat-raised-button color="primary" type="submit">Ändra</button></span>
+        <span class="paddingLeft"><button class="userdetail-button" mat-raised-button color="primary" type="submit" *ngIf="!userUpdateForm.controls['discount'].invalid">Ändra</button></span>
       </tr>
     </table>
   </form>

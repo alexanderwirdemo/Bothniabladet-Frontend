@@ -1,0 +1,114 @@
+.search-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.search-result {
+  min-width: 150px;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.search-full-width {
+  width: 100%;
+}
+
+.search-button {
+  display: table-cell;
+  width: 490px;
+  min-height: 100%;
+}
+
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.categories-field {
+  min-height: 20em !important;
+  height: 20em !important;
+  background-color: whitesmoke;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.category-link {
+  min-width: 20em !important;
+  width: 20em !important;
+  text-align: left;
+  font-size: small;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.matLabel {
+  font-size: large;
+}
+
+.tableRowLeft {
+  text-align: left;
+  font-size: larger;
+}
+
+.tableRowCenter {
+  text-align: center;
+}
+
+.tableRowRight {
+  text-align: right;
+}
+
+.radioButton {
+  font-size: large;
+  padding-left: 2em;
+}
+
+.matIcon {
+  width: 2em;
+}
+
+.title {
+  font-weight: 600;
+}
+
+.tile {
+
+  padding-left: 2em;
+  max-width: 200px;
+}
+
+.paddingLeft {
+  padding-left: 2em;
+}
+
+.padding_icon {
+  padding-right: 1em;
+}
+
+.headers-align .mat-expansion-panel-header-title,
+.headers-align .mat-expansion-panel-header-description {
+  flex-basis: 10;
+  justify-content: left;
+  font-size: larger;
+}
+
+.headers-align .mat-expansion-panel-header-description {
+  justify-content: right;
+  align-items: center;
+}
+
+.headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.hoverMouse:hover{
+    cursor: pointer;
+}

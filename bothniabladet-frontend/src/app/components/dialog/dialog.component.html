@@ -1,4 +1,23 @@
 <!DOCTYPE html>
-<button type="submit">Lägg till i varukorg</button>
 
-<!--{{data.name}}-->
+
+<br />
+
+
+    <table>
+      <tr>
+        <th><img src="{{ data.image_filepath }}" height="420px"></th>
+        <th class="tableRowLeft">
+          
+          <span class="tableRowLeft">
+            <p>Bilddetaljer</p><br />
+
+            <p>Fotograf: {{ data.photographer }}</p><br />
+
+            <br />
+            <button class="userdetail-button" mat-raised-button color="white">Tillbaka</button>
+            <button class="userdetail-button" mat-raised-button color="primary">Lägg i varukorgen</button>
+          </span>
+</th>
+      </tr>
+    </table>

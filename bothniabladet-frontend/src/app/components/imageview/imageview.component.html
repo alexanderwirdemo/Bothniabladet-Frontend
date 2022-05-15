@@ -77,6 +77,12 @@
         </tr>
         <tr class="tableRowCenter">
           <mat-form-field class="fileupload-full-width" appearance="outline">
+            <mat-label class="matLabel">Beskrivning</mat-label>
+            <input matInput placeholder="Beskrivning" type="text" id="description" name="description" formControlName="description">
+          </mat-form-field>
+        </tr>
+        <tr class="tableRowCenter">
+          <mat-form-field class="fileupload-full-width" appearance="outline">
             <mat-label class="matLabel">Nyckelord</mat-label>
             <input matInput placeholder="Nyckelord" type="text" id="keywords" name="keywords" formControlName="keywords">
           </mat-form-field>
@@ -91,12 +97,19 @@
           </div>
         </tr>
         <tr class="tableRowCenter">
+            <mat-radio-group aria-label="Begränsningar" id="restrictions" name="restrictions" formControlName="restrictions">
+              <mat-label class="matLabel">Begränsningar</mat-label>
+              <mat-radio-button value="Inga">Inga</mat-radio-button>
+              <mat-radio-button value="Begränsad">Begränsad</mat-radio-button>
+            </mat-radio-group>
+          </tr>
+          <tr>
+        <tr class="tableRowCenter" *ngIf="userAdmin==='Admin'">
           <mat-form-field class="fileupload-full-width" appearance="outline">
-            <mat-label class="matLabel">Begränsningar</mat-label>
-            <input matInput placeholder="Begränsningar" type="text" id="restrictions" name="restrictions" formControlName="restrictions">
+            <mat-label class="matLabel">Antal tillåtna publiceringar</mat-label>
+            <input matInput type="number" id="publications" name="publications" formControlName="publications">
           </mat-form-field>
         </tr>
-
       </table>
     </form>
   </div>
@@ -107,34 +120,34 @@
   <div class="fileupload-form">
     <form [formGroup]="location" (ngSubmit)="onFormSubmit()">
       <table class="fileupload-full-width">
-        <tr class="tableRowLeft">
+        <tr class="tableRowLeft" *ngIf="userAdmin==='Admin'">
           <p style="font-weight:400">Platsdata</p>
         </tr>
-        <tr class="tableRowCenter">
+        <tr class="tableRowCenter" *ngIf="userAdmin==='Admin'">
           <mat-form-field class="fileupload-full-width" appearance="outline">
             <mat-label class="matLabel">GPS-koordinater</mat-label>
-            <input matInput placeholder="GPS-koordinater" type="text" id="GPS" name="GPS" formControlName="GPS">
+            <mat-form-field class="fileupload-full-width" appearance="outline" id="GPSfield">
           </mat-form-field>
         </tr>
-        <tr class="tableRowCenter">
+        <tr class="tableRowCenter" *ngIf="userAdmin==='Admin'">
           <mat-form-field class="fileupload-full-width" appearance="outline">
             <mat-label class="matLabel">Plats</mat-label>
             <input matInput placeholder="Plats" type="text" id="place" name="place" formControlName="place">
           </mat-form-field>
         </tr>
-        <tr class="tableRowCenter">
+        <tr class="tableRowCenter" *ngIf="userAdmin==='Admin'">
           <mat-form-field class="fileupload-full-width" appearance="outline">
             <mat-label class="matLabel">Stad</mat-label>
             <input matInput placeholder="Stad" type="text" id="city" name="city" formControlName="city">
           </mat-form-field>
         </tr>
-        <tr class="tableRowCenter">
+        <tr class="tableRowCenter" *ngIf="userAdmin==='Admin'">
           <mat-form-field class="fileupload-full-width" appearance="outline">
             <mat-label class="matLabel">Region</mat-label>
             <input matInput placeholder="Region" type="text" id="region" name="region" formControlName="region">
           </mat-form-field>
         </tr>
-        <tr class="tableRowCenter">
+        <tr class="tableRowCenter" *ngIf="userAdmin==='Admin'">
           <mat-form-field class="fileupload-full-width" appearance="outline">
             <mat-label class="matLabel">Land</mat-label>
             <input matInput placeholder="Land" type="text" id="country" name="country" formControlName="country">
@@ -157,12 +170,6 @@
           <mat-form-field class="fileupload-full-width" appearance="outline">
             <mat-label class="matLabel">Format</mat-label>
             <input matInput placeholder="Format" type="text" id="format" name="format" formControlName="format">
-          </mat-form-field>
-        </tr>
-        <tr class="tableRowCenter">
-          <mat-form-field class="fileupload-full-width" appearance="outline">
-            <mat-label class="matLabel">Version</mat-label>
-            <input matInput placeholder="Version" type="text" id="version" name="version" formControlName="version">
           </mat-form-field>
         </tr>
         <tr class="tableRowCenter">
