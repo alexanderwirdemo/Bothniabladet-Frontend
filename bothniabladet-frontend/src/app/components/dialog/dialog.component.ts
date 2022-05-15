@@ -1,10 +1,10 @@
 
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit, ViewChild, ElementRef, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogContent } from '@angular/material/dialog';
 
 export interface DialogData {
-  animal: string;
-  name: string;
+  photographer: any;
+  image_filepath: any;
 }
 
 @Component({
@@ -14,12 +14,15 @@ export interface DialogData {
 })
 export class DialogComponent implements OnInit {
 
+
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) { }
 
   ngOnInit(): void {
+
   }
 
 }
+

@@ -1,4 +1,24 @@
 <!DOCTYPE html>
-<h1 mat-dialog-title> Hej {{data.name}}</h1>
 
-<!--{{data.name}}-->
+
+<br />
+
+
+    <table>
+      <tr>
+        <th><img src="{{ data.image_filepath }}" height="420px"></th>
+        <th class="tableRowLeft">
+          
+          <span class="tableRowLeft">
+            <p>Bilddetaljer</p><br />
+
+            <p>Fotograf: {{ data.photographer }}</p><br />
+
+            <br />
+            <button class="userdetail-button" mat-raised-button color="white">Tillbaka</button>
+            <button class="userdetail-button" mat-raised-button color="primary">Lägg i varukorgen</button>
+          </span>
+</th>
+      </tr>
+    </table>
+

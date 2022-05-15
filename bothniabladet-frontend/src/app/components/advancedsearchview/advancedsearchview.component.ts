@@ -6,6 +6,11 @@ import { SearchService } from 'src/app/services/search.service'
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
+interface Categories {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-advancedsearchview',
   templateUrl: './advancedsearchview.component.html',
@@ -24,8 +29,28 @@ export class AdvancedsearchviewComponent implements OnInit {
   baseUrl: String;
   payload: Array<any> = [];
 
-  categoriesOptions: string[] = ['Nyheter', 'Sport', 'Nöje', 'Kultur', 'Ekonomi'];
-  subCategoriesOptions: string[] = ['Nyheter', 'Sport', 'Nöje', 'Kultur', 'Ekonomi'];
+  //categoriesOptions: string[] = ['Nyheter', 'Sport', 'Nöje', 'Kultur', 'Ekonomi'];
+
+
+  categoriesOptions: Categories[] = [
+    { value: 'Nyheter', viewValue: 'Nyheter' },
+    { value: 'Sport', viewValue: 'Sport' },
+    { value: 'Nöje', viewValue: 'Nöje' },
+    { value: 'Kultur', viewValue: 'Kultur' },
+    { value: 'Ekonomi', viewValue: 'Ekonomi' },
+  ];
+
+  selectedCategories = this.categoriesOptions[0].value;
+
+  selectCategory(event: Event) {
+    this.selectedCategories = (event.target as HTMLSelectElement).value;
+    console.log(this.selectedCategories);
+  }
+
+
+  subCategoriesOptions: string[] = [];
+
+  
   
 
   
@@ -64,11 +89,10 @@ export class AdvancedsearchviewComponent implements OnInit {
       });
 
 
-
-
   }
 
 
+  
 
 
   constructor(
