@@ -67,6 +67,7 @@ export class ImageviewComponent implements OnInit {
       photographer:this._userapi.currentUser[0].name,
       category:'',
       subcategory:'',
+      description:'',
       keywords:'',
       restrictions:'None',
       publications: 5,
@@ -183,9 +184,10 @@ export class ImageviewComponent implements OnInit {
   const reviewed: Boolean = false;
   const restrictions = imageDataForm.restrictions;
   const publications = imageDataForm.publications;
+  const description = imageDataForm.description;
   const publication_dates: Array<Date> = [];
 
-  var imageData = new BothniaImage(title, filepath, imageDataForm.date, imageDataForm.photographer, imageDataForm.category, imageDataForm.subcategory, location, technical_data, keywords, restrictions, publications, publication_dates, price, reviewed, variants);
+  var imageData = new BothniaImage(title, filepath, imageDataForm.date, imageDataForm.photographer, imageDataForm.category, imageDataForm.subcategory, location, technical_data, description, keywords, restrictions, publications, publication_dates, price, reviewed, variants);
   
   console.log('image data');
   console.dir(imageData);
@@ -273,6 +275,7 @@ export class BothniaImage{
   public subcategory: Array<String>;
   public Location: Location;
   public Technical_data: Technical_data;
+  public description: String;
   public keywords: Array<String>;
   public restrictions: String;
   public remaining_publications: Number;
@@ -281,7 +284,7 @@ export class BothniaImage{
   public reviewed: Boolean;
   public variants: Array<String>;
 
-  constructor(title: String, filepath: String, date: Date, photographer: String, category: Array<String>, subcategory: Array<String>, Location: Location, Technical_data: Technical_data, keywords: Array<String>, restrictions: String, remaining_publications: Number, publication_dates: Array<Date>, price: Number, reviewed: Boolean, variants: Array<String>){
+  constructor(title: String, filepath: String, date: Date, photographer: String, category: Array<String>, subcategory: Array<String>, Location: Location, Technical_data: Technical_data, description: String, keywords: Array<String>, restrictions: String, remaining_publications: Number, publication_dates: Array<Date>, price: Number, reviewed: Boolean, variants: Array<String>){
     this.title = title;
     this.filepath = filepath;
     this.date = date;
@@ -290,6 +293,7 @@ export class BothniaImage{
     this.subcategory = subcategory;
     this.Location = Location;
     this.Technical_data = Technical_data;
+    this.description = description;
     this.keywords = keywords;
     this.restrictions = restrictions;
     this.remaining_publications = remaining_publications;
