@@ -10,6 +10,7 @@ import { Variable } from '@angular/compiler/src/render3/r3_ast';
 import { BothniaImage } from '../imageview/imageview.component';
 import { HttpClient } from '@angular/common/http';
 import { __importDefault } from 'tslib';
+import { CartService } from 'src/app/services/cart.service';
 
 
 export interface DialogData {
@@ -69,6 +70,7 @@ export class SearchresultsComponent implements OnInit {
     private _api: ApiService,
     public dialog: MatDialog,
     private http: HttpClient,
+    private cartService: CartService,
  
   ) { }
 
@@ -250,12 +252,15 @@ export class SearchresultsComponent implements OnInit {
   }
 
   addToCart(pictureData){
-
-    alert(pictureData.filepath)
-
+    this.cartService.addToCart(pictureData)
+    // alert(pictureData.filepath)
+    console.dir(pictureData);
   }
 
-  
+  imagedetail(image){
+    this.searchService.setSearchTerm(image);
+    this._router.navigate(['/imagedetail']);
+  }
 
   openDialog(image: any): void {
 
