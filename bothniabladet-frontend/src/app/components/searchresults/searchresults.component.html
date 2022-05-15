@@ -27,6 +27,10 @@
 
 
 
+  <tr><h1><b>Din sökning genererade {{ resultLength }} träffar.</b></h1></tr>
+
+  <table>
+
 <div class="parent">
   <table class="search-result">
     <tr>
@@ -49,6 +53,7 @@
       <br />
       <br />
     </tr>
+
     <tr>
       <mat-grid-list cols="3" rowHeight="2:1">
         <ng-container *ngFor="let image of imagesData; let i = index">
@@ -70,7 +75,7 @@
                   </table>
                 </li>
                 <li>
-                  <button mat-raised-button (click)="openDialog(image)">Mer Info</button>
+                  <button mat-raised-button (click)="addToCart(image)">Lägg till i varukorg</button>
                 </li>
                 <li>
                   <form [formGroup]="uploadVariantForm" (ngSubmit)="uploadVariant(image)">

@@ -5,6 +5,8 @@ import * as _ from 'lodash';
 import { SearchService } from 'src/app/services/search.service';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
+import { Variable } from '@angular/compiler/src/render3/r3_ast';
 import { BothniaImage } from '../imageview/imageview.component';
 import { HttpClient } from '@angular/common/http';
 import { __importDefault } from 'tslib';
@@ -46,6 +48,7 @@ export class SearchresultsComponent implements OnInit {
   heightValue: string;
   widthValue: string;
   keywords: Array<string> = [];
+  resultLength: any;
 
 
   simplesearch_data: FormGroup;
@@ -207,7 +210,7 @@ export class SearchresultsComponent implements OnInit {
 
     this._api.getTypeRequest(this.combined).subscribe((res: any) => {
       {
-        this.searchService.setSearchResult(res)
+        this.searchService.setSearchResultBig(res)
         this.ngOnInit();
         
       }}, err => {
@@ -232,6 +235,22 @@ export class SearchresultsComponent implements OnInit {
       this.imagesData.push(imageData);
     }
 
+    if(this.imagesData.length>0){
+
+      this.resultLength = this.imagesData.length;
+
+    } else {
+
+      this.resultLength = "inga"
+
+    }
+
+  }
+
+  addToCart(pictureData){
+
+    alert(pictureData.filepath)
+
   }
 
   
@@ -240,9 +259,9 @@ export class SearchresultsComponent implements OnInit {
     console.dir(image);
 
     const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
+    
+    this.searchService.rawResultBig.subscribe((searchoutput) => {}
+   
 
     dialogConfig.data = image;
     dialogConfig.width = '1000px';
@@ -252,19 +271,19 @@ export class SearchresultsComponent implements OnInit {
     
     const dialogRef = this.dialog.open(DialogComponent, dialogConfig);
 
-
-
-
     console.dir(image);
     this.image_filepath = image.filepath;
     this.photographer = image.photographer;
+
 
     
 
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '1500px',
       height: '500px',
+
       data: { photographer: this.photographer, image_filepath: this.image_filepath },
+
     });
 
     dialogRef.afterClosed().subscribe(result => {

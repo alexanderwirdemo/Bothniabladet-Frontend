@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BothniaImage } from '../components/imageview/imageview.component';
 import { Image } from '../images';
 
 @Injectable({
@@ -8,7 +9,7 @@ export class CartService {
 
   public antal = 0;
 
-  items: Image[] = [{
+  items: BothniaImage[] = [/* {
     id: 1,
     name: 'Julfirande på stortorget 1969',
     photograher: 'Owe Sentlig d.ä.',
@@ -25,10 +26,10 @@ export class CartService {
     name: 'Branden i stövelfabriken 2008',
     photograher: 'Owe Sentlig d.y.',
     price: 199,
-    }];
+    } */];
 
-  addToCart(image: Image) {
-    const productExistInCart = this.items.find(({name}) => name === image.name);
+  addToCart(image: BothniaImage) {
+    const productExistInCart = this.items.find(({title}) => title === image.title);
     if (!productExistInCart) {
       this.items.push(image);
     }
@@ -51,7 +52,7 @@ export class CartService {
   getSumOfPrice() {
     let total = 0
     for (let i = 0; i < this.items.length; i++) {
-      total = total + this.items[i].price;
+      /* total = total + this.items[i].price; */
     }
     return total; 
   }
