@@ -4,12 +4,19 @@ import { ApiService } from '../../services/api.service';
 import * as _ from 'lodash';
 import { SearchService } from 'src/app/services/search.service';
 import { Router } from '@angular/router';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogContent } from '@angular/material/dialog';
 
 
 export interface DialogData {
-  animal: string;
-  name: string;
+  photographer: any;
+  image_filepath: any;
+
+}
+
+export interface Tile {
+  _id: any;
+  title: any;
+  photographer: any;
 }
 
 @Component({
@@ -19,8 +26,9 @@ export interface DialogData {
 })
 export class SearchresultsComponent implements OnInit {
 
-  animal: string;
-  name: string;
+  photographer: any;
+  image_filepath: any;
+  tiles: Tile[];
 
   rawSearch: any;
   value;
@@ -126,16 +134,17 @@ export class SearchresultsComponent implements OnInit {
   openDialog(image: any): void {
 
     console.dir(image);
+    this.image_filepath = image.filepath;
+    this.photographer = image.photographer;
 
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '1000px',
+      width: '1500px',
       height: '500px',
-      data: { name: this.name, animal: this.animal },
+      data: { photographer: this.photographer, image_filepath: this.image_filepath },
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialogen stängdes')
-      this.animal = result;
     })
     };
   }

@@ -28,6 +28,7 @@ const routes: Routes = [
   {path: 'advancedsearchview', component: AdvancedsearchviewComponent },
   {path: 'cart', component: CartComponent},
   { path: 'searchresults', component: SearchresultsComponent },
+  { path: 'dialog', component: DialogComponent }
 ];
 
 @NgModule({

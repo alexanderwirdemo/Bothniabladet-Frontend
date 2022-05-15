@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginform: FormGroup;
+  loginOk: boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,6 +46,9 @@ export class LoginComponent implements OnInit {
           this._userapi.setuserLoggedIn(true);
           this._userapi.setUser(res.user);
           this._router.navigate(['/archiveview']);
+          this.loginOk = true;
+        } else {
+          this.loginOk = false;
         }
       }
       }, err => {

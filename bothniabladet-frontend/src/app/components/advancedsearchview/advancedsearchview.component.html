@@ -22,11 +22,12 @@
       <tr class="tableRowCenter">
         <mat-form-field class="advancedsearch-full-width" appearance="outline">
           <mat-label class="matLabel">Kategori</mat-label>
-          <mat-select matNativeControl multiple placeholder="Kategori" id="advanced_searchCategory" name="advanced_searchCategory" formControlName="advanced_searchCategory">
-            <mat-option *ngFor="let category of categoriesOptions" [value]="category">{{category}}</mat-option>
+          <mat-select matNativeControl multiple [(value)]="selectedCategories" placeholder="Kategori" id="advanced_searchCategory" name="advanced_searchCategory" formControlName="advanced_searchCategory">
+            <mat-option [value]="category.value" *ngFor="let category of categoriesOptions">{{category.viewValue}}</mat-option>
           </mat-select>
         </mat-form-field>
       </tr>
+
       <tr class="tableRowCenter">
         <mat-form-field class="advancedsearch-full-width" appearance="outline">
           <mat-label class="matLabel">Underkategori</mat-label>

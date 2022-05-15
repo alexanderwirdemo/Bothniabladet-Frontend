@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation  } from '@a
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../services/api.service';
+import { UserService } from 'src/app/services/user.service';
 //const EXIF = require('exif-js');
 
 
@@ -28,14 +29,17 @@ export class ImageviewComponent implements OnInit {
   fileInputLabel: string;
   myfilename = 'Välj fil';
   filepath = '';
+  userAdmin: any;
 
   constructor(
     private http: HttpClient,
     private formBuilder: FormBuilder,
     private _api: ApiService,
+    private _userService: UserService,
   ) { }
 
   ngOnInit(): void {
+    this.userAdmin = this._userService.getuserRole();
     this.fileUploadForm = this.formBuilder.group({
       uploadedImage: ['']
     });
