@@ -183,8 +183,9 @@ export class ImageviewComponent implements OnInit {
   const reviewed: Boolean = false;
   const restrictions = imageDataForm.restrictions;
   const publications = imageDataForm.publications;
+  const publication_dates: Array<Date> = [];
 
-  var imageData = new BothniaImage(title, filepath, imageDataForm.date, imageDataForm.photographer, imageDataForm.category, imageDataForm.subcategory, location, technical_data, keywords, restrictions, publications, price, reviewed, variants);
+  var imageData = new BothniaImage(title, filepath, imageDataForm.date, imageDataForm.photographer, imageDataForm.category, imageDataForm.subcategory, location, technical_data, keywords, restrictions, publications, publication_dates, price, reviewed, variants);
   
   console.log('image data');
   console.dir(imageData);
@@ -275,11 +276,12 @@ export class BothniaImage{
   public keywords: Array<String>;
   public restrictions: String;
   public remaining_publications: Number;
+  public publication_dates: Array<Date>
   public price: Number;
   public reviewed: Boolean;
   public variants: Array<String>;
 
-  constructor(title: String, filepath: String, date: Date, photographer: String, category: Array<String>, subcategory: Array<String>, Location: Location, Technical_data: Technical_data, keywords: Array<String>, restrictions: String, remaining_publications: Number, price: Number, reviewed: Boolean, variants: Array<String>){
+  constructor(title: String, filepath: String, date: Date, photographer: String, category: Array<String>, subcategory: Array<String>, Location: Location, Technical_data: Technical_data, keywords: Array<String>, restrictions: String, remaining_publications: Number, publication_dates: Array<Date>, price: Number, reviewed: Boolean, variants: Array<String>){
     this.title = title;
     this.filepath = filepath;
     this.date = date;
@@ -291,6 +293,7 @@ export class BothniaImage{
     this.keywords = keywords;
     this.restrictions = restrictions;
     this.remaining_publications = remaining_publications;
+    this.publication_dates = publication_dates;
     this.price = price;
     this.reviewed = reviewed;
     this.variants = variants;
