@@ -29,7 +29,8 @@
                   <img src="{{ image.variants[0] }}" height="280px" width="200px" id="image_{{ i }}">
                   <p>Fotograf: {{ image.photographer }}</p>
                   <p>Pris: {{ image.price }}</p>
-                  <p>indexs: {{ i }}</p>
+                  <p>Begränsningar: {{ image.restrictions }}</p>
+                  <p *ngIf="image.restrictions==='Begränsad'">Kvarstående publiceringar: {{ image.remaining_publications }}</p>
                   <table>
                     <th>Varianter</th>
                     <tr>

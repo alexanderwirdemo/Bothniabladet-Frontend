@@ -68,7 +68,12 @@
 
 .radioButton {
   font-size: large;
-  padding-left: 2em;
+  padding-left: 4em;
+  padding-right: 4em;
+}
+
+.mat-radio-button {
+  padding: 1em;
 }
 
 

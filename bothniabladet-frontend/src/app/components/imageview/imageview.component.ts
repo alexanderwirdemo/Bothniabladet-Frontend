@@ -68,7 +68,8 @@ export class ImageviewComponent implements OnInit {
       category:'',
       subcategory:'',
       keywords:'',
-      restrictions:'None'
+      restrictions:'None',
+      publications: 5,
     })
   }
 
@@ -163,7 +164,7 @@ export class ImageviewComponent implements OnInit {
   console.dir(location);
 
   var technicalDataForm = this.technical_data.value;
-  var technical_data = new Technical_data(technicalDataForm.format, technicalDataForm.image_size, technicalDataForm.resolution, technicalDataForm.camera);
+  var technical_data = new Technical_data(technicalDataForm.format, technicalDataForm.height, technicalDataForm.width, technicalDataForm.image_size, technicalDataForm.resolution, technicalDataForm.camera);
   console.log('technical data');
   console.dir(technical_data);
 
@@ -171,9 +172,6 @@ export class ImageviewComponent implements OnInit {
     const year = today.getFullYear();
     const month = today.getMonth()+1;
     const day = today.getDate();
-    //const name = this.fileInputLabel.substring(0,this.fileInputLabel.indexOf('.'));
-    //const fileExtension = this.fileInputLabel.split('.').pop();
-    //const title = name + '-' + year + month + day + '.' + fileExtension;
     const title = response.uploadedFile.filename;
     const filepath = "http://localhost:3001/uploaded_images/"+title;
     const variants: Array<String> = [filepath];
@@ -183,7 +181,11 @@ export class ImageviewComponent implements OnInit {
   console.log(keywords);
   const price: Number = 199;
   const reviewed: Boolean = false;
-  var imageData = new BothniaImage(title, filepath, imageDataForm.date, imageDataForm.photographer, imageDataForm.category, imageDataForm.subcategory, location, technical_data, keywords, imageDataForm.restrictions, price, reviewed, variants);
+  const restrictions = imageDataForm.restrictions;
+  const publications = imageDataForm.publications;
+
+  var imageData = new BothniaImage(title, filepath, imageDataForm.date, imageDataForm.photographer, imageDataForm.category, imageDataForm.subcategory, location, technical_data, keywords, restrictions, publications, price, reviewed, variants);
+  
   console.log('image data');
   console.dir(imageData);
 
@@ -277,7 +279,7 @@ export class BothniaImage{
   public reviewed: Boolean;
   public variants: Array<String>;
 
-  constructor(title: String, filepath: String, date: Date, photographer: String, category: Array<String>, subcategory: Array<String>, Location: Location, Technical_data: Technical_data, keywords: Array<String>, restrictions: String, price: Number, reviewed: Boolean, variants: Array<String>){
+  constructor(title: String, filepath: String, date: Date, photographer: String, category: Array<String>, subcategory: Array<String>, Location: Location, Technical_data: Technical_data, keywords: Array<String>, restrictions: String, remaining_publications: Number, price: Number, reviewed: Boolean, variants: Array<String>){
     this.title = title;
     this.filepath = filepath;
     this.date = date;
@@ -288,6 +290,7 @@ export class BothniaImage{
     this.Technical_data = Technical_data;
     this.keywords = keywords;
     this.restrictions = restrictions;
+    this.remaining_publications = remaining_publications;
     this.price = price;
     this.reviewed = reviewed;
     this.variants = variants;
@@ -313,12 +316,16 @@ export class Location{
 
 export class Technical_data{
   public format: String;
+  public height: Number;
+  public width: Number;
   public image_size: String;
   public resolution: String;
   public camera: String;
 
-  constructor(format: String, image_size: String, resolution: String, camera: String){
+  constructor(format: String, height: Number, width: Number, image_size: String, resolution: String, camera: String){
     this.format = format;
+    this.height = height;
+    this.width = width;
     this.image_size = image_size;
     this.resolution = resolution;
     this.camera = camera;

@@ -91,12 +91,22 @@
           </div>
         </tr>
         <tr class="tableRowCenter">
-          <mat-form-field class="fileupload-full-width" appearance="outline">
+            <mat-radio-group aria-label="Begränsningar" id="restrictions" name="restrictions" formControlName="restrictions">
+              <mat-label class="matLabel">Begränsningar</mat-label>
+              <mat-radio-button value="Inga">Inga</mat-radio-button>
+              <mat-radio-button value="Begränsad">Begränsad</mat-radio-button>
+            </mat-radio-group>
+          </tr>
+            <!--<mat-form-field class="fileupload-full-width" appearance="outline"></mat-form-field>
             <mat-label class="matLabel">Begränsningar</mat-label>
             <input matInput placeholder="Begränsningar" type="text" id="restrictions" name="restrictions" formControlName="restrictions">
+          </mat-form-field>-->
+          <tr>
+          <mat-form-field class="fileupload-full-width" appearance="outline">
+            <mat-label class="matLabel">Antal tillåtna publiceringar</mat-label>
+            <input matInput type="number" id="publications" name="publications" formControlName="publications">
           </mat-form-field>
         </tr>
-
       </table>
     </form>
   </div>
