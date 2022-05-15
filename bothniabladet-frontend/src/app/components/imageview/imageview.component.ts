@@ -8,6 +8,7 @@ import { UserService } from 'src/app/services/user.service';
 
 import * as _ from 'lodash';
 import exifr from 'exifr';
+import { UserService } from 'src/app/services/user.service';
 
 
 
@@ -44,7 +45,7 @@ export class ImageviewComponent implements OnInit {
       uploadedImage: ['']
     });
     this.location = this.formBuilder.group({
-      GPS: 12,
+      GPS: "0,0",
       place: 'Scandinavium',
       city: 'Göteborg',
       region: 'Västra Götaland',
@@ -66,11 +67,13 @@ export class ImageviewComponent implements OnInit {
       const datestring = year + '-' + month + '-' + day;
     this.image_data = this.formBuilder.group({
       date: datestring,
-      photographer:'Owe Sentlig',
+      photographer:this._userapi.currentUser[0].name,
       category:'',
       subcategory:'',
+      description:'',
       keywords:'',
-      restrictions:'None'
+      restrictions:'None',
+      publications: 5,
     })
   }
 
@@ -165,7 +168,7 @@ export class ImageviewComponent implements OnInit {
   console.dir(location);
 
   var technicalDataForm = this.technical_data.value;
-  var technical_data = new Technical_data(technicalDataForm.format, technicalDataForm.version, technicalDataForm.image_size, technicalDataForm.resolution, technicalDataForm.camera);
+  var technical_data = new Technical_data(technicalDataForm.format, technicalDataForm.height, technicalDataForm.width, technicalDataForm.image_size, technicalDataForm.resolution, technicalDataForm.camera);
   console.log('technical data');
   console.dir(technical_data);
 
@@ -173,17 +176,22 @@ export class ImageviewComponent implements OnInit {
     const year = today.getFullYear();
     const month = today.getMonth()+1;
     const day = today.getDate();
-    //const name = this.fileInputLabel.substring(0,this.fileInputLabel.indexOf('.'));
-    //const fileExtension = this.fileInputLabel.split('.').pop();
-    //const title = name + '-' + year + month + day + '.' + fileExtension;
     const title = response.uploadedFile.filename;
+    const filepath = "http://localhost:3001/uploaded_images/"+title;
+    const variants: Array<String> = [filepath];
 
   var imageDataForm = this.image_data.value;
   const keywords = imageDataForm.keywords.split(',');
   console.log(keywords);
   const price: Number = 199;
   const reviewed: Boolean = false;
-  var imageData = new BothniaImage(title, imageDataForm.date, imageDataForm.photographer, imageDataForm.category, imageDataForm.subcategory, location, technical_data, keywords, imageDataForm.restrictions, price, reviewed);
+  const restrictions = imageDataForm.restrictions;
+  const publications = imageDataForm.publications;
+  const description = imageDataForm.description;
+  const publication_dates: Array<Date> = [];
+
+  var imageData = new BothniaImage(title, filepath, imageDataForm.date, imageDataForm.photographer, imageDataForm.category, imageDataForm.subcategory, location, technical_data, description, keywords, restrictions, publications, publication_dates, price, reviewed, variants);
+  
   console.log('image data');
   console.dir(imageData);
 
@@ -263,30 +271,39 @@ export class ImageviewComponent implements OnInit {
 
 export class BothniaImage{
   public title: String;
+  public filepath: String;
   public date: Date;
   public photographer: String;
   public category: Array<String>;
   public subcategory: Array<String>;
   public Location: Location;
   public Technical_data: Technical_data;
+  public description: String;
   public keywords: Array<String>;
   public restrictions: String;
   public remaining_publications: Number;
+  public publication_dates: Array<Date>
   public price: Number;
   public reviewed: Boolean;
+  public variants: Array<String>;
 
-  constructor(title: String, date: Date, photographer: String, category: Array<String>, subcategory: Array<String>, Location: Location, Technical_data: Technical_data, keywords: Array<String>, restrictions: String, price: Number, reviewed: Boolean){
+  constructor(title: String, filepath: String, date: Date, photographer: String, category: Array<String>, subcategory: Array<String>, Location: Location, Technical_data: Technical_data, description: String, keywords: Array<String>, restrictions: String, remaining_publications: Number, publication_dates: Array<Date>, price: Number, reviewed: Boolean, variants: Array<String>){
     this.title = title;
+    this.filepath = filepath;
     this.date = date;
     this.photographer = photographer;
     this.category = category;
     this.subcategory = subcategory;
     this.Location = Location;
     this.Technical_data = Technical_data;
+    this.description = description;
     this.keywords = keywords;
     this.restrictions = restrictions;
+    this.remaining_publications = remaining_publications;
+    this.publication_dates = publication_dates;
     this.price = price;
     this.reviewed = reviewed;
+    this.variants = variants;
   }
 
 }
@@ -309,14 +326,16 @@ export class Location{
 
 export class Technical_data{
   public format: String;
-  public version: String;
+  public height: Number;
+  public width: Number;
   public image_size: String;
   public resolution: String;
   public camera: String;
 
-  constructor(format: String, version: String, image_size: String, resolution: String, camera: String){
+  constructor(format: String, height: Number, width: Number, image_size: String, resolution: String, camera: String){
     this.format = format;
-    this.version = version;
+    this.height = height;
+    this.width = width;
     this.image_size = image_size;
     this.resolution = resolution;
     this.camera = camera;

@@ -4,7 +4,10 @@ import { ApiService } from '../../services/api.service';
 import * as _ from 'lodash';
 import { SearchService } from 'src/app/services/search.service';
 import { Router } from '@angular/router';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogContent } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { BothniaImage } from '../imageview/imageview.component';
+import { HttpClient } from '@angular/common/http';
+import { __importDefault } from 'tslib';
 
 
 export interface DialogData {
@@ -26,6 +29,8 @@ export interface Tile {
 })
 export class SearchresultsComponent implements OnInit {
 
+
+  @ViewChild('UploadFileInput', { static: false }) uploadFileInput: ElementRef;
   photographer: any;
   image_filepath: any;
   tiles: Tile[];
@@ -37,7 +42,7 @@ export class SearchresultsComponent implements OnInit {
   finalLayer: string;
   searchTerm: string;
   resultsAmount;
-  public imagesData: Array<ImageData> = [];
+  public imagesData: Array<BothniaImage> = [];
   heightValue: string;
   widthValue: string;
   keywords: Array<string> = [];
@@ -49,6 +54,142 @@ export class SearchresultsComponent implements OnInit {
   combined: string;
   results: string;
   baseUrl: string;
+  myfilename: string;
+  uploadVariantForm: FormGroup;
+  fileInputLabel: string;
+
+  constructor(
+
+    private _router: Router,
+    private formBuilder: FormBuilder,
+    private searchService: SearchService,
+    private _api: ApiService,
+    public dialog: MatDialog,
+    private http: HttpClient,
+ 
+  ) { }
+
+  ngOnInit(): void {
+
+    this.uploadVariantForm = this.formBuilder.group({
+      uploadedImage: ['']
+    });
+
+    //console.dir
+    
+    this.searchService.rawResult.subscribe((searchoutput) => {
+      
+      this.rawSearch = searchoutput;
+
+    });
+
+    this.searchService.enteredTerm.subscribe((termoutput) => {
+      
+      this.searchTerm = JSON.stringify(termoutput);
+
+    });
+
+
+    this.displayResults();
+
+    console.dir(this.imagesData);
+
+    
+    
+    this.simplesearch_data = this.formBuilder.group({
+      simple_searchString: '',
+    });
+
+  }
+
+  onFileSelect(event) {
+    const file = event.target.files[0];
+    this.myfilename = '';
+    Array.from(event.target.files).forEach(async (file: File) => {
+      console.log(file);
+      this.myfilename += file.name;
+    });
+
+    const URL = window.URL || window.webkitURL;
+    const Img = new Image();
+    Img.src = URL.createObjectURL(file);
+
+    Img.onload = (e: any) => {
+      console.dir(e.path[0]);
+  }
+
+    console.log('file:');
+    console.dir(file);
+    this.fileInputLabel = file.name;
+    console.log(this.fileInputLabel);
+    this.uploadVariantForm.get('uploadedImage').setValue(file);
+  }
+
+  uploadVariant(image: any) {
+    console.log(image);
+
+    if (!this.uploadVariantForm.get('uploadedImage').value) {
+      alert('Please fill valid details!');
+      return false;
+    }
+  
+  const formData = new FormData();
+    formData.append('uploadedImage', this.uploadVariantForm.get('uploadedImage').value);
+    console.dir(this.uploadVariantForm.get('uploadedImage').value);
+    console.dir(formData);
+
+    this.http
+      .post<any>('http://localhost:3001/uploadfilevariant', formData).subscribe(async response => {
+        console.log(response);
+        //this.filepath = 'http://localhost:3001/'+response.uploadedFile.path;
+
+  const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth()+1;
+    const day = today.getDate();
+    const title = response.uploadedFile.filename;
+    const filepath = "http://localhost:3001/uploaded_images_variants/"+title;
+
+    var variants: Array<String> = image.variants;
+    variants.push(filepath);
+
+    const data = {
+      id: image._id,
+      variants: variants
+    }
+
+
+
+    this._api.putTypeRequest('images/addvariant', data).subscribe((res: any) => {
+      console.dir(res);
+      if (res.success) {
+      console.log(res)
+      } else {
+      console.log(res)
+      alert('Bild tillagd!');
+      }
+      }, err => {
+      console.log(err);
+      });
+
+
+        if (response.statusCode === 200) {
+          this.uploadFileInput.nativeElement.value = "";
+          this.fileInputLabel = undefined;
+        }
+      }, er => {
+        console.log(er);
+        alert(er.error.error);
+      });
+
+    //});  
+  }
+
+  changePicture(imageNumber:string, imageVariant:string){
+    const imageId = 'image_'+imageNumber;
+    console.log(imageId, imageVariant);
+    (document.getElementById(imageId) as HTMLImageElement).src = imageVariant;
+  }
 
   onFormSubmit() {
     console.log('simple search string:');
@@ -81,61 +222,44 @@ export class SearchresultsComponent implements OnInit {
     this.imagesData = [];
 
     for(var imageIndex=0; imageIndex<this.rawSearch.allImages.length; imageIndex++){
-      console.dir(this.rawSearch.allImages[imageIndex]);
-      let imageData = new ImageData(
+      let imageData = this.rawSearch.allImages[imageIndex];
+      console.dir(imageData);
+      /*let imageData = new ImageData(
         this.rawSearch.allImages[imageIndex]._id,
         "http://localhost:3001/uploaded_images/"+this.rawSearch.allImages[imageIndex].title,
         this.rawSearch.allImages[imageIndex].photographer
-      );
+      );*/
       this.imagesData.push(imageData);
     }
 
   }
 
-  constructor(
-
-    private _router: Router,
-    private formBuilder: FormBuilder,
-    private searchService: SearchService,
-    private _api: ApiService,
-    public dialog: MatDialog
- 
-  ) { }
-
-  ngOnInit(): void {
-
-    console.dir
-    
-    this.searchService.rawResult.subscribe((searchoutput) => {
-      
-      this.rawSearch = searchoutput;
-
-    });
-
-    this.searchService.enteredTerm.subscribe((termoutput) => {
-      
-      this.searchTerm = JSON.stringify(termoutput);
-
-    });
-
-
-    this.displayResults();
-
-    console.dir(this.imagesData)
-
-    
-    
-    this.simplesearch_data = this.formBuilder.group({
-      simple_searchString: '',
-    });
-
-  }
+  
 
   openDialog(image: any): void {
+    console.dir(image);
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = image;
+    dialogConfig.width = '1000px';
+    dialogConfig.height = '500px';
+
+    this.dialog.open(DialogComponent, dialogConfig);
+    
+    const dialogRef = this.dialog.open(DialogComponent, dialogConfig);
+
+
+
 
     console.dir(image);
     this.image_filepath = image.filepath;
     this.photographer = image.photographer;
+
+    
 
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '1500px',
@@ -182,6 +306,6 @@ export class ImageData{
 export class DialogComponent {
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    @Inject(MAT_DIALOG_DATA) public data: BothniaImage,
   ) { }
 }
