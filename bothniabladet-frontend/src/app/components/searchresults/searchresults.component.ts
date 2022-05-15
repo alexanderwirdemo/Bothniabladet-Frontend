@@ -11,8 +11,15 @@ import { __importDefault } from 'tslib';
 
 
 export interface DialogData {
-  animal: string;
-  name: string;
+  photographer: any;
+  image_filepath: any;
+
+}
+
+export interface Tile {
+  _id: any;
+  title: any;
+  photographer: any;
 }
 
 @Component({
@@ -22,9 +29,11 @@ export interface DialogData {
 })
 export class SearchresultsComponent implements OnInit {
 
+
   @ViewChild('UploadFileInput', { static: false }) uploadFileInput: ElementRef;
-  animal: string;
-  name: string;
+  photographer: any;
+  image_filepath: any;
+  tiles: Tile[];
 
   rawSearch: any;
   value;
@@ -246,17 +255,20 @@ export class SearchresultsComponent implements OnInit {
 
 
 
+    console.dir(image);
+    this.image_filepath = image.filepath;
+    this.photographer = image.photographer;
+
     
-/*
+
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '1000px',
+      width: '1500px',
       height: '500px',
-      data: image,
-    });*/
+      data: { photographer: this.photographer, image_filepath: this.image_filepath },
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialogen stängdes')
-      this.animal = result;
     })
     };
   }

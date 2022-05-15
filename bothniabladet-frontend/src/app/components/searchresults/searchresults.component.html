@@ -1,11 +1,15 @@
 <!DOCTYPE html>
+<br />
+<br />
+<br />
 <div class="parent">
-  <form class="search-form" [formGroup]="simplesearch_data" (ngSubmit)="onFormSubmit()">
+  <form class="search-result" [formGroup]="simplesearch_data" (ngSubmit)="onFormSubmit()">
     <table class="search-full-width">
-      <tr class="tableRowCenter">
+      <tr class="tableRowLeft">
+        <p class="title">Sökresultat</p>
       </tr>
-      <tr class="tableRowCenter">
-        <th style="width:80%">
+      <tr class="tableRowLeft">
+        <th style="width:40%">
           <mat-form-field class="search-full-width" appearance="outline">
             <mat-label class="matLabel"><mat-icon class="matIcon">search</mat-icon>Skriv valfria sökord här</mat-label>
             <input matInput placeholder="Sökord" type="text" id="simple_searchBar" name="simple_searchString" formControlName="simple_searchString">
@@ -14,19 +18,44 @@
         <th style="width:20%; align-content:center">
           <div class="search-button"><button mat-raised-button color="primary" type="submit">Sök</button></div>
         </th>
+        <th style="width:40%; align-content:center">
+        </th>
       </tr>
     </table>
   </form>
 </div>
 
-  <table>
+
+
+<div class="parent">
+  <table class="search-result">
+    <tr>
+      <mat-accordion class="headers-align" multi>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title><mat-icon class="padding_icon">filter_list</mat-icon> Filtrera sökresultat </mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <table class="userlist-form-width">
+
+            <tr class="tableRowRight">
+              <span class="paddingLeft"><button mat-raised-button color="white"> Rensa </button></span>
+              <span class="paddingLeft"><button mat-raised-button color="primary">Filtrera</button></span>
+            </tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <br />
+      <br />
+    </tr>
     <tr>
       <mat-grid-list cols="3" rowHeight="2:1">
         <ng-container *ngFor="let image of imagesData; let i = index">
             <td>
               <ol>
                 <li>
-                  <img src="{{ image.variants[0] }}" height="280px" width="200px" id="image_{{ i }}">
+                  <img src="{{ image.variants[0] }}" class="hoverMouse" height="280px" width="200px" id="image_{{ i }}" (click)="openDialog(image)">
                   <p>Fotograf: {{ image.photographer }}</p>
                   <p>Pris: {{ image.price }}</p>
                   <p>Begränsningar: {{ image.restrictions }}</p>
@@ -62,7 +91,22 @@
                 </li>
               </ol>
             </td>
+<!--
+      <mat-grid-list cols="4" rowHeight="200px" style="padding-bottom:2em;">
+        <ng-container *ngFor="let image of imagesData">
+          <td>
+
+
+            <mat-grid-tile class="tile">
+              <img class="hoverMouse" src="{{ image.filepath }}" height="180px" (click)="openDialog(image)"><br />
+              <!--<p>Fotograf: {{ image.photographer }}</p>-->
+            </mat-grid-tile>
+
+
+          </td>
+-->
         </ng-container>
       </mat-grid-list>
-  </tr>
+    </tr>
   </table>
+</div>

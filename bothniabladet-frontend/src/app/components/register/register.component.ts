@@ -48,6 +48,8 @@ export class RegisterComponent implements OnInit {
       console.log(err);
       });
 
+    this.registerform.reset();
+    alert('Ny användare registrerad');
   }
 
 }

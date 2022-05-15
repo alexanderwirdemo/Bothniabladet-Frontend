@@ -78,7 +78,7 @@ export class UserdetailsComponent implements OnInit {
       };
       this._userapi.putTypeRequest('users/update/'+this.selected.id, body).subscribe(response => {
           console.log(response);
-          alert('Godkänd!');
+          alert('Ändring godkänd');
         }, er => {
           console.log(er);
           alert(er.error.error);

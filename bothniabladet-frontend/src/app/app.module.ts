@@ -36,7 +36,6 @@ import { SearchresultsComponent } from './components/searchresults/searchresults
 import { DialogComponent } from './components/dialog/dialog.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,22 +1,23 @@
-
-<h1 mat-dialog-title>{{ data.title }}</h1>
-<div mat-dialog-content>
+<!DOCTYPE html>
 
 
-<div mat-dialog-actions>
-    <button mat-button type="button">Lägg till variant</button>
-    <button mat-button>Redigera data</button>
-    <button mat-button>Radera bild</button>
-    <button mat-button>Lägg till i kundvagn</button>
+<br />
 
 
-<table>
-    <th>Varianter</th>
-    <tr *ngFor="let variant of data.variants">
-    <img src=" {{ variants }}">    
-    </tr>
-    
-  </table>
-</div>
-</div>
-<!--{{data.name}}-->
+    <table>
+      <tr>
+        <th><img src="{{ data.image_filepath }}" height="420px"></th>
+        <th class="tableRowLeft">
+          
+          <span class="tableRowLeft">
+            <p>Bilddetaljer</p><br />
+
+            <p>Fotograf: {{ data.photographer }}</p><br />
+
+            <br />
+            <button class="userdetail-button" mat-raised-button color="white">Tillbaka</button>
+            <button class="userdetail-button" mat-raised-button color="primary">Lägg i varukorgen</button>
+          </span>
+</th>
+      </tr>
+    </table>

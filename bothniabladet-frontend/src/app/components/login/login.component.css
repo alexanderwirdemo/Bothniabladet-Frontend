@@ -73,3 +73,7 @@ a:link {
   min-width: 70px !important;
   width: 245px !important;
 }
+
+.redText {
+  color: red;
+}
