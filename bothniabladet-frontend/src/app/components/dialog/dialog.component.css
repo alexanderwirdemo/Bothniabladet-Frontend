@@ -5,25 +5,25 @@
   flex-direction: column;
 }
 
-.userdetail-form {
+.dialog-form {
   min-width: 150px;
   max-width: 500px;
   width: 100%;
 }
 
-.userdetail-full-width {
+.dialog-full-width {
   width: 100%;
   min-width: 150px;
-  max-width: 500px;
+  max-width: 900px;
 }
 
-.userdetail-form-width {
+.dialog-form-width {
   width: 100%;
   min-width: 390px;
   max-width: 390px;
 }
 
-.userdetail-button {
+.dialog-button {
   display: table-cell;
   width: 100px;
   min-height: 100%;

@@ -11,6 +11,9 @@ export interface DialogData {
 
   photographer: any;
   image_filepath: any;
+  price: any;
+  restrictions: any;
+  remaining_publications: any;
 
 }
 
@@ -22,7 +25,7 @@ export interface DialogData {
 })
 export class DialogComponent implements OnInit {
 
-
+  
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
@@ -39,6 +42,10 @@ export class DialogComponent implements OnInit {
 
 
 
+  }
+
+  getRestrictions(): any {
+    return this.data.restrictions;
   }
 
   addVariant():void {

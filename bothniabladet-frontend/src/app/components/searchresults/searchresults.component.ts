@@ -16,7 +16,9 @@ import { UserService } from "../../services/user.service";
 export interface DialogData {
   photographer: any;
   image_filepath: any;
-
+  price: any;
+  restrictions: any;
+  remaining_publications: any;
 }
 
 export interface Tile {
@@ -34,8 +36,13 @@ export class SearchresultsComponent implements OnInit {
 
 
   @ViewChild('UploadFileInput', { static: false }) uploadFileInput: ElementRef;
+
+  //Till Dialog
   photographer: any;
   image_filepath: any;
+  price: any;
+  restrictions: any;
+  remaining_publications: any;
   tiles: Tile[];
 
   rawSearch: any;
@@ -271,15 +278,15 @@ export class SearchresultsComponent implements OnInit {
     console.dir(image);
     this.image_filepath = image.variants[0];
     this.photographer = image.photographer;
-
-
-    
+    this.price = image.price;
+    this.restrictions = image.restrictions;
+    this.remaining_publications = image.remaining_publications;
 
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '1500px',
+      width: '700px',
       height: '500px',
 
-      data: { photographer: this.photographer, image_filepath: this.image_filepath },
+      data: { photographer: this.photographer, image_filepath: this.image_filepath , price: this.price, restrictions: this.restrictions, remaining_publications: this.remaining_publications},
 
     });
 
