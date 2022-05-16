@@ -34,6 +34,7 @@ import { UserlistComponent } from './components/userlist/userlist.component';
 import { UserdetailsComponent } from './components/userdetails/userdetails.component';
 import { SearchresultsComponent } from './components/searchresults/searchresults.component';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { ImagedetailComponent } from './components/imagedetail/imagedetail.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
     UserlistComponent,
     UserdetailsComponent,
     SearchresultsComponent,
+    ImagedetailComponent,
   ],
   
   imports: [

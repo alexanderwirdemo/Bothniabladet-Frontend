@@ -1,0 +1,70 @@
+
+<div class="parent">
+<form class="userdetail-form" [formGroup]="imageUpdate_fields" (ngSubmit)="onSubmit()">
+    <table class="userdetail-full-width">
+        <tr class="tableRowLeft">
+            <p class="title">Bildinformation</p>
+          </tr>
+          <tr class="tableRowCenter">
+            <mat-form-field class="userdetail-form-width" appearance="outline">
+              <mat-label class="matLabel">Beskrivning:</mat-label>
+              <input matInput type="text" id="description" name="description" formControlName="description">
+            </mat-form-field>
+          </tr>
+            <tr class="tableRowCenter">
+                <mat-form-field class="userdetail-form-width" appearance="outline">
+                  <mat-label class="matLabel">Kategori:</mat-label>
+                  <input matInput type="text" id="category" name="category" formControlName="category">
+                </mat-form-field>
+              </tr>
+              <!-- <tr class="tableRowCenter">
+                <mat-form-field class="advancedsearch-full-width" appearance="outline">
+                  <mat-label class="matLabel">Kategori</mat-label>d
+                  <mat-select matNativeControl multiple [(value)]="selectedCategories" placeholder="Kategori" id="category" name="category" formControlName="category">
+                    <mat-option [value]="category.value" *ngFor="let category of categoriesOptions">{{category.viewValue}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </tr> -->
+              <tr class="tableRowCenter">
+                <mat-form-field class="userdetail-form-width" appearance="outline">
+                  <mat-label class="matLabel">Subategori:</mat-label>
+                  <input matInput type="text" id="subcategory" name="subcategory" formControlName="subcategory">
+                </mat-form-field>
+              </tr>
+
+              <tr class="tableRowCenter">
+                <mat-form-field class="userdetail-form-width" appearance="outline">
+                  <mat-label class="matLabel">Pris:</mat-label>
+                  <input matInput type="number" id="price" name="price" formControlName="price">
+                </mat-form-field>
+              </tr>
+              <tr class="tableRowCenter">
+                <mat-form-field class="userdetail-form-width" appearance="outline">
+                  <mat-label class="matLabel">Publiceringsdatum:</mat-label>
+                  <input matInput type="text" id="publication_dates" name="publication_dates" formControlName="publication_dates">
+                </mat-form-field>
+              </tr>
+              <tr class="tableRowRight">
+                <br />
+                <span class="paddingLeft"><button class="userdetail-button" mat-raised-button color="white" (click)="goBack()">Ångra</button></span>
+                <span class="paddingLeft"><button class="userdetail-button" mat-raised-button color="primary" type="submit">Ändra</button></span>
+              </tr>
+
+    <!-- <label> Nyckelord: </label>
+    <input type="text" id="keywords" name="keywords" formControlName="keywords"><br> -->
+    <!-- <label> Publiceringsdatum: </label>
+    <input type="text" id="publication_dates" name="publication_dates" formControlName="publication_dates"><br> -->
+    <!-- <label> Restriktioner: </label>
+    <input type="text" id="restrictions" name="restrictions" formControlName="restrictions"><br> -->
+    <!-- <tr class="tableRowLeft">
+        <p class="smallerText">
+          Granskad för publicering: 
+          <mat-radio-group value="searchTerm.reviewed" class="register-full-width" appearance="outline" id="reviewed" name="reviewed" formControlName="reviewed">
+            <mat-radio-button value="true" class="radioButton">Ja</mat-radio-button>
+            <mat-radio-button value="false" class="radioButton">Nej</mat-radio-button>
+          </mat-radio-group>
+        </p>
+      </tr> -->
+    </table>
+</form>
+</div>
