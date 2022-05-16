@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Image } from '../../images';
 import { ApiService } from '../../services/api.service';
+import { BothniaImage } from '../imageview/imageview.component';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class CustomerviewComponent implements OnInit {
           this.imagesToReview.allImagesToReview[imageIndex]._id,
           "http://localhost:3001/uploaded_images/"+this.imagesToReview.allImagesToReview[imageIndex].title,
           this.imagesToReview.allImagesToReview[imageIndex].photographer,
+          this.imagesToReview.allImagesToReview[imageIndex].description
         );
         this.imagesData.push(imageData);
       }
@@ -67,10 +69,12 @@ export class ImageData{
   public id: String;
   public filepath: String;
   public photographer: String;
+  public description: String
 
-  constructor(id: String, filepath: String, photographer: String){
+  constructor(id: String, filepath: String, photographer: String, description: string){
     this.id = id;
     this.filepath = filepath;
     this.photographer = photographer;
+    this.description = description;
   }
 }
