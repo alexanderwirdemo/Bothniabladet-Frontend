@@ -30,6 +30,8 @@ export class ArchiveviewComponent implements OnInit {
   economySearchRandom: number;
   entertainmentSearchRandom: number;
 
+  index: number;
+
   
   simplesearch_data: FormGroup;
 
@@ -72,10 +74,10 @@ export class ArchiveviewComponent implements OnInit {
 
   initSearchCategoryFresh(){
 
-    this._api.getTypeRequest("images/category/").subscribe(res => {
+    this._api.getTypeRequest("images/keywords/").subscribe(res => {
       {
         this.rawSearchFresh = res;
-        this.freshSearchRandom = Math.floor(Math.random()*(this.rawSearchFresh.allImages.length));
+        this.index =  this.rawSearchFresh.allImages.length-1;
         
       }}, err => {
       console.log(err);
@@ -121,8 +123,6 @@ export class ArchiveviewComponent implements OnInit {
       {
         this.rawSearchEconomy = res;
         this.economySearchRandom = Math.floor(Math.random()*(this.rawSearchEconomy.allImages.length))
-        console.dir(this.rawSearchEconomy)
-        console.dir(this.economySearchRandom)
         
       }}, err => {
       console.log(err);
@@ -174,6 +174,13 @@ export class ArchiveviewComponent implements OnInit {
     this._router.navigate(['/searchresults']);
 
   }
+
+  freshClick(){
+
+    this.searchService.setSearchResultBig(this.rawSearchFresh)
+    this._router.navigate(['/searchresults']);
+
+  }
     
   
 
@@ -183,11 +190,11 @@ export class ArchiveviewComponent implements OnInit {
       simple_searchString: '',
     });
 
-    /**this.initSearchCategoryFresh(); - Finns ingen kategori som heter Aktuella Händelser i databasen*/
     this.initSearchCategoryNews();
     this.initSearchCategorySport();
     this.initSearchCategoryEconomy();
     this.initSearchCategoryEntertainment();
+    this.initSearchCategoryFresh();
 
   }
 }

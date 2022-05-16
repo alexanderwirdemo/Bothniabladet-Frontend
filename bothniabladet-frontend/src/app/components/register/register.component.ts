@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
 
     // Användardata
     var loginForm = this.registerform.value;
-    let user = new User(loginForm.username, loginForm.password, loginForm.name, loginForm.invoiceAddress, loginForm.role);
+    let user = new User(loginForm.username, loginForm.password, loginForm.name, loginForm.invoiceAddress);
     console.log('user:');
     console.dir(user);
 
@@ -61,11 +61,11 @@ export class User{
   public invoiceAddress: String;
   public role: String;
 
-  constructor(username: String, password: String, name: String, invoiceAddress: String, role: String){
+  constructor(username: String, password: String, name: String, invoiceAddress: String){
     this.username = username;
     this.password = password;
     this.name = name;
     this.invoiceAddress = invoiceAddress;
-    this.role = role;
+    this.role = "Regular";
   }
 }
