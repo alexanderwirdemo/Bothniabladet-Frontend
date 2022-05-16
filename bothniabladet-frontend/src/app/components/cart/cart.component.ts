@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-
+import { BothniaImage } from '../imageview/imageview.component';
 import { CartService } from 'src/app/services/cart.service';
-import { Image, images } from 'src/app/images';
+// import { Image, images } from 'src/app/images';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 export class CartComponent implements OnInit {
 
   items = this.cartService.getItems();
-  images = images;
+  images: Array<BothniaImage>;
   summa = this.cartService.getSumOfPrice();
   antalVaror = this.cartService.getNumberOfItems();
   inloggad = this.userService.getuserLoggedIn();
@@ -30,15 +30,17 @@ export class CartComponent implements OnInit {
     private cartService: CartService,
     private formBuilder: FormBuilder,
     private userService: UserService,
-    ) {
-    this.images=images 
+    ) { 
    }
-     
+
   public remove(index: number): void {
     var title = this.items[index].title; 
     this.items = this.cartService.clearItem(index);
     console.warn('Item: ', title, ' has been deleted');
     this.summa = this.cartService.getSumOfPrice();
+    this.rabatt = this.userService.getUserDiscount();
+    this.rabattKr = this.summa*this.rabatt/100;
+    this.pris = this.summa*(100-this.rabatt)/100;
     this.antalVaror = this.cartService.getNumberOfItems();
   }
 
@@ -54,6 +56,7 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
 }

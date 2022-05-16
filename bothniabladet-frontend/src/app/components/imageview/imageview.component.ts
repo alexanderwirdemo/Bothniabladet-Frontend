@@ -235,7 +235,7 @@ export class ImageviewComponent implements OnInit {
   var imageDataForm = this.image_data.value;
   const keywords = imageDataForm.keywords.split(',');
   console.log(keywords);
-  const price: Number = 199;
+  const price: number = 199;
   const reviewed: Boolean = false;
   const restrictions = imageDataForm.restrictions;
   const publications = imageDataForm.publications;
@@ -335,11 +335,11 @@ export class BothniaImage{
   public restrictions: String;
   public remaining_publications: Number;
   public publication_dates: Array<Date>
-  public price: Number;
+  public price: number;
   public reviewed: Boolean;
   public variants: Array<String>;
 
-  constructor(title: String, filepath: String, date: Date, photographer: String, category: Array<String>, subcategory: Array<String>, Location: Location, Technical_data: Technical_data, description: String, keywords: Array<String>, restrictions: String, remaining_publications: Number, publication_dates: Array<Date>, price: Number, reviewed: Boolean, variants: Array<String>){
+  constructor(title: String, filepath: String, date: Date, photographer: String, category: Array<String>, subcategory: Array<String>, Location: Location, Technical_data: Technical_data, description: String, keywords: Array<String>, restrictions: String, remaining_publications: Number, publication_dates: Array<Date>, price: number, reviewed: Boolean, variants: Array<String>){
     this.title = title;
     this.filepath = filepath;
     this.date = date;

@@ -54,6 +54,49 @@
     <tr>
       <mat-grid-list cols="4" rowHeight="500px" >
         <ng-container *ngFor="let image of imagesData; let i = index">
+            <td>
+              <ol>
+                <li>
+                  <img src="{{ image.variants[0] }}" class="hoverMouse" height="280px" width="200px" id="image_{{ i }}" (click)="openDialog(image)">
+                  <p>Fotograf: {{ image.photographer }}</p>
+                  <p>Pris: {{ image.price }}</p>
+                  <p>Begränsningar: {{ image.restrictions }}</p>
+                  <p *ngIf="image.restrictions==='Begränsad'">Kvarstående publiceringar: {{ image.remaining_publications }}</p>
+                  <table>
+                    <th>Varianter</th>
+                    <tr>
+                      <td  *ngFor="let variant of image.variants">
+                      <img src="{{ variant }}" height="30px" width="20px" (click)="changePicture(i,variant)">
+                    </td>
+                    </tr>
+                  </table>
+                </li>
+                <li>
+                  <button mat-raised-button (click)="addToCart(image)">Lägg till i varukorg</button>
+                </li>
+                <li>
+                  <form [formGroup]="uploadVariantForm" (ngSubmit)="uploadVariant(image)" *ngIf="getUserRole()==='Admin'">
+                  <mat-form-field class="fileupload-full-width" appearance="outline" id="fileUploader">
+                    <div class="fileupload-full-width">
+                      <mat-toolbar>
+                        <input matInput placeholder="Välj fil" readonly name="uploadedImage">
+          
+          
+                        <input type="file" #UploadFileInput id="customFile" (change)="onFileSelect($event)" name="uploadedImage"
+                               multiple="multiple" accept="image/*">
+          
+                      </mat-toolbar>
+                      <button class="fileupload-button" mat-raised-button color="primary" type="sumbit">Ladda upp</button>
+                      <button (click)="imagedetail(image)">Redigera bilddata</button> 
+                    </div>
+                  </mat-form-field>
+                </form>
+                </li>
+              </ol>
+            </td>
+<!--
+      <mat-grid-list cols="4" rowHeight="200px" style="padding-bottom:2em;">
+        <ng-container *ngFor="let image of imagesData">
           <td>
             <mat-grid-tile class="tile">
               <table>
@@ -88,7 +131,7 @@
                       </div>
                     </mat-form-field>
                   
-                </tr>
+                </tr> --!>
 
               </table>
               
