@@ -11,6 +11,8 @@ import { BothniaImage } from '../imageview/imageview.component';
 import { HttpClient } from '@angular/common/http';
 import { __importDefault } from 'tslib';
 import { CartService } from 'src/app/services/cart.service';
+import { UserService } from "../../services/user.service";
+
 
 
 export interface DialogData {
@@ -51,6 +53,8 @@ export class SearchresultsComponent implements OnInit {
   keywords: Array<string> = [];
   resultLength: any;
 
+  loadedRole: any;
+
 
   simplesearch_data: FormGroup;
 
@@ -71,6 +75,7 @@ export class SearchresultsComponent implements OnInit {
     public dialog: MatDialog,
     private http: HttpClient,
     private cartService: CartService,
+    private _user: UserService,
  
   ) { }
 
@@ -93,6 +98,7 @@ export class SearchresultsComponent implements OnInit {
       this.searchTerm = JSON.stringify(termoutput);
 
     });
+
 
 
     this.displayResults();
@@ -202,6 +208,10 @@ export class SearchresultsComponent implements OnInit {
     this.makeSearch();
 
 
+  }
+
+  getUserRole(): any {
+    return this._user.getuserRole();
   }
 
   makeSearch(){

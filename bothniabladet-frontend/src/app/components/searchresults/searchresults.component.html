@@ -78,7 +78,7 @@
                   <button mat-raised-button (click)="addToCart(image)">Lägg till i varukorg</button>
                 </li>
                 <li>
-                  <form [formGroup]="uploadVariantForm" (ngSubmit)="uploadVariant(image)">
+                  <form [formGroup]="uploadVariantForm" (ngSubmit)="uploadVariant(image)" *ngIf="getUserRole()==='Admin'">
                   <mat-form-field class="fileupload-full-width" appearance="outline" id="fileUploader">
                     <div class="fileupload-full-width">
                       <mat-toolbar>
