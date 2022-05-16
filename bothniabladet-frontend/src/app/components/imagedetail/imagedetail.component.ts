@@ -84,6 +84,7 @@ export class ImagedetailComponent implements OnInit {
     this._apiService.putTypeRequest('images/reviewed/update/'+this.searchTerm._id, body).subscribe(response => {
       console.log(response);
       alert('Ändring godkänd');
+      this._router.navigate(['/archiveview']);
     }, er => {
       console.log(er);
       alert(er.error.error);
