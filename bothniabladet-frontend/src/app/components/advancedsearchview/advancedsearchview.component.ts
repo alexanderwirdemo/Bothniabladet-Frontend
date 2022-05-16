@@ -6,9 +6,15 @@ import { SearchService } from 'src/app/services/search.service'
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
-interface Categories {
+interface Subcategories {
   value: string;
   viewValue: string;
+}
+
+interface SubcategoriesGroup {
+  disabled?: boolean;
+  name: string;
+  subCategory: Subcategories[];
 }
 
 @Component({
@@ -29,29 +35,54 @@ export class AdvancedsearchviewComponent implements OnInit {
   baseUrl: String;
   payload: Array<any> = [];
 
-  //categoriesOptions: string[] = ['Nyheter', 'Sport', 'Nöje', 'Kultur', 'Ekonomi'];
+  categoriesOptions: string[] = ['Nyheter', 'Sport', 'Nöje', 'Ekonomi', 'Övrigt'];
 
 
-  categoriesOptions: Categories[] = [
-    { value: 'Nyheter', viewValue: 'Nyheter' },
-    { value: 'Sport', viewValue: 'Sport' },
-    { value: 'Nöje', viewValue: 'Nöje' },
-    { value: 'Kultur', viewValue: 'Kultur' },
-    { value: 'Ekonomi', viewValue: 'Ekonomi' },
+  subCategoriesGroups: SubcategoriesGroup[] = [
+    {
+      name: 'Nyheter',
+      subCategory: [
+        { value: 'Utrikes', viewValue: 'Utrikes' },
+        { value: 'Inrikes', viewValue: 'Inrikes' },
+        { value: 'Lokalt', viewValue: 'Lokalt' },
+        { value: 'Politik', viewValue: 'Politik' },
+        { value: 'Övrigt', viewValue: 'Övrigt' },
+      ],
+    },
+    {
+      name: 'Sport',
+      subCategory: [
+        { value: 'Ishockey', viewValue: 'Ishockey' },
+        { value: 'Motorsport', viewValue: 'Motorsport' },
+        { value: 'Fotboll', viewValue: 'Fotboll' },
+        { value: 'Övrigt', viewValue: 'Övrigt' },
+      ],
+    },
+    {
+      name: 'Nöje',
+      subCategory: [
+        { value: 'Musik', viewValue: 'Musik' },
+        { value: 'TV', viewValue: 'TV' },
+        { value: 'Teater', viewValue: 'Teater' },
+        { value: 'Film', viewValue: 'Film' },
+        { value: 'Uteliv', viewValue: 'Uteliv' },
+        { value: 'Övrigt', viewValue: 'Övrigt' },
+      ],
+    },
+    {
+      name: 'Ekonomi',
+      subCategory: [
+        { value: 'Börs', viewValue: 'Börs' },
+        { value: 'Finans', viewValue: 'Finans' },
+        { value: 'Näringsliv', viewValue: 'Näringsliv' },
+        { value: 'Övrigt', viewValue: 'Övrigt' },
+      ],
+    },
+
   ];
 
-  selectedCategories = this.categoriesOptions[0].value;
-
-  selectCategory(event: Event) {
-    this.selectedCategories = (event.target as HTMLSelectElement).value;
-    console.log(this.selectedCategories);
-  }
 
 
-  subCategoriesOptions: string[] = [];
-
-  
-  
 
   
 

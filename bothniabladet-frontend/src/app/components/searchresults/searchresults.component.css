@@ -6,7 +6,7 @@
 
 .search-result {
   min-width: 150px;
-  max-width: 1000px;
+  max-width: 1200px;
   width: 100%;
 }
 
@@ -111,4 +111,21 @@ a:link {
 
 .hoverMouse:hover{
     cursor: pointer;
+}
+
+.variants {
+  justify-content: start;
+  padding-right: 0.5em;
+}
+
+.addBasketButton {
+  width: 220px;
+}
+
+.smallerText{
+    font-size:smaller;
+}
+
+.newVariant {
+  width: 220px;
 }

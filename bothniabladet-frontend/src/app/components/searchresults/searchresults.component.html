@@ -27,12 +27,11 @@
 
 
 
-  <tr><h1><b>Din sökning genererade {{ resultLength }} träffar.</b></h1></tr>
-
-  <table>
+ 
 
 <div class="parent">
   <table class="search-result">
+    <tr><p class="title">Din sökning genererade {{ resultLength }} träffar.</p></tr>
     <tr>
       <mat-accordion class="headers-align" multi>
         <mat-expansion-panel>
@@ -41,13 +40,11 @@
             <mat-panel-description></mat-panel-description>
           </mat-expansion-panel-header>
 
-          <table class="userlist-form-width">
+          <div class="userlist-form-width">
 
-            <tr class="tableRowRight">
               <span class="paddingLeft"><button mat-raised-button color="white"> Rensa </button></span>
               <span class="paddingLeft"><button mat-raised-button color="primary">Filtrera</button></span>
-            </tr>
-          </table>
+          </div>
         </mat-expansion-panel>
       </mat-accordion>
       <br />
@@ -55,7 +52,7 @@
     </tr>
 
     <tr>
-      <mat-grid-list cols="3" rowHeight="2:1">
+      <mat-grid-list cols="4" rowHeight="500px" >
         <ng-container *ngFor="let image of imagesData; let i = index">
             <td>
               <ol>
@@ -101,15 +98,47 @@
       <mat-grid-list cols="4" rowHeight="200px" style="padding-bottom:2em;">
         <ng-container *ngFor="let image of imagesData">
           <td>
-
-
             <mat-grid-tile class="tile">
-              <img class="hoverMouse" src="{{ image.filepath }}" height="180px" (click)="openDialog(image)"><br />
+              <table>
+                <tr>
+                  <img src="{{ image.variants[0] }}" class="hoverMouse" height="280px" width="220px" id="image_{{ i }}" (click)="openDialog(image)">
+                </tr>
+                <tr>
+                  <span class="variants" *ngFor="let variant of image.variants">
+                    <img src="{{ variant }}" height="30px" width="20px" (click)="changePicture(i,variant)">
+                  </span>
+                </tr>
+                <tr>
+                  <div *ngIf="image.restrictions==='Begränsad'">Kvarstående publiceringar: {{ image.remaining_publications }}</div>
+                </tr>
+                <tr>
+                  <button class="addBasketButton" mat-raised-button color="primary" (click)="addToCart(image)">Lägg till i varukorg</button>
+                </tr>
+                <tr *ngIf="getUserRole()==='Admin'">
+                  
+                    <mat-form-field class="newVariant" appearance="outline" id="fileUploader">
+                      <div class="fileupload-full-width">
+                        <mat-toolbar>
+                          <input class="smallerText" matInput placeholder="Variant" readonly name="uploadedImage">
+
+                          <input type="file" #UploadFileInput (change)="onFileSelect($event)" name="uploadedImage"
+                                 accept="image/*">
+
+                        </mat-toolbar>
+                        <form [formGroup]="uploadVariantForm" (ngSubmit)="uploadVariant(image)">
+                          <button class="fileupload-button" mat-raised-button color="primary" type="submit">Ladda upp</button>
+                        </form>
+                      </div>
+                    </mat-form-field>
+                  
+                </tr> --!>
+
+              </table>
+              
+                
+              
             </mat-grid-tile>
-
-
           </td>
--->
         </ng-container>
       </mat-grid-list>
     </tr>

@@ -54,27 +54,26 @@
         <tr class="tableRowCenter">
           <mat-form-field class="fileupload-full-width" appearance="outline">
             <mat-label class="matLabel">Kategori</mat-label>
-            <select matNativeControl placeholder="Kategori" id="category" name="category" formControlName="category">
-              <option>-- Ingen --</option>
-              <option value="Nyheter">Nyheter</option>
-              <option value="Sport">Sport</option>
-              <option value="Ekonomi">Ekonomi</option>
-              <option value="Nöje">Nöje</option>
-            </select>
+            <mat-select matNativeControl multiple placeholder="Kategori" id="category" name="category" formControlName="category">
+              <mat-option *ngFor="let category of categoriesOptions" [value]="category">{{category}}</mat-option>
+            </mat-select>
           </mat-form-field>
         </tr>
+
+
         <tr class="tableRowCenter">
           <mat-form-field class="fileupload-full-width" appearance="outline">
             <mat-label class="matLabel">Underkategori</mat-label>
-            <select matNativeControl placeholder="Underkategori" id="subcategory" name="subcategory" formControlName="subcategory">
-              <option>-- Ingen --</option>
-              <option value="Inrikes">Inrikes</option>
-              <option value="Ishockey">Ishockey</option>
-              <option value="Börs">Börs</option>
-              <option value="Litteratur">Litteratur</option>
-            </select>
+            <mat-select matNativeControl multiple placeholder="Underkategori" id="subcategory" name="subcategory" formControlName="subcategory">
+              <mat-optgroup *ngFor="let group of subCategoriesGroups" [label]="group.name" [disabled]="group.disabled">
+                <mat-option *ngFor="let subcategory of group.subCategory" [value]="subcategory.value">
+                  {{subcategory.viewValue}}
+                </mat-option>
+              </mat-optgroup>
+            </mat-select>
           </mat-form-field>
         </tr>
+
         <tr class="tableRowCenter">
           <mat-form-field class="fileupload-full-width" appearance="outline">
             <mat-label class="matLabel">Beskrivning</mat-label>
@@ -97,13 +96,13 @@
           </div>
         </tr>
         <tr class="tableRowCenter">
-            <mat-radio-group aria-label="Begränsningar" id="restrictions" name="restrictions" formControlName="restrictions">
-              <mat-label class="matLabel">Begränsningar</mat-label>
-              <mat-radio-button value="Inga">Inga</mat-radio-button>
-              <mat-radio-button value="Begränsad">Begränsad</mat-radio-button>
-            </mat-radio-group>
-          </tr>
-          <tr>
+          <mat-radio-group aria-label="Begränsningar" id="restrictions" name="restrictions" formControlName="restrictions">
+            <mat-label class="matLabel">Begränsningar</mat-label>
+            <mat-radio-button value="Inga">Inga</mat-radio-button>
+            <mat-radio-button value="Begränsad">Begränsad</mat-radio-button>
+          </mat-radio-group>
+        </tr>
+        <tr>
         <tr class="tableRowCenter" *ngIf="userAdmin==='Admin'">
           <mat-form-field class="fileupload-full-width" appearance="outline">
             <mat-label class="matLabel">Antal tillåtna publiceringar</mat-label>

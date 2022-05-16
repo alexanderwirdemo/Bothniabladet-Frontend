@@ -8,6 +8,16 @@ import exifr from 'exifr';
 //const EXIF = require('exif-js');
 
 
+interface Subcategories {
+  value: string;
+  viewValue: string;
+}
+
+interface SubcategoriesGroup {
+  disabled?: boolean;
+  name: string;
+  subCategory: Subcategories[];
+}
 
 
 @Component({
@@ -29,6 +39,50 @@ export class ImageviewComponent implements OnInit {
   myfilename = 'Välj fil';
   filepath = '';
   userAdmin: any;
+
+  categoriesOptions: string[] = ['Nyheter', 'Sport', 'Nöje', 'Ekonomi', 'Övrigt'];
+
+  subCategoriesGroups: SubcategoriesGroup[] = [
+    {
+      name: 'Nyheter',
+      subCategory: [
+        { value: 'Utrikes', viewValue: 'Utrikes' },
+        { value: 'Inrikes', viewValue: 'Inrikes' },
+        { value: 'Lokalt', viewValue: 'Lokalt' },
+        { value: 'Politik', viewValue: 'Politik' },
+        { value: 'Övrigt', viewValue: 'Övrigt' },
+      ],
+    },
+    {
+      name: 'Sport',
+      subCategory: [
+        { value: 'Ishockey', viewValue: 'Ishockey' },
+        { value: 'Motorsport', viewValue: 'Motorsport' },
+        { value: 'Fotboll', viewValue: 'Fotboll' },
+        { value: 'Övrigt', viewValue: 'Övrigt' },
+      ],
+    },
+    {
+      name: 'Nöje',
+      subCategory: [
+        { value: 'Musik', viewValue: 'Musik' },
+        { value: 'TV', viewValue: 'TV' },
+        { value: 'Teater', viewValue: 'Teater' },
+        { value: 'Film', viewValue: 'Film' },
+        { value: 'Uteliv', viewValue: 'Uteliv' },
+        { value: 'Övrigt', viewValue: 'Övrigt' },
+      ],
+    },
+    {
+      name: 'Ekonomi',
+      subCategory: [
+        { value: 'Börs', viewValue: 'Börs' },
+        { value: 'Finans', viewValue: 'Finans' },
+        { value: 'Näringsliv', viewValue: 'Näringsliv' },
+        { value: 'Övrigt', viewValue: 'Övrigt' },
+      ],
+    },
+  ];
 
   constructor(
     private http: HttpClient,

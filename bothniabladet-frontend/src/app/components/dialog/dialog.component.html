@@ -3,21 +3,25 @@
 
 <br />
 
+<div class="parent">
+  <table class="dialog-full-width">
+    <tr class="tableRowLeft">
+      <th style="padding-right: 3em"><img src="{{ data.image_filepath }}" height="420px" width="330px"></th>
+      <th style="text-align:left">
 
-    <table>
-      <tr>
-        <th><img src="{{ data.image_filepath }}" height="420px"></th>
-        <th class="tableRowLeft">
-          
-          <span class="tableRowLeft">
-            <p>Bilddetaljer</p><br />
+        <span class="tableRowLeft">
+          <p>Bilddetaljer</p><br />
 
-            <p>Fotograf: {{ data.photographer }}</p><br />
+          <p>Fotograf: {{ data.photographer }}</p><br />
+          <p>Pris: {{ data.price }}</p><br />
+          <p>Begränsningar: {{ data.restrictions }}</p><br />
+          <div *ngIf="getRestrictions()==='Begränsad'">Återstående publiceringar: {{ data.remaining_publications }}</div><br />
 
-            <br />
-            <button class="userdetail-button" mat-raised-button color="white">Tillbaka</button>
-            <button class="userdetail-button" mat-raised-button color="primary">Lägg i varukorgen</button>
-          </span>
-</th>
-      </tr>
-    </table>
+          <br />
+          <!--<button class="userdetail-button" mat-raised-button color="white">Tillbaka</button>
+  <button class="userdetail-button" mat-raised-button color="primary">Lägg i varukorgen</button>-->
+        </span>
+      </th>
+    </tr>
+  </table>
+</div>
