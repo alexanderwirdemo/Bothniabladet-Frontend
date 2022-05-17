@@ -98,9 +98,9 @@ export class ImageviewComponent implements OnInit {
     });
     this.location = this.formBuilder.group({
       GPS: "0,0",
-      place: 'Scandinavium',
-      city: 'Göteborg',
-      region: 'Västra Götaland',
+      place: '',
+      city: '',
+      region: '',
       country: 'Sverige'
     });
     this.technical_data = this.formBuilder.group({
