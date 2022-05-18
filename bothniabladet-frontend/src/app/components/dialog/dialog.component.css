@@ -77,3 +77,11 @@
 .redText {
   color: red;
 }
+
+.lineHeight{
+    line-height: 8;
+}
+
+.hoverMouse:hover {
+  cursor: pointer;
+}

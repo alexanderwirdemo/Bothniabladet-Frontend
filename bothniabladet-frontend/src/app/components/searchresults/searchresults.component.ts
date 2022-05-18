@@ -22,6 +22,13 @@ export interface DialogData {
   price: any;
   restrictions: any;
   remaining_publications: any;
+  description: any;
+  date_added: any;
+  gps: any;
+  city: any;
+  country: any;
+  place: any;
+  region: any;
 }
 
 export interface Tile {
@@ -46,6 +53,13 @@ export class SearchresultsComponent implements OnInit {
   price: any;
   restrictions: any;
   remaining_publications: any;
+  description: any;
+  date_added: any;
+  gps: any;
+  city: any;
+  country: any;
+  place: any;
+  region: any;
   tiles: Tile[];
 
   rawSearch: any;
@@ -325,12 +339,19 @@ export class SearchresultsComponent implements OnInit {
     this.price = image.price;
     this.restrictions = image.restrictions;
     this.remaining_publications = image.remaining_publications;
+    this.description = image.description;
+    this.date_added = image.date;
+    this.gps = image.Location.GPSCoordinates;
+    this.city = image.Location.city;
+    this.country = image.Location.country;
+    this.place = image.Location.place;
+    this.region = image.Location.region;
 
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '700px',
       height: '500px',
 
-      data: { photographer: this.photographer, image_filepath: this.image_filepath , price: this.price, restrictions: this.restrictions, remaining_publications: this.remaining_publications},
+      data: { photographer: this.photographer, image_filepath: this.image_filepath , price: this.price, restrictions: this.restrictions, remaining_publications: this.remaining_publications, description: this.description, date: this.date_added, gps: this.gps, city: this.city, country: this.country, place: this.place, region: this.region},
 
     });
 

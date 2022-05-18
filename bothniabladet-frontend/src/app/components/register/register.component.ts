@@ -62,6 +62,7 @@ export class User{
   public name: String;
   public invoiceAddress: String;
   public role: String;
+  public discount: number; 
 
   constructor(username: String, password: String, name: String, invoiceAddress: String){
     this.username = username;
@@ -69,5 +70,6 @@ export class User{
     this.name = name;
     this.invoiceAddress = invoiceAddress;
     this.role = "Regular";
+    this.discount = 0;
   }
 }

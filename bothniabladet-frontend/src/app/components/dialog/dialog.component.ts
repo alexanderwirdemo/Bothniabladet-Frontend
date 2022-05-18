@@ -14,6 +14,13 @@ export interface DialogData {
   price: any;
   restrictions: any;
   remaining_publications: any;
+  description: any;
+  date_added: any;
+  gps: any;
+  city: any;
+  country: any;
+  place: any;
+  region: any;
 
 }
 

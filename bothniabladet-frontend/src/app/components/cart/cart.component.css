@@ -34,3 +34,7 @@
   text-align: right;
 }
 
+.hoverMouse:hover {
+  cursor: pointer;
+}
+
