@@ -98,9 +98,9 @@ export class ImageviewComponent implements OnInit {
     });
     this.location = this.formBuilder.group({
       GPS: "0,0",
-      place: 'Scandinavium',
-      city: 'Göteborg',
-      region: 'Västra Götaland',
+      place: '',
+      city: '',
+      region: '',
       country: 'Sverige'
     });
     this.technical_data = this.formBuilder.group({
@@ -178,15 +178,38 @@ export class ImageviewComponent implements OnInit {
 
 
   onFormSubmit() {
+    const imageData = this.image_data.value;
     console.log('image data form:');
-    console.dir(this.image_data.value);
+    console.dir(imageData);
+    const location = this.location.value;
     console.log('location form:');
-    console.dir(this.location.value);
+    console.dir(location);
+    const technical_data = this.technical_data.value;
     console.log('technical data form:');
-    console.dir(this.technical_data.value);
+    console.dir(technical_data);
+
+    if (imageData.photographer==="") {
+      alert('Fyll i fotograf');
+      return false;
+    }
+
+    if (imageData.description==="") {
+      alert('Fyll i beskrivning');
+      return false;
+    }
+
+    if (imageData.keywords==="") {
+      alert('Fyll i nyckelord');
+      return false;
+    }
+
+    if (location.place==="") {
+      alert('Fyll i plats');
+      return false;
+    }
 
     if (!this.fileUploadForm.get('uploadedImage').value) {
-      alert('Please fill valid details!');
+      alert('Välj bild att ladda upp!');
       return false;
     }
   
