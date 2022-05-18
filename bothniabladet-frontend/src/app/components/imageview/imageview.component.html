@@ -48,7 +48,7 @@
         <tr class="tableRowCenter">
           <mat-form-field class="fileupload-full-width" appearance="outline">
             <mat-label class="matLabel">Fotograf</mat-label>
-            <input matInput placeholder="Fotograf" type="text" id="photographer" name="photographer" formControlName="photographer">
+            <input matInput placeholder="Fotograf" type="text" id="photographer" name="photographer" formControlName="photographer" required>
           </mat-form-field>
         </tr>
         <tr class="tableRowCenter">
@@ -77,13 +77,13 @@
         <tr class="tableRowCenter">
           <mat-form-field class="fileupload-full-width" appearance="outline">
             <mat-label class="matLabel">Beskrivning</mat-label>
-            <input matInput placeholder="Beskrivning" type="text" id="description" name="description" formControlName="description">
+            <input matInput placeholder="Beskrivning" type="text" id="description" name="description" formControlName="description" required>
           </mat-form-field>
         </tr>
         <tr class="tableRowCenter">
           <mat-form-field class="fileupload-full-width" appearance="outline">
             <mat-label class="matLabel">Nyckelord</mat-label>
-            <input matInput placeholder="Nyckelord" type="text" id="keywords" name="keywords" formControlName="keywords">
+            <input matInput placeholder="Nyckelord" type="text" id="keywords" name="keywords" formControlName="keywords" required>
           </mat-form-field>
         </tr>
         <tr class="tableRowCenter">
@@ -131,7 +131,7 @@
         <tr class="tableRowCenter" *ngIf="userAdmin==='Admin'">
           <mat-form-field class="fileupload-full-width" appearance="outline">
             <mat-label class="matLabel">Plats</mat-label>
-            <input matInput placeholder="Plats" type="text" id="place" name="place" formControlName="place">
+            <input matInput placeholder="Plats" type="text" id="place" name="place" formControlName="place" required>
           </mat-form-field>
         </tr>
         <tr class="tableRowCenter" *ngIf="userAdmin==='Admin'">
@@ -222,5 +222,4 @@
 
 <br />
 <br />
-
 

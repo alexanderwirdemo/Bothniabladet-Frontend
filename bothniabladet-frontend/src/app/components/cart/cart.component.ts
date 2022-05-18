@@ -1,10 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BothniaImage } from '../imageview/imageview.component';
 import { CartService } from 'src/app/services/cart.service';
 import { ApiService } from 'src/app/services/api.service';
 // import { Image, images } from 'src/app/images';
 import { UserService } from 'src/app/services/user.service';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+
+
+export interface DialogData {
+  photographer: any;
+  image_filepath: any;
+  price: any;
+  restrictions: any;
+  remaining_publications: any;
+  description: any;
+  date_added: any;
+  gps: any;
+  city: any;
+  country: any;
+  place: any;
+  region: any;
+}
 
 @Component({
   selector: 'app-cart',
@@ -12,6 +30,21 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+
+  //Till Dialog
+  photographer: any;
+  image_filepath: any;
+  price: any;
+  restrictions: any;
+  remaining_publications: any;
+  description: any;
+  date_added: any;
+  gps: any;
+  city: any;
+  country: any;
+  place: any;
+  region: any;
+
 
   items = this.cartService.getItems();
   images: Array<BothniaImage>;
@@ -32,6 +65,7 @@ export class CartComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userService: UserService,
     private _apiService: ApiService,
+    public dialog: MatDialog,
     ) { 
    }
 
@@ -82,4 +116,48 @@ export class CartComponent implements OnInit {
 
   }
 
+
+  openDialog(image: any): void {
+
+    console.dir(image);
+    this.image_filepath = image.variants[0];
+    this.photographer = image.photographer;
+    this.price = image.price;
+    this.restrictions = image.restrictions;
+    this.remaining_publications = image.remaining_publications;
+    this.description = image.description;
+    this.date_added = image.date;
+    this.gps = image.Location.GPSCoordinates;
+    this.city = image.Location.city;
+    this.country = image.Location.country;
+    this.place = image.Location.place;
+    this.region = image.Location.region;
+
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '700px',
+      height: '500px',
+
+      data: { photographer: this.photographer, image_filepath: this.image_filepath, price: this.price, restrictions: this.restrictions, remaining_publications: this.remaining_publications, description: this.description, date: this.date_added, gps: this.gps, city: this.city, country: this.country, place: this.place, region: this.region },
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialogen stängdes')
+    })
+  };
+
+
+}
+
+@Component({
+
+  selector: 'app-dialog',
+  templateUrl: '../dialog/dialog.component.html'
+})
+
+export class DialogComponent {
+  constructor(
+    public dialogRef: MatDialogRef<DialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+  ) { }
 }

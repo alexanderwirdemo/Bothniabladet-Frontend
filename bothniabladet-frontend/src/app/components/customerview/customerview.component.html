@@ -13,10 +13,13 @@
             <img src="{{ image.filepath }}" height="150">
             <p>Fotograf: {{ image.photographer }}</p>
             <p>Beskrivning: {{ image.description }}</p>
+            <p>Uppladdat: {{ image.date }}</p>
+            <p>Plats: {{ image.place }} ({{ image.city }}, {{ image.region }}, {{ image.country }})</p>
+            <p>GPS: {{ image.GPScoordinates }}</p>
           </span>
 
           <span class="paddingLeft">
-            <button class="review-button" mat-raised-button color="white">Neka</button>
+            <button class="review-button" mat-raised-button color="white" (click)="declineImage(image)">Neka</button>
 
             <button class="review-button" mat-raised-button color="primary" (click)="approveImage(image)">GODKÄNN</button>
           </span>
