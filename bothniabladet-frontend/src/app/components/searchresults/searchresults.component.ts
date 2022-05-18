@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import { __importDefault } from 'tslib';
 import { CartService } from 'src/app/services/cart.service';
 import { UserService } from "../../services/user.service";
+import { advancedsearch_data } from '../advancedsearchview/advancedsearchview.component';
 
 
 
@@ -35,9 +36,9 @@ export interface Tile {
   styleUrls: ['./searchresults.component.css']
 })
 export class SearchresultsComponent implements OnInit {
-
-
   @ViewChild('UploadFileInput', { static: false }) uploadFileInput: ElementRef;
+
+  filter_data: FormGroup;
 
   //Till Dialog
   photographer: any;
@@ -60,7 +61,16 @@ export class SearchresultsComponent implements OnInit {
   keywords: Array<string> = [];
   resultLength: any;
 
+  filterHolder = {
+
+    allImages: Array<any>()
+
+  }
+
+
   loadedRole: any;
+
+  categoriesOptions: string[] = ['Nyheter', 'Sport', 'Nöje', 'Ekonomi', 'Övrigt'];
 
 
   simplesearch_data: FormGroup;
@@ -86,7 +96,46 @@ export class SearchresultsComponent implements OnInit {
  
   ) { }
 
+  filter(){
+
+    this.filterHolder.allImages = [];
+
+
+    var filterDataForm = this.filter_data.value;
+
+
+    var filterData = new filter_data(
+
+      filterDataForm.filterCategory
+
+    )
+
+    for(var imageIndex=0; imageIndex<this.rawSearch.allImages.length; imageIndex++){
+      
+      if(this.rawSearch.allImages[imageIndex].category[0]===filterData.filterCategory[0]){
+          this.filterHolder.allImages.push(this.rawSearch.allImages[imageIndex])
+      } 
+   
+     
+    }
+
+      console.dir(this.rawSearch)
+      console.dir(this.filterHolder)
+
+      this.searchService.setSearchResultBig(this.filterHolder)
+      this.displayResults()
+
+
+
+  };
+
   ngOnInit(): void {
+
+    this.filter_data = this.formBuilder.group({
+
+      filterCategory: '',
+
+    });
 
     this.uploadVariantForm = this.formBuilder.group({
       uploadedImage: ['']
@@ -99,13 +148,6 @@ export class SearchresultsComponent implements OnInit {
       this.rawSearch = searchoutput;
 
     });
-
-    this.searchService.enteredTerm.subscribe((termoutput) => {
-      
-      this.searchTerm = JSON.stringify(termoutput);
-
-    });
-
 
 
     this.displayResults();
@@ -221,6 +263,7 @@ export class SearchresultsComponent implements OnInit {
     return this._user.getuserRole();
   }
 
+
   makeSearch(){
 
     this.baseUrl = "images/keywords/"
@@ -246,11 +289,6 @@ export class SearchresultsComponent implements OnInit {
     for(var imageIndex=0; imageIndex<this.rawSearch.allImages.length; imageIndex++){
       let imageData = this.rawSearch.allImages[imageIndex];
       console.dir(imageData);
-      /*let imageData = new ImageData(
-        this.rawSearch.allImages[imageIndex]._id,
-        "http://localhost:3001/uploaded_images/"+this.rawSearch.allImages[imageIndex].title,
-        this.rawSearch.allImages[imageIndex].photographer
-      ); */
       this.imagesData.push(imageData);
     }
 
@@ -337,4 +375,16 @@ export class DialogComponent {
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) { }
+}
+
+export class filter_data {
+
+  public filterCategory: Array<string>;
+
+  constructor(filterCategory: Array<string>){
+
+    this.filterCategory = filterCategory;
+
+  }
+
 }
