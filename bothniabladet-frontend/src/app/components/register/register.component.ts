@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private _userapi: UserService
+    private _userapi: UserService,
+    private _router: Router,
   ) { 
     
   }
@@ -40,9 +42,9 @@ export class RegisterComponent implements OnInit {
     this._userapi.postTypeRequest('registeruser/'+user.username, user).subscribe((res: any) => {
       console.dir(res);
       if (res.success) {
-      console.log(res)
+      console.dir(res)
       } else {
-      console.log(res)
+        this._router.navigate(['/login'])
       }
       }, err => {
       console.log(err);

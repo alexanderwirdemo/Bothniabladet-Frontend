@@ -40,10 +40,20 @@
             <mat-panel-description></mat-panel-description>
           </mat-expansion-panel-header>
 
+
+
+          <form class="filter-form" [formGroup]="filter_data">
+          <mat-label class="matLabel">Kategori</mat-label>
+          <mat-select matNativeControl multiple placeholder="Kategori" id="filterCategory" name="filterCategory" formControlName="filterCategory">
+            <mat-option *ngFor="let category of categoriesOptions" [value]="category">{{category}}</mat-option>
+          </mat-select>
+        </form>
+
+
           <div class="userlist-form-width">
 
               <span class="paddingLeft"><button mat-raised-button color="white"> Rensa </button></span>
-              <span class="paddingLeft"><button mat-raised-button color="primary">Filtrera</button></span>
+              <span class="paddingLeft"><button mat-raised-button color="primary" (click)="filter()">Filtrera</button></span>
           </div>
         </mat-expansion-panel>
       </mat-accordion>

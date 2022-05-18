@@ -20,6 +20,7 @@ export class ImagedetailComponent implements OnInit {
   @ViewChild('UploadFileInput', { static: false }) uploadFileInput: ElementRef;
   
   searchTerm: any;
+  rawSearch: any;
 
 /*   categoriesOptions: Categories[] = [
     { value: 'Nyheter', viewValue: 'Nyheter' },
@@ -54,6 +55,13 @@ export class ImagedetailComponent implements OnInit {
     this.searchService.enteredTerm.subscribe((termoutput) => {
       this.searchTerm = termoutput;
     });
+
+    this.searchService.rawResultBig.subscribe((searchoutput) => {
+      
+      this.rawSearch = searchoutput;
+
+    });
+
     this.imageUpdate_fields = this.formBuilder.group({
     category: this.searchTerm.category,
     subcategory: this.searchTerm.subcategory,
@@ -67,6 +75,7 @@ export class ImagedetailComponent implements OnInit {
   goBack() {
     this._router.navigate(['/searchresults']);
   }
+  
   onSubmit() {
 
     console.dir(this.imageUpdate_fields.value.price)
@@ -91,6 +100,23 @@ export class ImagedetailComponent implements OnInit {
   });
 
   }
+
+  deleteImage(){
+    const body = {
+      _id: this.searchTerm._id,
+      reviewed: true
+    };
+    this._apiService.deleteTypeRequest('images/remove/'+this.searchTerm._id, body).subscribe(response => {
+      console.log(response);
+      alert('Borttagen!');
+      this._router.navigate(["/archiveview"])
+    }, er => {
+      console.log(er);
+      alert(er.error.error);
+    });
+      
+  }
+
 
 
 }

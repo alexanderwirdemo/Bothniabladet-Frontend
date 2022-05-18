@@ -32,7 +32,6 @@ export class ApiService {
     return res;
     }));
     }
-
   deleteTypeRequest(url, payload) {
     return this._http.delete(`${this.baseUrl}${url}`, payload).pipe(map(res => {
     return res;
