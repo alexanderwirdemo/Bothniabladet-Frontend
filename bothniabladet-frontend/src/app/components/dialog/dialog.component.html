@@ -10,16 +10,30 @@
       <th style="text-align:left">
 
         <span class="tableRowLeft">
-          <p>Bilddetaljer</p><br />
+          <p><strong>Bilddetaljer</strong></p>
 
-          <p>Fotograf: {{ data.photographer }}</p><br />
-          <p>Pris: {{ data.price }}</p><br />
-          <p>Begränsningar: {{ data.restrictions }}</p><br />
-          <div *ngIf="getRestrictions()==='Begränsad'">Återstående publiceringar: {{ data.remaining_publications }}</div><br />
+          <p>Fotograf: {{ data.photographer }}<br />
+          Pris: {{ data.price }}<br />
+          Publiceringsbegränsningar: {{ data.restrictions }}<br />
+          Beskrivning: {{ data.description }}<br />
+          Datum: {{ data.date_added }}<br /><br />
+        </span>
+      
 
+        <span class="tableRowLeft">
+          <p><strong>Platsdata</strong></p>
+          
+          <p>GPS-koordinater: {{ data.gps }}
           <br />
-          <!--<button class="userdetail-button" mat-raised-button color="white">Tillbaka</button>
-  <button class="userdetail-button" mat-raised-button color="primary">Lägg i varukorgen</button>-->
+          Stad: {{ data.city }}
+          <br />
+          Land: {{ data.country }}
+          <br />
+          Plats: {{ data.place }}
+          <br />
+          Region: {{ data.region }}</p>
+          <br />
+          <br />
         </span>
       </th>
     </tr>
