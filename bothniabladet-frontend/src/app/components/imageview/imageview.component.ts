@@ -345,6 +345,7 @@ export class ImageviewComponent implements OnInit {
 
 
 export class BothniaImage{
+  public _id: String; 
   public title: String;
   public filepath: String;
   public date: Date;
@@ -356,13 +357,13 @@ export class BothniaImage{
   public description: String;
   public keywords: Array<String>;
   public restrictions: String;
-  public remaining_publications: Number;
+  public remaining_publications: number;
   public publication_dates: Array<Date>
   public price: number;
   public reviewed: Boolean;
   public variants: Array<String>;
 
-  constructor(title: String, filepath: String, date: Date, photographer: String, category: Array<String>, subcategory: Array<String>, Location: Location, Technical_data: Technical_data, description: String, keywords: Array<String>, restrictions: String, remaining_publications: Number, publication_dates: Array<Date>, price: number, reviewed: Boolean, variants: Array<String>){
+  constructor(title: String, filepath: String, date: Date, photographer: String, category: Array<String>, subcategory: Array<String>, Location: Location, Technical_data: Technical_data, description: String, keywords: Array<String>, restrictions: String, remaining_publications: number, publication_dates: Array<Date>, price: number, reviewed: Boolean, variants: Array<String>){
     this.title = title;
     this.filepath = filepath;
     this.date = date;

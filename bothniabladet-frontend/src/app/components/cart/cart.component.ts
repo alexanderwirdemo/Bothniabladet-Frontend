@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BothniaImage } from '../imageview/imageview.component';
 import { CartService } from 'src/app/services/cart.service';
+import { ApiService } from 'src/app/services/api.service';
 // import { Image, images } from 'src/app/images';
 import { UserService } from 'src/app/services/user.service';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -63,6 +64,7 @@ export class CartComponent implements OnInit {
     private cartService: CartService,
     private formBuilder: FormBuilder,
     private userService: UserService,
+    private _apiService: ApiService,
     public dialog: MatDialog,
     ) { 
    }
@@ -79,6 +81,26 @@ export class CartComponent implements OnInit {
   }
 
   onSubmit(): void {
+    for (let i=0; i < this.items.length; i++) {
+      if (this.items[i].restrictions == "Begränsad") {
+        console.log("remaining publication removed");
+        var updatedpublications = this.items[i].remaining_publications - 1;
+    
+        console.dir(this.items[i].title);
+        console.log(updatedpublications + " publications left");
+
+      const body = {
+        _id: this.items[i]._id,
+        remaining_publications: updatedpublications,
+      };
+      this._apiService.putTypeRequest('images/reviewed/update/'+this.items[i]._id, body).subscribe(response => {
+        console.log(response);
+      }, er => {
+        console.log(er);
+        alert(er.error.error);
+      });
+      } 
+    }
     // Process checkout data here
     this.items = this.cartService.clearCart();
     console.warn('Your order has been submitted', this.checkoutForm.value);
@@ -87,6 +109,7 @@ export class CartComponent implements OnInit {
     this.antalVaror = this.cartService.getNumberOfItems();
     this.rabatt = this.userService.getUserDiscount();
     this.rabattKr = this.summa*this.rabatt/100;
+
   }
 
   ngOnInit(): void {
