@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BothniaImage } from '../components/imageview/imageview.component';
 import { Image } from '../images';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
