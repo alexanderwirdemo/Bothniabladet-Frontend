@@ -277,6 +277,8 @@ export class ImageviewComponent implements OnInit {
       } else {
       console.log(res)
       alert('Bild tillagd!');
+      this.ngOnInit();
+      
       }
       }, err => {
       console.log(err);

@@ -2,7 +2,7 @@
 <br />
 <br />
 <br />
-<div class="parent">
+<!--<div class="parent">
   <form class="userdetail-form" [formGroup]="userData_fields" *ngIf="user && editable==false">
     <table class="userdetail-full-width">
       <tr class="tableRowLeft">
@@ -46,14 +46,14 @@
       </tr>
     </table>
   </form>
-</div>
+</div>-->
 
 
 
 
 
 <div class="parent">
-  <form class="userdetail-form" [formGroup]="userUpdateForm" (ngSubmit)="onSubmit()" *ngIf="user && editable==true">
+  <form class="userdetail-form" [formGroup]="userUpdateForm" (ngSubmit)="onSubmit()" *ngIf="user">
     <table class="userdetail-full-width">
       <tr class="tableRowLeft">
         <p class="title">Användardetaljer</p>
@@ -76,7 +76,7 @@
       </tr>
       <tr class="tableRowCenter">
         <mat-form-field class="userdetail-form-width" appearance="outline">
-          <mat-label class="matLabel">Fakturaadress</mat-label>
+          <mat-label class="matLabel">Lösenord</mat-label>
           <input matInput type="text" id="password" name="password" formControlName="password">
         </mat-form-field>
       </tr>
@@ -104,7 +104,7 @@
       </tr>
       <tr class="tableRowRight">
         <br />
-        <span class="paddingLeft"><button class="userdetail-button" mat-raised-button color="white" (click)="edit()">Ångra</button></span>
+        <span class="paddingLeft"><button class="userdetail-button" mat-raised-button color="white" [routerLink]="'/userlist'">Ångra</button></span>
         <span class="paddingLeft"><button class="userdetail-button" mat-raised-button color="primary" type="submit" *ngIf="!userUpdateForm.controls['discount'].invalid">Ändra</button></span>
       </tr>
     </table>

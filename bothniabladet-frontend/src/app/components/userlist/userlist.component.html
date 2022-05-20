@@ -18,11 +18,9 @@
               <p class="paddingLeft">Användarnamn: {{ anv.username }}</p>
               <p class="paddingLeft">Namn: {{ anv.name }}</p>
               <p class="paddingLeft">Adress: {{ anv.invoiceAddress }}</p>
-              <p class="paddingLeft">Roll: {{ anv.role }}</p>
             </tr>
             <tr class="tableRowRight">
-              <span class="paddingLeft"><button mat-raised-button color="primary" (click)='selectUser(i)'> Välj </button></span>
-              <span class="paddingLeft"><button mat-raised-button color="primary" [routerLink]="['/lusers', anv.id]">Detalj</button></span>
+              <span class="paddingLeft"><button mat-raised-button color="primary" [routerLink]="['/lusers', anv.id]">Redigera</button></span>
             </tr>
           </table>
         </mat-expansion-panel>
@@ -41,11 +39,10 @@
               <p class="paddingLeft">Användarnamn: {{ anv.username }}</p>
               <p class="paddingLeft">Namn: {{ anv.name }}</p>
               <p class="paddingLeft">Adress: {{ anv.invoiceAddress }}</p>
-              <p class="paddingLeft">Roll: {{ anv.role }}</p>
+              <p class="paddingLeft">Rabatt: {{ anv.discount }}</p>
             </tr>
             <tr class="tableRowRight">
-              <span class="paddingLeft"><button mat-raised-button color="primary" (click)='selectUser(i)'> Välj </button></span>
-              <span class="paddingLeft"><button mat-raised-button color="primary" [routerLink]="['/lusers', anv.id]">Detalj</button></span>
+              <span class="paddingLeft"><button mat-raised-button color="primary" [routerLink]="['/lusers', anv.id]">Redigera</button></span>
             </tr>
           </table>
         </mat-expansion-panel>
