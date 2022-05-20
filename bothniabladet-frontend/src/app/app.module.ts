@@ -7,7 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ImageviewComponent } from './components/imageview/imageview.component';
 import { ArchiveviewComponent } from './components/archiveview/archiveview.component';
-import { InvoiceviewComponent } from './components/invoiceview/invoiceview.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -42,7 +41,6 @@ import { ImagedetailComponent } from './components/imagedetail/imagedetail.compo
     AppComponent,
     ImageviewComponent,
     ArchiveviewComponent,
-    InvoiceviewComponent,
     HeaderComponent,
     AdvancedsearchviewComponent,
     CustomerviewComponent,
